@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Phpolar\CsrfProtection\Http;
 
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * @covers \Phpolar\CsrfProtection\Http\CsrfCheckRequestHandler
@@ -207,4 +209,26 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $expected = CsrfCheckRequestHandler::FORBIDDEN;
         $this->assertSame($expected, $actual);
     }
+
+    /**
+     * Shall log forbidden requests when a logger is provided
+     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::invalidToken()
+     */
+    public function testLogging(
+        ServerRequestInterface $request,
+        AbstractTokenStorage $tokenStorage,
+        ResponseFactoryInterface $responseFactory,
+    ) {
+        /**
+         * @var MockObject|LoggerInterface
+         */
+        $loggerMock = $this->createMock(LoggerInterface::class);
+        $loggerMock->expects($this->atLeastOnce())->method("warning");
+        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage, $loggerMock);
+        $response = $sut->handle($request);
+        $actual = $response->getReasonPhrase();
+        $expected = CsrfCheckRequestHandler::FORBIDDEN;
+        $this->assertSame($expected, $actual);
+    }
 }
+;
