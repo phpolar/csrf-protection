@@ -1,0 +1,95 @@
+{
+    "name": "phpolar/csrf-protection",
+    "description": "Provides request checking and response filtering to mitigate CSRF attacks",
+    "type": "library",
+    "keywords": [
+        "CSRF",
+        "Csrf",
+        "psr-7",
+        "psr-15",
+        "middleware",
+        "request handlers"
+    ],
+    "require": {
+        "php": ">=8.1",
+        "ext-mbstring": "*",
+        "psr/http-message": "^1.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0",
+        "phpolar/http-codes": "^0.0.6"
+    },
+    "require-dev": {
+        "ext-ast": "^1.1",
+        "ext-openssl": "*",
+        "phan/phan": "^5.4",
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.7",
+        "php-coveralls/php-coveralls": "^2.5",
+        "phpstan/phpstan": "^1.9",
+        "phpmd/phpmd": "^2.13"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Phpolar\\CsrfProtection\\": "src/"
+        },
+        "files": [
+            "src/constants.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phpolar\\CsrfProtection\\Tests\\DataProviders\\": "tests/__data-providers__",
+            "Phpolar\\CsrfProtection\\Tests\\Stubs\\": "tests/__stubs__"
+        }
+    },
+    "authors": [
+        {
+            "name": "Eric Fortmeyer",
+            "email": "e.fortmeyer01@gmail.com"
+        }
+    ],
+    "provide": {
+        "psr/http-server-handler-implementation": "^1.0",
+        "psr/http-middleware-implementation": "^1.0"
+    },
+    "suggest": {
+        "laminas/laminas-diactoros": "Provides a PSR-7 implementation"
+    },
+    "scripts": {
+        "analyze": "phpstan analyze src --level 9",
+        "analyze-strict": "phan --no-progress-bar --strict-type-checking --analyze-twice --color --output-mode=text --color-scheme=light",
+        "analyze-dead-code": "@analyze-strict --color-scheme=light --config-file=.phan/config_deadcode.php",
+        "check": [
+            "@lint -q",
+            "@analyze -q",
+            "@test:unit"
+        ],
+        "ci:analyze": "composer exec \"@analyze\"",
+        "ci:lint": "composer exec \"@lint\"",
+        "ci:lint-fix": "composer exec \"@lint-fix\"",
+        "ci:test": [
+            "XDEBUG_MODE=coverage composer exec \"@test:unit --coverage-clover=build/logs/clover.xml \"",
+            "composer exec \"@test:acceptance\""
+        ],
+        "ci:generate-coverage-badge": "composer exec \"php-coveralls -v\"",
+        "lint": "phpcs",
+        "lint-fix": "phpcbf",
+        "start:test": [
+            "Composer\\Config::disableProcessTimeout",
+            "watch -n 30 -cx vendor/bin/phpunit --color=always --testsuite unit"
+        ],
+        "test": "phpunit --color=always",
+        "test:unit": "@test --configuration=phpunit.dev.xml --testsuite unit",
+        "test:acceptance": "@test --configuration=phpunit.dev.xml --testsuite acceptance",
+        "test:acceptance:report": "@test --configuration=phpunit.dev.xml --testsuite acceptance --testdox-text acceptance-test-results.md",
+        "test:benchmark": "@test --configuration=phpunit.dev.xml --testsuite benchmark",
+        "test-coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --testsuite unit\"",
+        "xdebug-enable": [
+            "TEMP_FILE=\"$(sed --follow-symlink 's/;zend_extension=xdebug/zend_extension=xdebug/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
+        ],
+        "xdebug-disable": [
+            "TEMP_FILE=\"$(sed --follow-symlink 's/zend_extension=xdebug/;zend_extension=xdebug/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
+        ]
+    }
+}
