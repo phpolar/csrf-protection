@@ -1,3 +1,5 @@
+# Acceptance Test Results
+
 ## Csrf Protection (Phpolar\CsrfProtection\Http\CsrfProtection)
 - [x] Shall prevent a CSRF attack when token does not exist in POST request
 - [x] Shall prevent a CSRF attack when token does not exist in post request

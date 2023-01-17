@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
+use DateTimeImmutable;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,6 +14,7 @@ use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\HttpCodes\ResponseCode;
 use Psr\Log\LoggerInterface;
 
+use const Phpolar\CsrfProtection\FORBIDDEN_REQUEST_MESSAGE;
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
 /**
@@ -30,7 +32,9 @@ final class CsrfCheckRequestHandler implements RequestHandlerInterface
     public function __construct(
         private ResponseFactoryInterface $responseFactory,
         private AbstractTokenStorage $storage,
+        private ?LoggerInterface $logger = null,
         private string $requestId = REQUEST_ID_KEY,
+        private string $forbiddenRequestMessage = FORBIDDEN_REQUEST_MESSAGE,
     ) {
     }
 
@@ -114,6 +118,14 @@ final class CsrfCheckRequestHandler implements RequestHandlerInterface
      */
     private function forbidden(): ResponseInterface
     {
+        if ($this->logger !== null) {
+            $this->logger->warning(
+                sprintf(
+                    $this->forbiddenRequestMessage,
+                    (new DateTimeImmutable("now"))->format(DATE_COOKIE)
+                )
+            );
+        }
         return $this->create(
             ResponseCode::FORBIDDEN,
             self::FORBIDDEN,
