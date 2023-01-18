@@ -2,6 +2,13 @@
 
 PSR-7 and PSR-15 based CSRF protection for HTTP requests
 
+## Table of Contents
+
+1. [Installation](#installation)
+1. [Usage](#usage)
+1. [Resources](#resources)
+1. [API Documentation](#api-documentation)
+
 ## Installation
 
 ```bash
@@ -48,3 +55,7 @@ $response = $middleWare->process($request, $errorHandler);
 
 1. [PSR-7](https://www.php-fig.org/psr/psr-7/)
 1. [PSR-15](https://www.php-fig.org/psr/psr-15/)
+
+## [API Documentation](https://phpolar.github.io/csrf-protection-api/)
+
+[Back to top](#csrf-protection)
