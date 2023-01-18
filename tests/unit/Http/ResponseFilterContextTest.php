@@ -94,6 +94,7 @@ final class ResponseFilterContextTest extends TestCase
     public function links()
     {
         $token = new CsrfToken(new DateTimeImmutable("now"));
+        $tokenForUri = urlencode($token->asString());
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
         $sut = new ResponseFilterContext(new ResponseFilterPatternStrategy($token, $streamFactory));
@@ -103,9 +104,9 @@ final class ResponseFilterContextTest extends TestCase
         <a href="http://somewhere.com?action=doSomething">some text</a>
         HTML;
         $expected = <<<HTML
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$token->asString()}&action=doSomething">some text</a>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$token->asString()}&action=doSomething">some text</a>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$token->asString()}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
         HTML;
         $this->stream = $streamFactory->createStream($links);
         $response = $responseFactory->createResponse();
@@ -121,6 +122,7 @@ final class ResponseFilterContextTest extends TestCase
     public function linksAndForms()
     {
         $token = new CsrfToken(new DateTimeImmutable("now"));
+        $tokenForUri = urlencode($token->asString());
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
         $sut = new ResponseFilterContext(new ResponseFilterScanStrategy($token, $responseFactory, $streamFactory));
@@ -133,15 +135,15 @@ final class ResponseFilterContextTest extends TestCase
         <form></form>
         HTML;
         $expected = <<<HTML
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$token->asString()}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
         <form action="somewhere" method="post">
             <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
         </form>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$token->asString()}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
         <form>
             <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
         </form>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$token->asString()}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
         <form>
             <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
         </form>

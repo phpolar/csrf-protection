@@ -16,13 +16,11 @@ final class MemoryTokenStorageStub extends AbstractTokenStorage
 
     public function queryAll(): array
     {
-        // noop
         return $this->getTokens();
     }
 
-    public function queryOne(int $index): ?CsrfToken
+    public function queryOne(int $index = 0): ?CsrfToken
     {
-        // noop
         return $this->getToken($index);
     }
 }
