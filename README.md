@@ -12,7 +12,7 @@ PSR-7 and PSR-15 based CSRF protection for HTTP requests
 ## Installation
 
 ```bash
-composer install phpolar/csrf-protection
+composer require phpolar/csrf-protection
 ```
 
 ## Usage
