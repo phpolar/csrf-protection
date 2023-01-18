@@ -2,6 +2,8 @@
 
 PSR-7 and PSR-15 based CSRF protection for HTTP requests
 
+[![Coverage Status](https://coveralls.io/repos/github/phpolar/csrf-protection/badge.svg?branch=main)](https://coveralls.io/github/phpolar/csrf-protection?branch=main) [![Latest Stable Version](http://poser.pugx.org/phpolar/csrf-protection/v)](https://packagist.org/packages/phpolar/csrf-protection) [![Total Downloads](http://poser.pugx.org/phpolar/csrf-protection/downloads)](https://packagist.org/packages/phpolar/csrf-protection) [![Latest Unstable Version](http://poser.pugx.org/phpolar/csrf-protection/v/unstable)](https://packagist.org/packages/phpolar/csrf-protection) [![License](http://poser.pugx.org/phpolar/csrf-protection/license)](https://packagist.org/packages/phpolar/csrf-protection) [![PHP Version Require](http://poser.pugx.org/phpolar/csrf-protection/require/php)](https://packagist.org/packages/phpolar/csrf-protection)
+
 ## Table of Contents
 
 1. [Installation](#installation)
