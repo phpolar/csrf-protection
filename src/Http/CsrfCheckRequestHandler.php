@@ -9,10 +9,10 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Log\LoggerInterface;
 
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\HttpCodes\ResponseCode;
-use Psr\Log\LoggerInterface;
 
 use const Phpolar\CsrfProtection\FORBIDDEN_REQUEST_MESSAGE;
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
