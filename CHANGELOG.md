@@ -1,3 +1,9 @@
+## 0.4.1 (2023-01-17)
+
+### Fix
+
+- use require instead of install
+
 ## 0.4.0 (2023-01-17)
 
 ### Feat
