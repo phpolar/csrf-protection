@@ -11,10 +11,37 @@ composer install phpolar/csrf-protection
 ## Usage
 
 ```php
-$sessionStorage = new SessionTokenStorage();
+$middleWare = new CsrfProtectionMiddleware(
+  $routingResponse,
+  $responseFactory,
+  $streamFactory,
+);
+$response = $middleWare->process($request, $errorHandler);
 
-$handler = new CsrfCheckRequestHandler($sessionStorage, $responseFactory);
-$response = $handler->handle($request);
+// or
+
+$middleWare = new CsrfProtectionMiddleware(
+  $routingResponse,
+  $responseFactory,
+  $streamFactory,
+  $tokenStorage,
+  $logger,
+);
+
+$response = $middleWare->process($request, $errorHandler);
+
+// or
+
+$middleWare = new CsrfProtectionMiddleware(
+  $routingResponse,
+  $responseFactory,
+  $streamFactory,
+);
+
+$middleware->useLogger($logger);
+$middleware->useStorage($memcachedStore);
+
+$response = $middleWare->process($request, $errorHandler);
 ```
 
 ## Resources
