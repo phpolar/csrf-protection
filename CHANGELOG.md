@@ -1,3 +1,9 @@
+## 0.4.3 (2023-01-17)
+
+### Fix
+
+- remove unnecessary files from dist
+
 ## 0.4.2 (2023-01-17)
 
 ### Fix
