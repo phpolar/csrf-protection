@@ -60,8 +60,8 @@
     },
     "scripts": {
         "analyze": "phpstan analyze src --level 9",
-        "analyze-strict": "phan --no-progress-bar --strict-type-checking --analyze-twice --color --output-mode=text --color-scheme=light",
-        "analyze-dead-code": "@analyze-strict --color-scheme=light --config-file=.phan/config_deadcode.php",
+        "analyze:strict": "phan --no-progress-bar --strict-type-checking --analyze-twice --color --output-mode=text --color-scheme=light",
+        "analyze:dead-code": "@analyze-strict --color-scheme=light --config-file=.phan/config_deadcode.php",
         "check": [
             "@lint -q",
             "@analyze -q",
@@ -86,12 +86,15 @@
         "test:acceptance": "@test --configuration=phpunit.dev.xml --testsuite acceptance",
         "test:acceptance:report": "@test --configuration=phpunit.dev.xml --testsuite acceptance --testdox-text acceptance-test-results.md",
         "test:benchmark": "@test --configuration=phpunit.dev.xml --testsuite benchmark",
-        "test-coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --testsuite unit\"",
-        "xdebug-enable": [
+        "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --testsuite unit\"",
+        "xdebug:on": [
             "TEMP_FILE=\"$(sed --follow-symlink 's/;zend_extension=xdebug/zend_extension=xdebug/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
         ],
-        "xdebug-disable": [
+        "xdebug:off": [
             "TEMP_FILE=\"$(sed --follow-symlink 's/zend_extension=xdebug/;zend_extension=xdebug/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
         ]
+    },
+    "config": {
+        "sort-packages": true
     }
 }
