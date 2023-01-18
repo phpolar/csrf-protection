@@ -1,4 +1,4 @@
-# Acceptance Test Results
+# Acceptance Test Result
 
 ## Csrf Protection (Phpolar\CsrfProtection\Http\CsrfProtection)
 - [x] Shall prevent a CSRF attack when token does not exist in POST request
@@ -20,5 +20,5 @@
 - [x] Memory usage shall be below 240000 bytes
 
 ## Project Size (Phpolar\CsrfProtection\ProjectSize)
-- [x] Source code total size shall be below 13000 bytes
+- [x] Source code total size shall be below 8000 bytes
 
