@@ -41,7 +41,9 @@ final class ResponseFilterPatternStrategy implements ResponseFilterStrategyInter
                 sprintf(
                     "<a href=$1?%s=%s&$2>$3</a>",
                     $this->requestId,
-                    $this->token->asString(),
+                    urlencode(
+                        $this->token->asString(),
+                    ),
                 )
             ],
             $contents,

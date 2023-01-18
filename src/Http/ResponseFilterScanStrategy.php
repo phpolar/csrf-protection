@@ -132,10 +132,13 @@ final class ResponseFilterScanStrategy implements ResponseFilterStrategyInterfac
 
     private function linkKey(): string
     {
+        /**
+         * @see https://www.php.net/manual/en/function.urlencode#refsect1-function.urlencode-notes
+         */
         return sprintf(
             "%s=%s",
             $this->requestId,
-            $this->token->asString()
+            urlencode($this->token->asString())
         );
     }
 
