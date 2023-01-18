@@ -9,11 +9,12 @@
         <output>../csrf-protection-api</output>
         <cache>.phpdoc/build/cache</cache>
     </paths>
+    <setting name="template.color" value="blue"/>
     <version number="1.0.0">
         <api format="php">
             <source dsn="./src"></source>
-          <default-package-name>Phpolar</default-package-name>
-          <visibility>public</visibility>
+            <default-package-name>Phpolar\CsrfProtection</default-package-name>
+            <visibility>public</visibility>
         </api>
     </version>
 </phpdocumentor>
