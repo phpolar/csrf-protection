@@ -53,7 +53,7 @@ abstract class AbstractTokenStorage
     /**
      * Returns a single token
      */
-    public abstract function queryOne(int $index): ?CsrfToken;
+    public abstract function queryOne(int $index = 0): ?CsrfToken;
 
     /**
      * Removes all expired tokens
