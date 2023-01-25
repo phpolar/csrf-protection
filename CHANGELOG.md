@@ -1,3 +1,9 @@
+## 0.4.4 (2023-01-25)
+
+### Fix
+
+- **.gitattributes**: reduce dist size
+
 ## 0.4.3 (2023-01-17)
 
 ### Fix
