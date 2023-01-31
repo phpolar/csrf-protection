@@ -6,30 +6,26 @@ namespace Phpolar\CsrfProtection\Http;
 
 use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
-use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
 use Phpolar\CsrfProtection\Tests\Stubs\RequestStub;
 use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
-use Phpolar\CsrfProtection\Tests\Stubs\ResponseStub;
-use Phpolar\HttpCodes\ResponseCode;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\ResponseFactoryInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
 /**
- * @covers \Phpolar\CsrfProtection\Http\CsrfProtectionMiddleware
+ * @covers \Phpolar\CsrfProtection\Http\CsrfPostRoutingMiddleware
+ * @covers \Phpolar\CsrfProtection\Http\AbstractCsrfProtectionMiddleware
  * @uses \Phpolar\CsrfProtection\Http\CsrfCheckRequestHandler
  * @uses \Phpolar\CsrfProtection\Storage\AbstractTokenStorage
  * @uses \Phpolar\CsrfProtection\Http\ResponseFilterContext
  * @uses \Phpolar\CsrfProtection\Http\ResponseFilterScanStrategy
  * @uses \Phpolar\CsrfProtection\CsrfToken
  */
-final class CsrfProtectionMiddlewareTest extends TestCase
+final class CsrfPostRoutingMiddlewareTest extends TestCase
 {
     private StreamInterface $stream;
 
@@ -39,25 +35,6 @@ final class CsrfProtectionMiddlewareTest extends TestCase
             $this->stream->close();
         }
     }
-
-    /**
-     * @test
-     * @testdox Shall determine if a request is forbidden
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::invalidToken()
-     *
-     */
-    public function tokenInvalid(
-        ServerRequestInterface $request,
-        AbstractTokenStorage $tokenStorage,
-        ResponseFactoryInterface $responseFactory,
-    ) {
-        $routingResponse = new ResponseStub();
-        $sut = new CsrfProtectionMiddleware($routingResponse, $responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
-        $handler = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
-        $response = $sut->process($request, $handler);
-        $this->assertSame(ResponseCode::FORBIDDEN, $response->getStatusCode());
-    }
-
 
     /**
      * @test
@@ -85,7 +62,7 @@ final class CsrfProtectionMiddlewareTest extends TestCase
 
         $routingResponseBody = $streamFactory->createStream($template);
         $routingResponse = $responseFactory->createResponse()->withBody($routingResponseBody);
-        $sut = new CsrfProtectionMiddleware($routingResponse, $responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
+        $sut = new CsrfPostRoutingMiddleware($routingResponse, $responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
         $responseWithFormKeys = $sut->process($request, $requestHandlerStub);
         $token = $tokenStorage->queryOne(1);
         $tokenForUri = urlencode($token->asString());

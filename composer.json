@@ -88,10 +88,10 @@
         "test:benchmark": "@test --configuration=phpunit.dev.xml --testsuite benchmark",
         "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --testsuite unit\"",
         "xdebug:on": [
-            "TEMP_FILE=\"$(sed --follow-symlink 's/;zend_extension=xdebug/zend_extension=xdebug/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
+            "TEMP_FILE=\"$(sed --follow-symlink -E 's/^;(zend_extension=xdebug)/\\1/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
         ],
         "xdebug:off": [
-            "TEMP_FILE=\"$(sed --follow-symlink 's/zend_extension=xdebug/;zend_extension=xdebug/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
+            "TEMP_FILE=\"$(sed --follow-symlink -E 's/^(zend_extension=xdebug)/;\\1/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
         ]
     },
     "config": {
