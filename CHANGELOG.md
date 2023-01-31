@@ -1,3 +1,9 @@
+## 1.0.0 (2023-01-30)
+
+### Feat
+
+- split middleware to post- pre- routing
+
 ## 0.4.4 (2023-01-25)
 
 ### Fix
