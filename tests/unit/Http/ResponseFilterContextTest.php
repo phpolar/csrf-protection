@@ -11,6 +11,8 @@ use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 
+use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
+
 /**
  * @covers \Phpolar\CsrfProtection\Http\ResponseFilterContext
  * @covers \Phpolar\CsrfProtection\Http\ResponseFilterPatternStrategy
@@ -19,6 +21,8 @@ use Psr\Http\Message\StreamInterface;
  */
 final class ResponseFilterContextTest extends TestCase
 {
+    private string $tokenKey = REQUEST_ID_KEY;
+
     private StreamInterface $stream;
 
     public function tearDown(): void
@@ -45,13 +49,13 @@ final class ResponseFilterContextTest extends TestCase
         HTML;
         $expected = <<<HTML
         <form action="somewhere" method="post">
-            <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
         </form>
         <form>
-            <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
         </form>
         <form>
-            <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
         </form>
         HTML;
         $this->stream = $streamFactory->createStream($forms);
@@ -104,9 +108,9 @@ final class ResponseFilterContextTest extends TestCase
         <a href="http://somewhere.com?action=doSomething">some text</a>
         HTML;
         $expected = <<<HTML
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         HTML;
         $this->stream = $streamFactory->createStream($links);
         $response = $responseFactory->createResponse();
@@ -135,17 +139,17 @@ final class ResponseFilterContextTest extends TestCase
         <form></form>
         HTML;
         $expected = <<<HTML
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         <form action="somewhere" method="post">
-            <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
         </form>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         <form>
-            <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
         </form>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         <form>
-            <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
         </form>
         HTML;
         $this->stream = $streamFactory->createStream($links);
