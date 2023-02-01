@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
  *
  * Creating the CsrfPostRoutingMiddleware requires
  * the routing response which will be created
- * after a dependency injection is configured.
+ * after dependency injection is configured.
  */
 final class CsrfPostRoutingMiddlewareFactory
 {
