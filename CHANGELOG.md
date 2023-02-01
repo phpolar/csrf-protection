@@ -1,3 +1,9 @@
+## 1.1.0 (2023-02-01)
+
+### Feat
+
+- add factory for post routing middleware
+
 ## 1.0.1 (2023-01-31)
 
 ### Fix
