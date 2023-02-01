@@ -27,6 +27,8 @@ use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
  */
 final class CsrfPostRoutingMiddlewareTest extends TestCase
 {
+    private $tokenKey = REQUEST_ID_KEY;
+
     private StreamInterface $stream;
 
     public function tearDown(): void
@@ -67,17 +69,17 @@ final class CsrfPostRoutingMiddlewareTest extends TestCase
         $token = $tokenStorage->queryOne(1);
         $tokenForUri = urlencode($token->asString());
         $expected = <<<HTML
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         <form action="somewhere" method="post">
-            <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
         </form>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         <form>
-            <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
         </form>
-        <a href="http://somewhere.com?X_CSRF_TOKEN={$tokenForUri}&action=doSomething">some text</a>
+        <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         <form>
-            <input type="hidden" name="X_CSRF_TOKEN" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
         </form>
         HTML;
         $actual = $responseWithFormKeys->getBody()->getContents();
