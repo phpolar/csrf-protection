@@ -1,3 +1,9 @@
+## 1.3.0 (2023-02-01)
+
+### Feat
+
+- **CsrfPostRoutingMiddlewareFactory**: allow extending
+
 ## 1.2.0 (2023-02-01)
 
 ### Feat
