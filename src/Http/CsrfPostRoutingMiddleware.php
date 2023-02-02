@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Adds support for CSRF attack mitigation
  */
-final class CsrfPostRoutingMiddleware extends AbstractCsrfProtectionMiddleware
+class CsrfPostRoutingMiddleware extends AbstractCsrfProtectionMiddleware
 {
     public function __construct(
         private ResponseInterface $routingResponse,
