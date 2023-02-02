@@ -17,7 +17,7 @@ use Psr\Log\LoggerInterface;
  * the routing response which will be created
  * after dependency injection is configured.
  */
-final class CsrfPostRoutingMiddlewareFactory
+class CsrfPostRoutingMiddlewareFactory
 {
     public function __construct(
         protected ResponseFactoryInterface $responseFactory,
