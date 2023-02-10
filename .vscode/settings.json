@@ -1,0 +1,33 @@
+{
+  "intelephense.telemetry.enabled": false,
+  "intelephense.diagnostics.undefinedFunctions": false,
+  "triggerTaskOnSave.restart": true,
+  "triggerTaskOnSave.selectedTask": "lint-fix",
+  "triggerTaskOnSave.showNotifications": true,
+  "triggerTaskOnSave.showStatusBarToggle": true,
+  "triggerTaskOnSave.tasks": {
+      "lint-fix": ["{src,tests}/**/*.php"]
+  },
+  "prettier.enable": false,
+  "eslint.enable": false,
+  "editor.detectIndentation": true,
+  "[php]": {
+      "editor.formatOnSave": false,
+      "editor.detectIndentation": false,
+      "editor.indentSize": 4
+  },
+  "[json]": {
+      "editor.quickSuggestions": {
+          "strings": true
+      },
+      "editor.suggest.insertMode": "replace",
+      "editor.formatOnSave": true
+  },
+  "[xml]": {
+      "editor.formatOnSave": true
+  },
+  "[yml]": {
+      "editor.formatOnSave": true
+  },
+"editor.indentSize": "tabSize",
+}
