@@ -1,3 +1,9 @@
+## 1.3.1 (2023-02-09)
+
+### Refactor
+
+- add docs and refactor
+
 ## 1.3.0 (2023-02-01)
 
 ### Feat
