@@ -59,28 +59,28 @@
         "monolog/monolog": "Allows for logging forbidden requests"
     },
     "scripts": {
-        "analyze": "phpstan analyze src --level 9",
+        "analyze": "XDEBUG_MODE=off phpstan analyze src --level 9",
         "analyze:strict": "phan --no-progress-bar --strict-type-checking --analyze-twice --color --output-mode=text --color-scheme=light",
         "analyze:dead-code": "@analyze-strict --color-scheme=light --config-file=.phan/config_deadcode.php",
         "check": [
             "@lint -q",
             "@analyze -q",
-            "@test:unit"
+            "@test:unit",
+            "@semgrep"
         ],
         "ci:analyze": "composer exec \"@analyze\"",
         "ci:lint": "composer exec \"@lint\"",
         "ci:lint-fix": "composer exec \"@lint-fix\"",
-        "ci:test": [
-            "XDEBUG_MODE=coverage composer exec \"@test:unit --coverage-clover=build/logs/clover.xml \"",
-            "composer exec \"@test:acceptance\""
-        ],
+        "ci:test": "XDEBUG_MODE=coverage composer exec \"@test:unit --configuration=phpunit.dev.xml --coverage-clover=build/logs/clover.xml \"",
         "ci:generate-coverage-badge": "composer exec \"php-coveralls -v\"",
+        "docs:generate": "composer exec \"phpdoc --setting graphs.enabled=true\"",
         "lint": "phpcs",
         "lint-fix": "phpcbf",
         "start:test": [
             "Composer\\Config::disableProcessTimeout",
             "watch -n 30 -cx vendor/bin/phpunit --color=always --testsuite unit"
         ],
+        "semgrep": "semgrep --config auto -l php ./src",
         "test": "phpunit --color=always",
         "test:unit": "@test --configuration=phpunit.dev.xml --testsuite unit",
         "test:acceptance": "@test --configuration=phpunit.dev.xml --testsuite acceptance",

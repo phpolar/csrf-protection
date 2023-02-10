@@ -85,5 +85,4 @@ final class CsrfPostRoutingMiddlewareTest extends TestCase
         $actual = $responseWithFormKeys->getBody()->getContents();
         $this->assertSame($expected, $actual);
     }
-
 }

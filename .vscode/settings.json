@@ -29,5 +29,5 @@
   "[yml]": {
       "editor.formatOnSave": true
   },
-"editor.indentSize": "tabSize",
+  "editor.indentSize": "tabSize"
 }

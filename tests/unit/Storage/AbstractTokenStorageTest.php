@@ -8,7 +8,6 @@ use DateInterval;
 use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
 use PHPUnit\Framework\TestCase;
-
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
 
 /**
