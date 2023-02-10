@@ -20,7 +20,7 @@ final class CsrfProtectionTest extends TestCase
      * @testdox Shall prevent a CSRF attack when token does not exist in $requestType request
      * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::tokenNotExists()
      */
-    public function criterion1_1(
+    public function criterion1(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
@@ -39,7 +39,7 @@ final class CsrfProtectionTest extends TestCase
      * @testdox Shall prevent a CSRF attack when token is expired in $requestType request
      * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::tokenExpired()
      */
-    public function criterion1_2(
+    public function criterion2(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
@@ -58,7 +58,7 @@ final class CsrfProtectionTest extends TestCase
      * @testdox Shall allow request when token is valid in $requestType request
      * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::validToken()
      */
-    public function criterion1_3(
+    public function criterion3(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
