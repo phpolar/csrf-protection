@@ -231,4 +231,3 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 }
-;
