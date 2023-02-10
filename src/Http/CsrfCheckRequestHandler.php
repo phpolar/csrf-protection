@@ -10,7 +10,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
-
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\HttpCodes\ResponseCode;
 
@@ -34,7 +33,7 @@ final class CsrfCheckRequestHandler implements RequestHandlerInterface
         private AbstractTokenStorage $storage,
         private ?LoggerInterface $logger = null,
         private string $requestId = REQUEST_ID_KEY,
-        private string $forbiddenRequestMessage = FORBIDDEN_REQUEST_MESSAGE,
+        private string $forbiddenMsg = FORBIDDEN_REQUEST_MESSAGE,
     ) {
     }
 
@@ -50,13 +49,13 @@ final class CsrfCheckRequestHandler implements RequestHandlerInterface
                 true => $this->responseBasedOnRequestIdValidation($this->getRequestId()),
             },
             "GET" => match ($this->hasQueryParams()) {
-                false => $this->ok(),
+                false => $this->success(),
                 true => match ($this->queryParamsHasRequestId()) {
                     false => $this->badRequest(),
                     true => $this->responseBasedOnRequestIdValidation($this->getRequestId()),
                 }
             },
-            "HEAD", "OPTIONS" => $this->ok(),
+            "HEAD", "OPTIONS" => $this->success(),
             "POST" => match ($this->parsedBodyHasRequestId()) {
                 false => $this->badRequest(),
                 true => $this->responseBasedOnPostRequestIdValidation($this->getRequestId()),
@@ -121,7 +120,7 @@ final class CsrfCheckRequestHandler implements RequestHandlerInterface
         if ($this->logger !== null) {
             $this->logger->warning(
                 sprintf(
-                    $this->forbiddenRequestMessage,
+                    $this->forbiddenMsg,
                     (new DateTimeImmutable("now"))->format(DATE_COOKIE)
                 )
             );
@@ -171,7 +170,7 @@ final class CsrfCheckRequestHandler implements RequestHandlerInterface
     /**
      * Returns a 'OK' response
      */
-    private function ok(): ResponseInterface
+    private function success(): ResponseInterface
     {
         return $this->create(
             ResponseCode::OK,
@@ -204,7 +203,7 @@ final class CsrfCheckRequestHandler implements RequestHandlerInterface
         string $token,
     ): ResponseInterface {
         return match ($this->storage->isValid($token)) {
-            true => $this->ok(),
+            true => $this->success(),
             false => $this->forbidden(),
         };
     }

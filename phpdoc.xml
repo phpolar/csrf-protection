@@ -6,7 +6,7 @@
         xsi:noNamespaceSchemaLocation="https://docs.phpdoc.org/latest/phpdoc.xsd"
 >
     <paths>
-        <output>../csrf-protection-api</output>
+        <output>./docs</output>
         <cache>.phpdoc/build/cache</cache>
     </paths>
     <setting name="template.color" value="blue"/>

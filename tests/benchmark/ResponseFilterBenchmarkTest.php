@@ -10,6 +10,7 @@ use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryROStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
+
 use const Phpolar\CsrfProtection\Tests\CSRF_TEMPLATE_SIZE_FACTOR;
 
 /**
