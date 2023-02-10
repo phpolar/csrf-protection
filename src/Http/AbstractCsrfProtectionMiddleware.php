@@ -87,10 +87,10 @@ abstract class AbstractCsrfProtectionMiddleware implements MiddlewareInterface
     {
         return new ResponseFilterContext(
             $this->filterStrategy ?? new ResponseFilterScanStrategy(
-                    $token,
-                    $this->responseFactory,
-                    $this->streamFactory,
-                    $this->requestId
+                $token,
+                $this->responseFactory,
+                $this->streamFactory,
+                $this->requestId
             )
         );
     }

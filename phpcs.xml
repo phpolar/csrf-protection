@@ -5,6 +5,8 @@
     <file>src</file>
     <file>tests</file>
 
+    <exclude-pattern>\.phan/*\.php</exclude-pattern>
+
     <arg name="basepath" value="."/>
     <arg name="extensions" value="php"/>
     <arg name="no-colors"/>
@@ -96,6 +98,10 @@
 
     <!-- Private properties MUST not be prefixed with an underscore -->
     <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+        <type>error</type>
+    </rule>
+
+    <rule ref="PSR12">
         <type>error</type>
     </rule>
 

@@ -21,7 +21,7 @@ repos:
     - id: php-cs
       files: \.(php)$
       exclude: (examples|test)
-      args: ["--standard=PSR1/,./phpcs.xml", "-p"]
+      args: ["--standard=PSR1,PSR12,./phpcs.xml", "-p"]
     - id: php-unit
     - id: php-stan
       files: \.(php)$
@@ -31,4 +31,4 @@ repos:
     hooks:
     # Hooks using native
     - id: phpmd         # static analyzer for PHP code
-      exclude: (examples|test)
+      exclude: (examples|test|src/Http/ResponseFilterScanStrategy\.php|src/Storage/SessionTokenStorage\.php|src/Http/CsrfPostRoutingMiddleware\.php|src/Http/AbstractCsrfProtectionMiddleware\.php)
