@@ -64,6 +64,6 @@ $middleware->useStorage($memcachedStore);
 1. [PSR-7](https://www.php-fig.org/psr/psr-7/)
 1. [PSR-15](https://www.php-fig.org/psr/psr-15/)
 
-## [API Documentation](https://phpolar.github.io/csrf-protection-api/)
+## [API Documentation](https://phpolar.github.io/csrf-protection/)
 
 [Back to top](#csrf-protection)
