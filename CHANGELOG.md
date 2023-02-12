@@ -1,3 +1,9 @@
+## 1.3.2 (2023-02-11)
+
+### Fix
+
+- remove unnecessary file/folders from dist
+
 ## 1.3.1 (2023-02-09)
 
 ### Refactor
