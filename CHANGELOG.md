@@ -1,3 +1,9 @@
+## 1.3.3 (2023-02-22)
+
+### Fix
+
+- **SessionTokenStorage**: load tokens from session variable
+
 ## 1.3.2 (2023-02-11)
 
 ### Fix
