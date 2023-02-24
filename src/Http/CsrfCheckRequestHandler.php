@@ -22,7 +22,7 @@ use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 final class CsrfCheckRequestHandler implements RequestHandlerInterface
 {
     public const BAD_REQUEST = "Bad Request";
-    public const CREATED = "CREATED";
+    public const CREATED = "Created";
     public const FORBIDDEN = "Forbidden";
     public const OK = "OK";
     public const METHOD_NOT_ALLOWED = "Method Not Allowed";
