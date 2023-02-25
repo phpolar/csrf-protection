@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "058c9c465839c703c0d01ed56a56ea15",
+    "content-hash": "72a5debcae19c72996211dd033a6b60b",
     "packages": [
         {
             "name": "phpolar/http-codes",
@@ -53,6 +53,47 @@
                 "source": "https://github.com/phpolar/http-codes/tree/0.0.6"
             },
             "time": "2023-01-16T19:44:19+00:00"
+        },
+        {
+            "name": "phpolar/response-filter",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpolar/response-filter.git",
+                "reference": "ba5e45b7311130c3af8201e82c37440cc942bb3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpolar/response-filter/zipball/ba5e45b7311130c3af8201e82c37440cc942bb3e",
+                "reference": "ba5e45b7311130c3af8201e82c37440cc942bb3e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phpolar\\ResponseFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric Fortmeyer",
+                    "email": "e.fortmeyer01@gmail.com"
+                }
+            ],
+            "description": "Provides a means to transform a PSR-7 HTTP Response.",
+            "support": {
+                "issues": "https://github.com/phpolar/response-filter/issues",
+                "source": "https://github.com/phpolar/response-filter/tree/0.1.1"
+            },
+            "time": "2023-02-25T18:20:41+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1658,16 +1699,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.2",
+            "version": "1.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "a2ffec7db373d8da4973d1d62add872db5cd22dd"
+                "reference": "5419375b5891add97dc74be71e6c1c34baaddf64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a2ffec7db373d8da4973d1d62add872db5cd22dd",
-                "reference": "a2ffec7db373d8da4973d1d62add872db5cd22dd",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5419375b5891add97dc74be71e6c1c34baaddf64",
+                "reference": "5419375b5891add97dc74be71e6c1c34baaddf64",
                 "shasum": ""
             },
             "require": {
@@ -1697,7 +1738,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.10.2"
+                "source": "https://github.com/phpstan/phpstan/tree/1.10.3"
             },
             "funding": [
                 {
@@ -1713,7 +1754,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-23T14:36:46+00:00"
+            "time": "2023-02-25T14:47:13+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
