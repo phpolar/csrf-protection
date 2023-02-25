@@ -25,7 +25,7 @@ use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 #[CoversClass(AbstractCsrfProtectionMiddleware::class)]
 #[UsesClass(CsrfProtectionRequestHandler::class)]
 #[UsesClass(AbstractTokenStorage::class)]
-#[UsesClass(ResponseFilterContext::class)]
+#[UsesClass(CsrfResponseFilter::class)]
 #[UsesClass(ResponseFilterScanStrategy::class)]
 #[UsesClass(CsrfToken::class)]
 final class CsrfResponseFilterMiddlewareTest extends TestCase

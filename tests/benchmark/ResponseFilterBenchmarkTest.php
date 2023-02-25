@@ -27,8 +27,8 @@ final class CsrfResponseFilterBenchmarkTest extends TestCase
         $streamROFactory = new MemoryROStreamFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
         $token = new CsrfToken(new DateTimeImmutable("now"));
-        $competingAlgo = new ResponseFilterContext(new ResponseFilterPatternStrategy($token, $streamFactory));
-        $algoUnderTest = new ResponseFilterContext(new ResponseFilterScanStrategy($token, $responseFactory, $streamFactory));
+        $competingAlgo = new CsrfResponseFilter(new ResponseFilterPatternStrategy($token, $streamFactory));
+        $algoUnderTest = new CsrfResponseFilter(new ResponseFilterScanStrategy($token, $responseFactory, $streamFactory));
         $body = str_repeat(
             <<<HTML
             <a href="http://somewhere.com?action=doSomething">some text</a>
