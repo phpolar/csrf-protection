@@ -14,10 +14,13 @@ final class CsrfToken
 {
     private string $token;
 
+    private DateTimeImmutable $expiresOn;
+
     public function __construct(
-        private DateTimeImmutable $createdOn,
-        private int $ttl = 1800,
+        DateTimeImmutable $createdOn,
+        int $ttl = 1800,
     ) {
+        $this->expiresOn = $createdOn->add(new DateInterval("PT{$ttl}S"));
         $this->token = base64_encode(random_bytes(32));
     }
 
@@ -26,7 +29,7 @@ final class CsrfToken
      */
     public function isExpired(): bool
     {
-        return new DateTimeImmutable("now") > $this->createdOn->add(new DateInterval("PT{$this->ttl}S"));
+        return new DateTimeImmutable("now") > $this->expiresOn;
     }
 
     /**
