@@ -17,11 +17,11 @@ use Psr\Http\Message\StreamInterface;
 
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
-#[CoversClass(ResponseFilterContext::class)]
+#[CoversClass(CsrfResponseFilter::class)]
 #[CoversClass(ResponseFilterPatternStrategy::class)]
 #[CoversClass(ResponseFilterScanStrategy::class)]
 #[UsesClass(CsrfToken::class)]
-final class ResponseFilterContextTest extends TestCase
+final class CsrfResponseFilterTest extends TestCase
 {
     private string $tokenKey = REQUEST_ID_KEY;
 
@@ -41,7 +41,7 @@ final class ResponseFilterContextTest extends TestCase
         $token = new CsrfToken(new DateTimeImmutable("now"));
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
-        $sut = new ResponseFilterContext(new ResponseFilterPatternStrategy($token, $streamFactory));
+        $sut = new CsrfResponseFilter(new ResponseFilterPatternStrategy($token, $streamFactory));
         $forms = <<<HTML
         <form action="somewhere" method="post"></form>
         <form></form>
@@ -71,7 +71,7 @@ final class ResponseFilterContextTest extends TestCase
         $token = new CsrfToken(new DateTimeImmutable("now"));
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
-        $sut = new ResponseFilterContext(new ResponseFilterPatternStrategy($token, $streamFactory));
+        $sut = new CsrfResponseFilter(new ResponseFilterPatternStrategy($token, $streamFactory));
         $forms = <<<HTML
         <p></p>
         <p></p>
@@ -97,7 +97,7 @@ final class ResponseFilterContextTest extends TestCase
         $tokenForUri = urlencode($token->asString());
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
-        $sut = new ResponseFilterContext(new ResponseFilterPatternStrategy($token, $streamFactory));
+        $sut = new CsrfResponseFilter(new ResponseFilterPatternStrategy($token, $streamFactory));
         $links = <<<HTML
         <a href="http://somewhere.com?action=doSomething">some text</a>
         <a href="http://somewhere.com?action=doSomething">some text</a>
@@ -123,7 +123,7 @@ final class ResponseFilterContextTest extends TestCase
         $tokenForUri = urlencode($token->asString());
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
-        $sut = new ResponseFilterContext(new ResponseFilterScanStrategy($token, $responseFactory, $streamFactory));
+        $sut = new CsrfResponseFilter(new ResponseFilterScanStrategy($token, $responseFactory, $streamFactory));
         $links = <<<HTML
         <a href="http://somewhere.com?action=doSomething">some text</a>
         <form action="somewhere" method="post"></form>
