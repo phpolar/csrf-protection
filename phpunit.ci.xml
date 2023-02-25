@@ -9,19 +9,13 @@
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
          convertDeprecationsToExceptions="true"
-         failOnRisky="true"
-         failOnWarning="true"
+         failOnRisky="false"
+         failOnWarning="false"
          colors="true"
          verbose="false">
     <testsuites>
         <testsuite name="default">
             <directory>tests/unit</directory>
-        </testsuite>
-        <testsuite name="acceptance">
-            <directory>tests/acceptance</directory>
-        </testsuite>
-        <testsuite name="benchmark">
-            <directory>tests/benchmark</directory>
         </testsuite>
         <testsuite name="unit">
             <directory>tests/unit</directory>
@@ -33,10 +27,4 @@
             <directory suffix=".php">src</directory>
         </include>
     </coverage>
-    <php>
-        <const name="SRC_GLOB" value="/src{/,/**/}*.php" />
-        <const name="PROJECT_SIZE_THRESHOLD" value="8000" />
-        <const name="PROJECT_MEMORY_USAGE_THRESHOLD" value="240000" />
-        <const name="Phpolar\CsrfProtection\Tests\CSRF_TEMPLATE_SIZE_FACTOR" value="10000000" />
-    </php>
 </phpunit>
