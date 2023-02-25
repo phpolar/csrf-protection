@@ -10,7 +10,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * Adds support for CSRF attack mitigation
@@ -23,7 +22,6 @@ class CsrfResponseFilterMiddleware implements MiddlewareInterface
         private AbstractTokenStorage $storage,
         private CsrfTokenGenerator $tokenGenerator,
         private ResponseFilterStrategyInterface $filterStrategy,
-        private ?LoggerInterface $logger = null,
     ) {
     }
 

@@ -17,8 +17,7 @@
         "phpolar/response-filter": "^0.1.0",
         "psr/http-message": "^1.0",
         "psr/http-server-handler": "^1.0",
-        "psr/http-server-middleware": "^1.0",
-        "psr/log": "^2 || ^3"
+        "psr/http-server-middleware": "^1.0"
     },
     "require-dev": {
         "ext-ast": "^1.1",
@@ -87,7 +86,7 @@
         "test:acceptance": "@test --configuration=phpunit.dev.xml --testsuite acceptance",
         "test:acceptance:report": "@test --configuration=phpunit.dev.xml --testsuite acceptance --testdox-text acceptance-test-results.md",
         "test:benchmark": "@test --configuration=phpunit.dev.xml --testsuite benchmark",
-        "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --testsuite unit\"",
+        "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --testsuite unit --configuration=phpunit.ci.xml --path-coverage\"",
         "xdebug:on": [
             "TEMP_FILE=\"$(sed --follow-symlink -E 's/^;(zend_extension=xdebug)/\\1/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
         ],
