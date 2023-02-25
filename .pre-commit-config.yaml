@@ -24,7 +24,7 @@ repos:
     - id: php-lint
     - id: php-cs
       files: \.(php)$
-      exclude: (examples|test)
+      exclude: (examples)
       args: ["--standard=PSR1,PSR12,./phpcs.xml", "-p"]
     - id: php-unit
     - id: php-stan
