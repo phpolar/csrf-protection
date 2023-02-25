@@ -7,18 +7,18 @@ namespace Phpolar\CsrfProtection\Http;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
 use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Phpolar\CsrfProtection\Http\CsrfPostRoutingMiddlewareFactory
- * @uses \Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddleware
- */
-final class CsrfPostRoutingMiddlewareFactoryTest extends TestCase
+#[CoversClass(CsrfResponseFilterMiddlewareFactory::class)]
+#[UsesClass(CsrfResponseFilterMiddleware::class)]
+final class CsrfResponseFilterMiddlewareFactoryTest extends TestCase
 {
-    /**
-     * @test
-     * @testdox Shall create a CsrfResponseFilterMiddleware
-     */
+    #[Test]
+    #[TestDox("Shall create a CsrfResponseFilterMiddleware")]
     public function test1()
     {
         $responseFactory = new ResponseFactoryStub();

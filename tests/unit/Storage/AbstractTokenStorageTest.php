@@ -9,14 +9,16 @@ use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
 use PHPUnit\Framework\TestCase;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 
-/**
- * @covers \Phpolar\CsrfProtection\Storage\AbstractTokenStorage
- * @uses \Phpolar\CsrfProtection\CsrfToken
- */
+#[CoversClass(AbstractTokenStorage::class)]
+#[UsesClass(CsrfToken::class)]
 final class AbstractTokenStorageTest extends TestCase
 {
-    public function validTokens(): array
+    public static function validTokens(): array
     {
         return [
             [new CsrfToken(new DateTimeImmutable())],
@@ -27,7 +29,7 @@ final class AbstractTokenStorageTest extends TestCase
         ];
     }
 
-    public function invalidTokens(): array
+    public static function invalidTokens(): array
     {
         return [
             [new CsrfToken((new DateTimeImmutable())->sub(new DateInterval("PT10S")), 9)],
@@ -35,10 +37,8 @@ final class AbstractTokenStorageTest extends TestCase
         ];
     }
 
-    /**
-     * @testdox Shall know if a token is valid
-     * @dataProvider validTokens()
-     */
+    #[TestDox("Shall know if a token is valid")]
+    #[DataProvider("validTokens")]
     public function test1(CsrfToken $token)
     {
         $sut = new MemoryTokenStorageStub();
@@ -46,10 +46,8 @@ final class AbstractTokenStorageTest extends TestCase
         $this->assertTrue($sut->isValid($token->asString()));
     }
 
-    /**
-     * @testdox Shall know if a token is invalid
-     * @dataProvider invalidTokens()
-     */
+    #[TestDox("Shall know if a token is invalid")]
+    #[DataProvider("invalidTokens")]
     public function test2(CsrfToken $token)
     {
         $sut = new MemoryTokenStorageStub();
@@ -57,10 +55,8 @@ final class AbstractTokenStorageTest extends TestCase
         $this->assertFalse($sut->isValid($token->asString()));
     }
 
-    /**
-     * @testdox Shall say a token is invalid if it is not contained in the storage
-     * @dataProvider invalidTokens()
-     */
+    #[TestDox("Shall say a token is invalid if it is not contained in the storage")]
+    #[DataProvider("invalidTokens")]
     public function test3(CsrfToken $token)
     {
         $sut = new MemoryTokenStorageStub();
@@ -68,9 +64,7 @@ final class AbstractTokenStorageTest extends TestCase
         $this->assertFalse($sut->isValid($token->asString()));
     }
 
-    /**
-     * @testdox Shall clear all expired tokens
-     */
+    #[TestDox("Shall clear all expired tokens")]
     public function test4()
     {
         $sut = new MemoryTokenStorageStub();

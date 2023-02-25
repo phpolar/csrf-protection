@@ -4,25 +4,29 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
+use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
+use Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
-use Phpolar\CsrfProtection\Tests\Stubs\ResponseStub;
 use Phpolar\HttpCodes\ResponseCode;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProviderExternal;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 
-/**
- * @covers \Phpolar\CsrfProtection\Http\CsrfRequestCheckMiddleware
- * @covers \Phpolar\CsrfProtection\Http\AbstractCsrfProtectionMiddleware
- * @uses \Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler
- * @uses \Phpolar\CsrfProtection\Storage\AbstractTokenStorage
- * @uses \Phpolar\CsrfProtection\Http\ResponseFilterContext
- * @uses \Phpolar\CsrfProtection\Http\ResponseFilterScanStrategy
- * @uses \Phpolar\CsrfProtection\CsrfToken
- */
-final class CsrfPreRoutingMiddlewareTest extends TestCase
+#[CoversClass(CsrfRequestCheckMiddleware::class)]
+#[CoversClass(AbstractCsrfProtectionMiddleware::class)]
+#[UsesClass(CsrfProtectionRequestHandler::class)]
+#[UsesClass(AbstractTokenStorage::class)]
+#[UsesClass(ResponseFilterContext::class)]
+#[UsesClass(ResponseFilterScanStrategy::class)]
+#[UsesClass(CsrfToken::class)]
+final class CsrfRequestCheckMiddlewareTest extends TestCase
 {
     private StreamInterface $stream;
 
@@ -33,36 +37,28 @@ final class CsrfPreRoutingMiddlewareTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     * @testdox Shall determine if a request is forbidden
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::invalidToken()
-     *
-     */
+    #[Test]
+    #[TestDox("Shall determine if a request is forbidden")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "invalidToken")]
     public function tokenInvalid(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $routingResponse = new ResponseStub();
         $sut = new CsrfRequestCheckMiddleware($responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
         $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->process($request, $handler);
         $this->assertSame(ResponseCode::FORBIDDEN, $response->getStatusCode());
     }
 
-    /**
-     * @test
-     * @testdox Shall return continue response if request is valid
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::validTokenWithPostRequest()
-     *
-     */
+    #[Test]
+    #[TestDox("Shall return continue response if request is valid")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "validTokenWithPostRequest")]
     public function tokenValid(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $routingResponse = new ResponseStub();
         $sut = new CsrfRequestCheckMiddleware($responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
         $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->process($request, $handler);

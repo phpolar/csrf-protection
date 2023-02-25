@@ -6,26 +6,29 @@ namespace Phpolar\CsrfProtection\Http;
 
 use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
+use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
 use Phpolar\CsrfProtection\Tests\Stubs\RequestStub;
 use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
-/**
- * @covers \Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddleware
- * @covers \Phpolar\CsrfProtection\Http\AbstractCsrfProtectionMiddleware
- * @uses \Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler
- * @uses \Phpolar\CsrfProtection\Storage\AbstractTokenStorage
- * @uses \Phpolar\CsrfProtection\Http\ResponseFilterContext
- * @uses \Phpolar\CsrfProtection\Http\ResponseFilterScanStrategy
- * @uses \Phpolar\CsrfProtection\CsrfToken
- */
-final class CsrfPostRoutingMiddlewareTest extends TestCase
+#[CoversClass(CsrfResponseFilterMiddleware::class)]
+#[CoversClass(AbstractCsrfProtectionMiddleware::class)]
+#[UsesClass(CsrfProtectionRequestHandler::class)]
+#[UsesClass(AbstractTokenStorage::class)]
+#[UsesClass(ResponseFilterContext::class)]
+#[UsesClass(ResponseFilterScanStrategy::class)]
+#[UsesClass(CsrfToken::class)]
+final class CsrfResponseFilterMiddlewareTest extends TestCase
 {
     private $tokenKey = REQUEST_ID_KEY;
 
@@ -38,10 +41,8 @@ final class CsrfPostRoutingMiddlewareTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     * @testdox Shall attach a request id to all links and forms
-     */
+    #[Test]
+    #[TestDox("Shall attach a request id to all links and forms")]
     public function linksAndForms()
     {
         $template = <<<HTML

@@ -6,16 +6,14 @@ namespace Phpolar\CsrfProtection;
 
 use DateInterval;
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Phpolar\CsrfProtection\CsrfToken
- */
+#[CoversClass(CsrfToken::class)]
 final class CsrfTokenTest extends TestCase
 {
-    /**
-     * @testdox Shall be convertible to a string
-     */
+    #[TestDox("Shall be convertible to a string")]
     public function test1()
     {
         $token = new CsrfToken(
@@ -24,9 +22,7 @@ final class CsrfTokenTest extends TestCase
         $this->assertIsString($token->asString());
     }
 
-    /**
-     * @testdox Shall know if it represents a string
-     */
+    #[TestDox("Shall know if it represents a string")]
     public function test2()
     {
         $token = new CsrfToken(
@@ -36,9 +32,7 @@ final class CsrfTokenTest extends TestCase
         $this->assertTrue($token->represents($tokenAsString));
     }
 
-    /**
-     * @testdox Shall know if it is expired
-     */
+    #[TestDox("Shall know if it is expired")]
     public function test3()
     {
         $createdOn = new DateTimeImmutable("now");
@@ -50,9 +44,7 @@ final class CsrfTokenTest extends TestCase
         $this->assertTrue($token->isExpired());
     }
 
-    /**
-     * @testdox Shall know if it is not expired
-     */
+    #[TestDox("Shall know if it is not expired")]
     public function test4()
     {
         $createdOn = new DateTimeImmutable("now");

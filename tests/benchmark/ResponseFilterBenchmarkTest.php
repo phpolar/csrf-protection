@@ -10,18 +10,17 @@ use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryROStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PHPUnit\Framework\Attributes\TestDox;
 
 use const Phpolar\CsrfProtection\Tests\CSRF_TEMPLATE_SIZE_FACTOR;
 
-/**
- * @runTestsInSeparateProcesses
- * @coversNothing
- */
+#[RunTestsInSeparateProcesses]
+#[CoversNothing]
 final class CsrfResponseFilterBenchmarkTest extends TestCase
 {
-    /**
-     * @testdox Shall efficiently write CSRF protection to the response
-     */
+    #[TestDox("Shall efficiently write CSRF protection to the response")]
     public function test1()
     {
         $responseFactory = new ResponseFactoryStub();

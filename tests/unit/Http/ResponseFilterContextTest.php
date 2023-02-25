@@ -8,17 +8,19 @@ use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
-/**
- * @covers \Phpolar\CsrfProtection\Http\ResponseFilterContext
- * @covers \Phpolar\CsrfProtection\Http\ResponseFilterPatternStrategy
- * @covers \Phpolar\CsrfProtection\Http\ResponseFilterScanStrategy
- * @uses \Phpolar\CsrfProtection\CsrfToken
- */
+#[CoversClass(ResponseFilterContext::class)]
+#[CoversClass(ResponseFilterPatternStrategy::class)]
+#[CoversClass(ResponseFilterScanStrategy::class)]
+#[UsesClass(CsrfToken::class)]
 final class ResponseFilterContextTest extends TestCase
 {
     private string $tokenKey = REQUEST_ID_KEY;
@@ -32,10 +34,8 @@ final class ResponseFilterContextTest extends TestCase
         }
     }
 
-    /**
-     * @testdox Shall attach a request id to each form when a session is active
-     * @test
-     */
+    #[Test]
+    #[TestDox("Shall attach a request id to each form when a session is active")]
     public function forms()
     {
         $token = new CsrfToken(new DateTimeImmutable("now"));
@@ -65,9 +65,7 @@ final class ResponseFilterContextTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall not attach a request id when there are no forms
-     */
+    #[TestDox("Shall not attach a request id when there are no forms")]
     public function noop()
     {
         $token = new CsrfToken(new DateTimeImmutable("now"));
@@ -91,10 +89,8 @@ final class ResponseFilterContextTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall attach a request id to all links
-     * @test
-     */
+    #[Test]
+    #[TestDox("Shall attach a request id to all links")]
     public function links()
     {
         $token = new CsrfToken(new DateTimeImmutable("now"));
@@ -119,10 +115,8 @@ final class ResponseFilterContextTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall attach a request id to all links and forms
-     * @test
-     */
+    #[Test]
+    #[TestDox("Shall attach a request id to all links and forms")]
     public function linksAndForms()
     {
         $token = new CsrfToken(new DateTimeImmutable("now"));
