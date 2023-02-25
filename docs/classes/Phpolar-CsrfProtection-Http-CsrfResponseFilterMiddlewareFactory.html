@@ -103,7 +103,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ResponseFilterContext
+    CsrfResponseFilterMiddlewareFactory
 
     
             <div class="phpdocumentor-element__package">
@@ -118,15 +118,18 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Http/ResponseFilterContext.php"><a href="files/http-responsefiltercontext.html"><abbr title="Http/ResponseFilterContext.php">ResponseFilterContext.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfResponseFilterMiddlewareFactory.php"><a href="files/http-csrfresponsefiltermiddlewarefactory.html"><abbr title="Http/CsrfResponseFilterMiddlewareFactory.php">CsrfResponseFilterMiddlewareFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Provides support for adding CSRF protection
-to PSR-7 HTTP responses</p>
+            <p class="phpdocumentor-summary">Use to create the `CsrfResponseFilterMiddleware`.</p>
 
+    <section class="phpdocumentor-description"><p>Creating the <code class="prettyprint">CsrfResponseFilterMiddleware</code> requires
+the routing response which will be created
+after dependency injection is configured.</p>
+</section>
 
 
 
@@ -142,18 +145,18 @@ to PSR-7 HTTP responses</p>
 
 <dl class="phpdocumentor-table-of-contents">
                         <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html#method___construct">__construct()</a>
+    <a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html#method_transform">transform()</a>
+    <a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html#method_getMiddleware">getMiddleware()</a>
     <span>
-                                &nbsp;: <abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>    </span>
+                                &nbsp;: <a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddleware">CsrfResponseFilterMiddleware</abbr></a>    </span>
 </dt>
-<dd>Add CSRF protection to the HTTP response</dd>
+<dd>Gets an instance of CsrfResponseFilterMiddleware</dd>
 
         </dl>
 
@@ -166,7 +169,7 @@ to PSR-7 HTTP responses</p>
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -176,28 +179,60 @@ to PSR-7 HTTP responses</p>
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Http/ResponseFilterContext.php"><a href="files/http-responsefiltercontext.html"><abbr title="Http/ResponseFilterContext.php">ResponseFilterContext.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfResponseFilterMiddlewareFactory.php"><a href="files/http-csrfresponsefiltermiddlewarefactory.html"><abbr title="Http/CsrfResponseFilterMiddlewareFactory.php">CsrfResponseFilterMiddlewareFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strategy</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ResponseFactoryInterface">ResponseFactoryInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseFactory</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\StreamFactoryInterface">StreamFactoryInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$streamFactory</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$storage</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Log\LoggerInterface">LoggerInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$logger</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filterStrategy</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
         <section class="phpdocumentor-description"></section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$strategy</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$responseFactory</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ResponseFactoryInterface">ResponseFactoryInterface</abbr></span>
                             </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$streamFactory</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\StreamFactoryInterface">StreamFactoryInterface</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$storage</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$logger</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Log\LoggerInterface">LoggerInterface</abbr>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$filterStrategy</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
 
@@ -218,22 +253,22 @@ to PSR-7 HTTP responses</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_transform">
-        transform()
-        <a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html#method_transform" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getMiddleware">
+        getMiddleware()
+        <a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html#method_getMiddleware" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Http/ResponseFilterContext.php"><a href="files/http-responsefiltercontext.html"><abbr title="Http/ResponseFilterContext.php">ResponseFilterContext.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfResponseFilterMiddlewareFactory.php"><a href="files/http-csrfresponsefiltermiddlewarefactory.html"><abbr title="Http/CsrfResponseFilterMiddlewareFactory.php">CsrfResponseFilterMiddlewareFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Add CSRF protection to the HTTP response</p>
+        <p class="phpdocumentor-summary">Gets an instance of CsrfResponseFilterMiddleware</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">transform</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">getMiddleware</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddleware">CsrfResponseFilterMiddleware</abbr></a></span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -251,7 +286,7 @@ to PSR-7 HTTP responses</p>
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddleware">CsrfResponseFilterMiddleware</abbr></a></span>
             &mdash;
         
     
@@ -334,7 +369,7 @@ to PSR-7 HTTP responses</p>
 </section>
             </div>
         </div>
-        <a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

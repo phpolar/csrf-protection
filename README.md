@@ -21,7 +21,7 @@ composer require phpolar/csrf-protection
 
 ```php
 // check request
-$middleWare = new CsrfPreRoutingMiddleware(
+$middleWare = new CsrfRequestCheckMiddleware(
   $responseFactory,
   $streamFactory,
 );
@@ -30,7 +30,7 @@ $response = $middleWare->process($request, $errorHandler);
 // ...
 
 // set up response for CSRF detection
-$middleWare = new CsrfPostRoutingMiddleware(
+$middleWare = new CsrfResponseFilterMiddleware(
   $routingResponse,
   $responseFactory,
   $streamFactory,
@@ -39,7 +39,7 @@ $detectableResponse = $middleWare->process($request, $errorHandler);
 
 // or
 
-$middleWare = new CsrfPostRoutingMiddleware(
+$middleWare = new CsrfResponseFilterMiddleware(
   $routingResponse,
   $responseFactory,
   $streamFactory,
@@ -49,7 +49,7 @@ $middleWare = new CsrfPostRoutingMiddleware(
 
 // or
 
-$middleWare = new CsrfPostRoutingMiddleware(
+$middleWare = new CsrfResponseFilterMiddleware(
   $routingResponse,
   $responseFactory,
   $streamFactory,

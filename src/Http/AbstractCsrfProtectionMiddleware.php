@@ -73,9 +73,9 @@ abstract class AbstractCsrfProtectionMiddleware implements MiddlewareInterface
      */
     abstract public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface;
 
-    protected function getHandler(): CsrfCheckRequestHandler
+    protected function getHandler(): CsrfProtectionRequestHandler
     {
-        return new CsrfCheckRequestHandler(
+        return new CsrfProtectionRequestHandler(
             $this->responseFactory,
             $this->getTokenStorage(),
             $this->logger,

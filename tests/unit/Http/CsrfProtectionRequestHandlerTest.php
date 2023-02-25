@@ -12,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * @covers \Phpolar\CsrfProtection\Http\CsrfCheckRequestHandler
+ * @covers \Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler
  * @uses Phpolar\CsrfProtection\CsrfToken
  * @uses Phpolar\CsrfProtection\Storage\AbstractTokenStorage
  */
@@ -27,10 +27,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::CREATED;
+        $expected = CsrfProtectionRequestHandler::CREATED;
         $this->assertSame($expected, $actual);
     }
 
@@ -43,10 +43,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::OK;
+        $expected = CsrfProtectionRequestHandler::OK;
         $this->assertSame($expected, $actual);
     }
 
@@ -59,10 +59,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::OK;
+        $expected = CsrfProtectionRequestHandler::OK;
         $this->assertSame($expected, $actual);
     }
 
@@ -75,10 +75,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::OK;
+        $expected = CsrfProtectionRequestHandler::OK;
         $this->assertSame($expected, $actual);
     }
 
@@ -91,10 +91,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::OK;
+        $expected = CsrfProtectionRequestHandler::OK;
         $this->assertSame($expected, $actual);
     }
 
@@ -107,10 +107,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::METHOD_NOT_ALLOWED;
+        $expected = CsrfProtectionRequestHandler::METHOD_NOT_ALLOWED;
         $this->assertSame($expected, $actual);
     }
 
@@ -123,10 +123,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::OK;
+        $expected = CsrfProtectionRequestHandler::OK;
         $this->assertSame($expected, $actual);
     }
 
@@ -139,10 +139,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::OK;
+        $expected = CsrfProtectionRequestHandler::OK;
         $this->assertSame($expected, $actual);
     }
 
@@ -155,10 +155,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::OK;
+        $expected = CsrfProtectionRequestHandler::OK;
         $this->assertSame($expected, $actual);
     }
 
@@ -171,10 +171,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::OK;
+        $expected = CsrfProtectionRequestHandler::OK;
         $this->assertSame($expected, $actual);
     }
 
@@ -187,10 +187,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::BAD_REQUEST;
+        $expected = CsrfProtectionRequestHandler::BAD_REQUEST;
         $this->assertSame($expected, $actual);
     }
 
@@ -203,10 +203,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::FORBIDDEN;
+        $expected = CsrfProtectionRequestHandler::FORBIDDEN;
         $this->assertSame($expected, $actual);
     }
 
@@ -224,10 +224,10 @@ final class CsrfCheckRequestHandlerTest extends TestCase
          */
         $loggerMock = $this->createMock(LoggerInterface::class);
         $loggerMock->expects($this->atLeastOnce())->method("warning");
-        $sut = new CsrfCheckRequestHandler($responseFactory, $tokenStorage, $loggerMock);
+        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage, $loggerMock);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfCheckRequestHandler::FORBIDDEN;
+        $expected = CsrfProtectionRequestHandler::FORBIDDEN;
         $this->assertSame($expected, $actual);
     }
 }
