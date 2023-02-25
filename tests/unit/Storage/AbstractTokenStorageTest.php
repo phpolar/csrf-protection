@@ -6,34 +6,44 @@ namespace Phpolar\CsrfProtection\Storage;
 
 use DateInterval;
 use DateTimeImmutable;
+use Generator;
 use Phpolar\CsrfProtection\CsrfToken;
 use PHPUnit\Framework\TestCase;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+
+use const Phpolar\CsrfProtection\TOKEN_MAX;
 
 #[CoversClass(AbstractTokenStorage::class)]
 #[UsesClass(CsrfToken::class)]
 final class AbstractTokenStorageTest extends TestCase
 {
-    public static function validTokens(): array
+    public static function validTokens(): Generator
     {
-        return [
-            [new CsrfToken(new DateTimeImmutable())],
-            [new CsrfToken(new DateTimeImmutable())],
-            [new CsrfToken(new DateTimeImmutable())],
-            [new CsrfToken(new DateTimeImmutable())],
-            [new CsrfToken(new DateTimeImmutable())],
-        ];
+        foreach (range(1, TOKEN_MAX) as $n) {
+            yield [new CsrfToken(new DateTimeImmutable())];
+        }
     }
 
-    public static function invalidTokens(): array
+    public static function invalidTokens(): Generator
+    {
+        yield [new CsrfToken((new DateTimeImmutable())->sub(new DateInterval("PT10S")), 9)];
+        yield [new CsrfToken(new DateTimeImmutable("2000-10-10"))];
+    }
+
+    public static function excessiveTokenCount(): array
     {
         return [
-            [new CsrfToken((new DateTimeImmutable())->sub(new DateInterval("PT10S")), 9)],
-            [new CsrfToken(new DateTimeImmutable("2000-10-10"))],
+            [
+                array_map(
+                    static fn () => new CsrfToken(new DateTimeImmutable()),
+                    range(1, TOKEN_MAX + 1)
+                )
+            ],
         ];
     }
 
@@ -76,5 +86,18 @@ final class AbstractTokenStorageTest extends TestCase
         foreach ($tokens as $token) {
             $this->assertFalse($token->isExpired(), "The storage did not clear all expired tokens");
         }
+    }
+
+    #[TestDox("Shall not allow more than " . TOKEN_MAX . " tokens")]
+    #[DataProvider("excessiveTokenCount")]
+    #[Group("me")]
+    public function test5(array $excessiveTokens)
+    {
+        $sut = new MemoryTokenStorageStub();
+        foreach ($excessiveTokens as $token) {
+            $sut->add($token);
+        }
+        $tokens = $sut->queryAll();
+        $this->assertCount(TOKEN_MAX, $tokens);
     }
 }
