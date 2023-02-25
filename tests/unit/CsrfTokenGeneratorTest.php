@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Phpolar\CsrfProtection\CsrfToken;
-use Phpolar\CsrfProtection\CsrfTokenGenerator;
+namespace Phpolar\CsrfProtection;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
