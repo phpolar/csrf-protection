@@ -7,13 +7,18 @@ namespace Phpolar\CsrfProtection\Http;
 use Phpolar\HttpCodes\ResponseCode;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Adds support for CSRF attack mitigation
  */
-class CsrfRequestCheckMiddleware extends AbstractCsrfProtectionMiddleware
+class CsrfRequestCheckMiddleware implements MiddlewareInterface
 {
+    public function __construct(private RequestHandlerInterface $csrfCheckHandler)
+    {
+    }
+
     /**
      * Provide protection against CSRF attack.
      *
@@ -23,11 +28,10 @@ class CsrfRequestCheckMiddleware extends AbstractCsrfProtectionMiddleware
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $csrfHandler = $this->getHandler();
-        $response = $csrfHandler->handle($request);
+        $response = $this->csrfCheckHandler->handle($request);
         if ($response->getStatusCode() === ResponseCode::FORBIDDEN) {
-            return $handler->handle($request);
+            return $response;
         }
-        return $response->withStatus(ResponseCode::CONTINUE);
+        return $handler->handle($request);
     }
 }
