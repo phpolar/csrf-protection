@@ -14,9 +14,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * @covers \Phpolar\CsrfProtection\Http\CsrfPreRoutingMiddleware
+ * @covers \Phpolar\CsrfProtection\Http\CsrfRequestCheckMiddleware
  * @covers \Phpolar\CsrfProtection\Http\AbstractCsrfProtectionMiddleware
- * @uses \Phpolar\CsrfProtection\Http\CsrfCheckRequestHandler
+ * @uses \Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler
  * @uses \Phpolar\CsrfProtection\Storage\AbstractTokenStorage
  * @uses \Phpolar\CsrfProtection\Http\ResponseFilterContext
  * @uses \Phpolar\CsrfProtection\Http\ResponseFilterScanStrategy
@@ -45,8 +45,8 @@ final class CsrfPreRoutingMiddlewareTest extends TestCase
         ResponseFactoryInterface $responseFactory,
     ) {
         $routingResponse = new ResponseStub();
-        $sut = new CsrfPreRoutingMiddleware($responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
-        $handler = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfRequestCheckMiddleware($responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->process($request, $handler);
         $this->assertSame(ResponseCode::FORBIDDEN, $response->getStatusCode());
     }
@@ -63,8 +63,8 @@ final class CsrfPreRoutingMiddlewareTest extends TestCase
         ResponseFactoryInterface $responseFactory,
     ) {
         $routingResponse = new ResponseStub();
-        $sut = new CsrfPreRoutingMiddleware($responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
-        $handler = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfRequestCheckMiddleware($responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->process($request, $handler);
         $this->assertSame(ResponseCode::CONTINUE, $response->getStatusCode());
     }

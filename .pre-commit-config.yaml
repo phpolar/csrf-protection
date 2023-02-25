@@ -5,7 +5,9 @@ repos:
     rev: v4.3.0
     hooks:
     -   id: trailing-whitespace
+        exclude: (docs)
     -   id: end-of-file-fixer
+        exclude: (docs)
     -   id: check-json
     -   id: check-xml
     -   id: check-yaml
@@ -31,4 +33,4 @@ repos:
     hooks:
     # Hooks using native
     - id: phpmd         # static analyzer for PHP code
-      exclude: (examples|test|src/Http/ResponseFilterScanStrategy\.php|src/Storage/SessionTokenStorage\.php|src/Http/CsrfPostRoutingMiddleware\.php|src/Http/AbstractCsrfProtectionMiddleware\.php)
+      exclude: (examples|test|src/Http/ResponseFilterScanStrategy\.php|src/Storage/SessionTokenStorage\.php|src/Http/CsrfResponseFilterMiddleware\.php|src/Http/AbstractCsrfProtectionMiddleware\.php)

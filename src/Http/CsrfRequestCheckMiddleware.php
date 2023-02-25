@@ -12,7 +12,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * Adds support for CSRF attack mitigation
  */
-class CsrfPreRoutingMiddleware extends AbstractCsrfProtectionMiddleware
+class CsrfRequestCheckMiddleware extends AbstractCsrfProtectionMiddleware
 {
     /**
      * Provide protection against CSRF attack.

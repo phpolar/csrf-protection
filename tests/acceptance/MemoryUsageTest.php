@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Phpolar\CsrfProtection;
 
 use DateTimeImmutable;
-use Phpolar\CsrfProtection\Http\CsrfCheckRequestHandler;
+use Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler;
 use Phpolar\CsrfProtection\Http\ResponseFilterContext;
 use Phpolar\CsrfProtection\Http\ResponseFilterScanStrategy;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
@@ -111,7 +111,7 @@ final class MemoryUsageTest extends TestCase
 
     private function checkRequest(): self
     {
-        $handler = new CsrfCheckRequestHandler(
+        $handler = new CsrfProtectionRequestHandler(
             new ResponseFactoryStub(),
             new MemoryTokenStorageStub(),
         );

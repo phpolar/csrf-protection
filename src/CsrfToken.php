@@ -8,7 +8,7 @@ use DateInterval;
 use DateTimeImmutable;
 
 /**
- * Represents a token used to mitigate CSRF attacks
+ * Represents a token used to determine the validity ot a request.
  */
 final class CsrfToken
 {
@@ -22,7 +22,7 @@ final class CsrfToken
     }
 
     /**
-     * Determines if the token is expired
+     * Determines if the token is expired.
      */
     public function isExpired(): bool
     {
@@ -30,7 +30,7 @@ final class CsrfToken
     }
 
     /**
-     * Returns the string represented by the this object
+     * Returns the string represented by the this object.
      */
     public function asString(): string
     {
@@ -38,7 +38,7 @@ final class CsrfToken
     }
 
     /**
-     * Determines if the given string is represented by this object
+     * Determines if the given string is represented by this object.
      */
     public function represents(string $stringToken): bool
     {

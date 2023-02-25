@@ -19,7 +19,7 @@ use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 /**
  * Refuses to process an invalid request
  */
-final class CsrfCheckRequestHandler implements RequestHandlerInterface
+final class CsrfProtectionRequestHandler implements RequestHandlerInterface
 {
     public const BAD_REQUEST = "Bad Request";
     public const CREATED = "Created";
@@ -38,7 +38,8 @@ final class CsrfCheckRequestHandler implements RequestHandlerInterface
     }
 
     /**
-     * Takes care of CSRF attack mitigation
+     * Determines the response based on the validity
+     * of the request.
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {

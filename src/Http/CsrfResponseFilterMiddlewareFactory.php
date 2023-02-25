@@ -11,13 +11,13 @@ use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Use to create the CsrfPostRoutingMiddleware.
+ * Use to create the `CsrfResponseFilterMiddleware`.
  *
- * Creating the CsrfPostRoutingMiddleware requires
+ * Creating the `CsrfResponseFilterMiddleware` requires
  * the routing response which will be created
  * after dependency injection is configured.
  */
-class CsrfPostRoutingMiddlewareFactory
+class CsrfResponseFilterMiddlewareFactory
 {
     public function __construct(
         protected ResponseFactoryInterface $responseFactory,
@@ -29,11 +29,11 @@ class CsrfPostRoutingMiddlewareFactory
     }
 
     /**
-     * Gets an instance of CsrfPostRoutingMiddleware
+     * Gets an instance of CsrfResponseFilterMiddleware
      */
-    public function getMiddleware(ResponseInterface $response): CsrfPostRoutingMiddleware
+    public function getMiddleware(ResponseInterface $response): CsrfResponseFilterMiddleware
     {
-        return new CsrfPostRoutingMiddleware(
+        return new CsrfResponseFilterMiddleware(
             $response,
             $this->responseFactory,
             $this->streamFactory,
