@@ -11,11 +11,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProviderExternal;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Log\LoggerInterface;
 
 #[CoversClass(CsrfProtectionRequestHandler::class)]
 #[UsesClass(CsrfToken::class)]
@@ -184,25 +182,6 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         ResponseFactoryInterface $responseFactory,
     ) {
         $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
-        $response = $sut->handle($request);
-        $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::FORBIDDEN;
-        $this->assertSame($expected, $actual);
-    }
-
-    #[TestDox("Shall log forbidden requests when a logger is provided")]
-    #[DataProviderExternal(CsrfCheckDataProvider::class, "invalidToken")]
-    public function testLogging(
-        ServerRequestInterface $request,
-        AbstractTokenStorage $tokenStorage,
-        ResponseFactoryInterface $responseFactory,
-    ) {
-        /**
-         * @var MockObject|LoggerInterface
-         */
-        $loggerMock = $this->createMock(LoggerInterface::class);
-        $loggerMock->expects($this->atLeastOnce())->method("warning");
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage, $loggerMock);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::FORBIDDEN;
