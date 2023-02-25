@@ -59,7 +59,7 @@ final class SessionTokenStorage extends AbstractTokenStorage
         }
         $storedTokens = array_filter(
             $_SESSION[$this->requestId] ?? [],
-            fn ($it) => $it instanceof CsrfToken,
+            fn ($stored) => $stored instanceof CsrfToken,
         );
         array_walk(
             $storedTokens,
