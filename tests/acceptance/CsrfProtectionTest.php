@@ -26,7 +26,7 @@ final class CsrfProtectionTest extends TestCase
         ResponseFactoryInterface $responseFactory,
         string $requestType // variable used in testdox input
     ) {
-        $handler = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $handler->handle($request);
         $this->assertSame(
             400,
@@ -45,7 +45,7 @@ final class CsrfProtectionTest extends TestCase
         ResponseFactoryInterface $responseFactory,
         string $requestType // variable used in testdox input
     ) {
-        $handler = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $handler->handle($request);
         $this->assertSame(
             403,
@@ -65,7 +65,7 @@ final class CsrfProtectionTest extends TestCase
         int $expectedCode,
         string $requestType // variable used in testdox input
     ) {
-        $handler = new CsrfCheckRequestHandler($responseFactory, $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $handler->handle($request);
         $this->assertSame(
             $expectedCode,

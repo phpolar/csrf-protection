@@ -17,9 +17,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
 /**
- * @covers \Phpolar\CsrfProtection\Http\CsrfPostRoutingMiddleware
+ * @covers \Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddleware
  * @covers \Phpolar\CsrfProtection\Http\AbstractCsrfProtectionMiddleware
- * @uses \Phpolar\CsrfProtection\Http\CsrfCheckRequestHandler
+ * @uses \Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler
  * @uses \Phpolar\CsrfProtection\Storage\AbstractTokenStorage
  * @uses \Phpolar\CsrfProtection\Http\ResponseFilterContext
  * @uses \Phpolar\CsrfProtection\Http\ResponseFilterScanStrategy
@@ -64,7 +64,7 @@ final class CsrfPostRoutingMiddlewareTest extends TestCase
 
         $routingResponseBody = $streamFactory->createStream($template);
         $routingResponse = $responseFactory->createResponse()->withBody($routingResponseBody);
-        $sut = new CsrfPostRoutingMiddleware($routingResponse, $responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
+        $sut = new CsrfResponseFilterMiddleware($routingResponse, $responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
         $responseWithFormKeys = $sut->process($request, $requestHandlerStub);
         $token = $tokenStorage->queryOne(1);
         $tokenForUri = urlencode($token->asString());

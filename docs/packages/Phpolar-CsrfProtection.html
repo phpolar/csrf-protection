@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
             <title>Documentation</title>
-
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -61,7 +61,7 @@
     <ul class="phpdocumentor-list">
                     <li>
                 <a href="namespaces/phpolar-csrfprotection.html" class="">CsrfProtection</a>
-
+                
             </li>
             </ul>
 
@@ -74,12 +74,12 @@
     <ul class="phpdocumentor-list">
                     <li>
                 <a href="packages/Phpolar-CsrfProtection.html" class="-active">CsrfProtection</a>
-
+                
             </li>
             </ul>
 
                         </section>
-
+            
     <section class="phpdocumentor-sidebar__category">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="graphs/classes.html">Class Diagram</a></h3>
@@ -102,7 +102,7 @@
     <article class="phpdocumentor-element -package">
         <h2 class="phpdocumentor-content__title">CsrfProtection</h2>
 
-
+        
 
 <h3 id="interfaces_class_traits">
     Interfaces, Classes, Traits and Enums
@@ -112,19 +112,21 @@
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a></dt>
         <dd>Provides support for swapping implementations</dd>
-
+    
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a></dt>
-        <dd>Represents a token used to mitigate CSRF attacks</dd>
+        <dd>Represents a token used to determine the validity ot a request.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\AbstractCsrfProtectionMiddleware">AbstractCsrfProtectionMiddleware</abbr></a></dt>
         <dd>Adds support for CSRF attack mitigation</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfCheckRequestHandler.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfCheckRequestHandler">CsrfCheckRequestHandler</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfProtectionRequestHandler.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler">CsrfProtectionRequestHandler</abbr></a></dt>
         <dd>Refuses to process an invalid request</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfPostRoutingMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfPostRoutingMiddleware">CsrfPostRoutingMiddleware</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfRequestCheckMiddleware">CsrfRequestCheckMiddleware</abbr></a></dt>
         <dd>Adds support for CSRF attack mitigation</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfPostRoutingMiddlewareFactory.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfPostRoutingMiddlewareFactory">CsrfPostRoutingMiddlewareFactory</abbr></a></dt>
-        <dd>Use to create the CsrfPostRoutingMiddleware.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfPreRoutingMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfPreRoutingMiddleware">CsrfPreRoutingMiddleware</abbr></a></dt>
-        <dd>Adds support for CSRF attack mitigation</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddleware">CsrfResponseFilterMiddleware</abbr></a></dt>
+        <dd>Adds support for CSRF attack mitigation
+by attaching identifiers to the valid
+response.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddlewareFactory">CsrfResponseFilterMiddlewareFactory</abbr></a></dt>
+        <dd>Use to create the `CsrfResponseFilterMiddleware`.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterContext">ResponseFilterContext</abbr></a></dt>
         <dd>Provides support for adding CSRF protection
 to PSR-7 HTTP responses</dd>
@@ -136,8 +138,8 @@ to PSR-7 HTTP responses</dd>
         <dd>Used to store and validate tokens used to mitigate CSRF attacks</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\SessionTokenStorage">SessionTokenStorage</abbr></a></dt>
         <dd>Uses the session to store the CSRF token</dd>
-
-
+    
+    
     </dl>
 
 
@@ -163,7 +165,7 @@ to PSR-7 HTTP responses</dd>
 
                     </dl>
 
-
+        
     <section class="phpdocumentor-constants">
         <h3 class="phpdocumentor-elements__header" id="constants">
             Constants
@@ -182,7 +184,7 @@ to PSR-7 HTTP responses</dd>
 
     </aside>
 
-
+    
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
@@ -195,7 +197,7 @@ to PSR-7 HTTP responses</dd>
 
         <section class="phpdocumentor-description"></section>
 
-
+    
 
 </article>
                     <article class="phpdocumentor-element -constant -public ">
@@ -211,7 +213,7 @@ to PSR-7 HTTP responses</dd>
 
     </aside>
 
-
+    
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
@@ -224,12 +226,12 @@ to PSR-7 HTTP responses</dd>
 
         <section class="phpdocumentor-description"></section>
 
-
+    
 
 </article>
             </section>
 
-
+        
     </article>
                 <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
