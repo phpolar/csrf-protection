@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
  * Provides support for adding CSRF protection
  * to PSR-7 HTTP responses
  */
-final class ResponseFilterContext
+final class CsrfResponseFilter
 {
     public function __construct(
         private ResponseFilterStrategyInterface $strategy,
