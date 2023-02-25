@@ -51,4 +51,15 @@ final class CsrfTokenTest extends TestCase
         $token = new CsrfToken($createdOn);
         $this->assertFalse($token->isExpired());
     }
+
+    #[TestDox("Shall handle negative ttl values")]
+    public function test5()
+    {
+        $secondsToLive = -1;
+        $token = new CsrfToken(
+            new DateTimeImmutable("now"),
+            $secondsToLive,
+        );
+        $this->assertTrue($token->isExpired());
+    }
 }

@@ -20,7 +20,10 @@ final class CsrfToken
         DateTimeImmutable $createdOn,
         int $ttl = 1800,
     ) {
-        $this->expiresOn = $createdOn->add(new DateInterval("PT{$ttl}S"));
+        // the valid could be negative
+        $intervalVal = abs($ttl);
+        $secondsToChange = new DateInterval("PT{$intervalVal}S");
+        $this->expiresOn = $ttl > 0 ? $createdOn->add($secondsToChange) : $createdOn->sub($secondsToChange);
         $this->token = base64_encode(random_bytes(32));
     }
 
