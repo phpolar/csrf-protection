@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
+use Phpolar\CsrfProtection\CsrfTokenGenerator;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
-use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerInterface;
 
@@ -17,15 +17,13 @@ use Psr\Log\LoggerInterface;
  * by attaching identifiers to the valid
  * response.
  */
-class CsrfResponseFilterMiddleware extends AbstractCsrfProtectionMiddleware
+class CsrfResponseFilterMiddleware implements MiddlewareInterface
 {
     public function __construct(
-        private ResponseInterface $routingResponse,
-        protected ResponseFactoryInterface $responseFactory,
-        protected StreamFactoryInterface $streamFactory,
-        protected ?AbstractTokenStorage $storage = null,
-        protected ?LoggerInterface $logger = null,
-        protected ?ResponseFilterStrategyInterface $filterStrategy = null,
+        private AbstractTokenStorage $storage,
+        private CsrfTokenGenerator $tokenGenerator,
+        private ResponseFilterStrategyInterface $filterStrategy,
+        private ?LoggerInterface $logger = null,
     ) {
     }
 
@@ -38,10 +36,9 @@ class CsrfResponseFilterMiddleware extends AbstractCsrfProtectionMiddleware
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $token = $this->getToken();
-        $storage = $this->getTokenStorage();
-        $storage->add($token);
-        $responseFilter = $this->getResponseFilter($token);
-        return $responseFilter->transform($this->routingResponse);
+        $token = $this->tokenGenerator->generate();
+        $this->storage->add($token);
+        $response = $handler->handle($request);
+        return $this->filterStrategy->algorithm($response);
     }
 }
