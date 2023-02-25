@@ -4,24 +4,26 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
+use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
+use Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProviderExternal;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 
-/**
- * @covers \Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler
- * @uses Phpolar\CsrfProtection\CsrfToken
- * @uses Phpolar\CsrfProtection\Storage\AbstractTokenStorage
- */
-final class CsrfCheckRequestHandlerTest extends TestCase
+#[CoversClass(CsrfProtectionRequestHandler::class)]
+#[UsesClass(CsrfToken::class)]
+#[UsesClass(AbstractTokenStorage::class)]
+final class CsrfProtectionRequestHandlerTest extends TestCase
 {
-    /**
-     * @testdox Shall return 'Created' HTTP Response when token is valid and request method is POST
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::validTokenWithPostRequest()
-     */
+    #[TestDox("Shall return 'Created' HTTP Response when token is valid and request method is POST")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "validTokenWithPostRequest")]
     public function testPost1(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -34,10 +36,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'OK' HTTP Response when token is valid and request method is GET
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::validTokenWithGetRequest()
-     */
+    #[TestDox("Shall return 'OK' HTTP Response when token is valid and request method is GET")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "validTokenWithGetRequest")]
     public function testGet1(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -50,10 +50,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'OK' HTTP Response when query params do not exist and request method is GET
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::noTokenWithNoQueryParamsGetRequest()
-     */
+    #[TestDox("Shall return 'OK' HTTP Response when query params do not exist and request method is GET")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "noTokenWithNoQueryParamsGetRequest")]
     public function testGet2(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -66,10 +64,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'OK' HTTP Response when token is valid and request method is DELETE
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::validTokenWithDeleteRequest()
-     */
+    #[TestDox("Shall return 'OK' HTTP Response when token is valid and request method is DELETE")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "validTokenWithDeleteRequest")]
     public function testDelete(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -82,10 +78,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'OK' HTTP Response when token is valid and request method is PUT
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::validTokenWithPutRequest()
-     */
+    #[TestDox("Shall return 'OK' HTTP Response when token is valid and request method is PUT")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "validTokenWithPutRequest")]
     public function testPut(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -98,10 +92,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'Method Not Allowed' HTTP Response when token is valid and method is not implemented
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::validTokenWithOtherMethodsRequest()
-     */
+    #[TestDox("Shall return 'Method Not Allowed' HTTP Response when token is valid and method is not implemented")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "validTokenWithOtherMethodsRequest")]
     public function testOtherMethods(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -114,10 +106,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'OK' HTTP Response when token is valid and request method is HEAD
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::validTokenWithHeadRequest()
-     */
+    #[TestDox("Shall return 'OK' HTTP Response when token is valid and request method is HEAD")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "validTokenWithHeadRequest")]
     public function testHead1(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -130,10 +120,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'OK' HTTP Response when token is invalid and request method is HEAD
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::invalidTokenWithHeadRequest()
-     */
+    #[TestDox("Shall return 'OK' HTTP Response when token is invalid and request method is HEAD")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "invalidTokenWithHeadRequest")]
     public function testHead2(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -146,10 +134,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'OK' HTTP Response when token is valid and request method is OPTIONS
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::validTokenWithHeadRequest()
-     */
+    #[TestDox("Shall return 'OK' HTTP Response when token is valid and request method is OPTIONS")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "validTokenWithHeadRequest")]
     public function testOptions1(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -162,10 +148,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'OK' HTTP Response when token is invalid and request method is OPTIONS
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::invalidTokenWithHeadRequest()
-     */
+    #[TestDox("Shall return 'OK' HTTP Response when token is invalid and request method is OPTIONS")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "invalidTokenWithHeadRequest")]
     public function testOptions2(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -178,10 +162,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'Bad Request' HTTP Response when there is no request ID in the request data
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::tokenNotExists()
-     */
+    #[TestDox("Shall return 'Bad Request' HTTP Response when there is no request ID in the request data")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "tokenNotExists")]
     public function testNoId(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -194,10 +176,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @testdox Shall return 'Forbidden' HTTP Response when the token is invalid
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::invalidToken()
-     */
+    #[TestDox("Shall return 'Forbidden' HTTP Response when the token is invalid")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "invalidToken")]
     public function testInvalid(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
@@ -210,10 +190,8 @@ final class CsrfCheckRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * Shall log forbidden requests when a logger is provided
-     * @dataProvider \Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider::invalidToken()
-     */
+    #[TestDox("Shall log forbidden requests when a logger is provided")]
+    #[DataProviderExternal(CsrfCheckDataProvider::class, "invalidToken")]
     public function testLogging(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,

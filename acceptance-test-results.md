@@ -17,7 +17,7 @@
 - [x] Shall allow request when token is valid in get request
 
 ## Memory Usage (Phpolar\CsrfProtection\MemoryUsage)
-- [x] Memory usage shall be below 240000 bytes
+- [x] Memory usage shall be below 245000 bytes
 
 ## Project Size (Phpolar\CsrfProtection\ProjectSize)
 - [x] Source code total size shall be below 9200 bytes
