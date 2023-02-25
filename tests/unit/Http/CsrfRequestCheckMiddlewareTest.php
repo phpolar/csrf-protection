@@ -7,7 +7,8 @@ namespace Phpolar\CsrfProtection\Http;
 use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider;
-use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
+use Phpolar\CsrfProtection\Tests\Stubs\MemoryStreamStub;
+use Phpolar\CsrfProtection\Tests\Stubs\ResponseStub;
 use Phpolar\HttpCodes\ResponseCode;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProviderExternal;
@@ -16,8 +17,10 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 #[CoversClass(CsrfRequestCheckMiddleware::class)]
 #[CoversClass(AbstractCsrfProtectionMiddleware::class)]
@@ -45,23 +48,40 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfRequestCheckMiddleware($responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
         $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
-        $response = $sut->process($request, $handler);
+        $handlerStub = new class () implements RequestHandlerInterface {
+            public function handle(ServerRequestInterface $request): ResponseInterface
+            {
+                return new ResponseStub();
+            }
+        };
+        $sut = new CsrfRequestCheckMiddleware($handler);
+        $response = $sut->process($request, $handlerStub);
         $this->assertSame(ResponseCode::FORBIDDEN, $response->getStatusCode());
     }
 
     #[Test]
-    #[TestDox("Shall return continue response if request is valid")]
+    #[TestDox("Shall return the response from the provided \"next\" handler if the request is valid")]
     #[DataProviderExternal(CsrfCheckDataProvider::class, "validTokenWithPostRequest")]
     public function tokenValid(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfRequestCheckMiddleware($responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
+        $expectedResponseContent = "The request is safe!";
         $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
-        $response = $sut->process($request, $handler);
-        $this->assertSame(ResponseCode::CONTINUE, $response->getStatusCode());
+        $handlerStub = new class ($expectedResponseContent) implements RequestHandlerInterface {
+            public function __construct(private string $expectedResponseContent)
+            {
+            }
+            public function handle(ServerRequestInterface $request): ResponseInterface
+            {
+                return (new ResponseStub(ResponseCode::OK))->withBody(new MemoryStreamStub($this->expectedResponseContent));
+            }
+        };
+        $sut = new CsrfRequestCheckMiddleware($handler);
+        $response = $sut->process($request, $handlerStub);
+        $this->assertSame(ResponseCode::OK, $response->getStatusCode());
+        $this->assertSame($expectedResponseContent, $response->getBody()->getContents());
     }
 }
