@@ -6,6 +6,7 @@ namespace Phpolar\CsrfProtection\Http;
 
 use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
+use Phpolar\CsrfProtection\CsrfTokenGenerator;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
@@ -15,6 +16,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -22,10 +24,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
 #[CoversClass(CsrfResponseFilterMiddleware::class)]
-#[CoversClass(AbstractCsrfProtectionMiddleware::class)]
 #[UsesClass(CsrfProtectionRequestHandler::class)]
 #[UsesClass(AbstractTokenStorage::class)]
-#[UsesClass(CsrfResponseFilter::class)]
 #[UsesClass(ResponseFilterScanStrategy::class)]
 #[UsesClass(CsrfToken::class)]
 final class CsrfResponseFilterMiddlewareTest extends TestCase
@@ -42,7 +42,7 @@ final class CsrfResponseFilterMiddlewareTest extends TestCase
     }
 
     #[Test]
-    #[TestDox("Shall attach a request id to all links and forms")]
+    #[TestDox("Shall attach a request id to all links and forms and add it to storage")]
     public function linksAndForms()
     {
         $template = <<<HTML
@@ -54,20 +54,38 @@ final class CsrfResponseFilterMiddlewareTest extends TestCase
         <form></form>
         HTML;
 
-        $requestHandlerStub = $this->createStub(RequestHandlerInterface::class);
+        /**
+         * @var Stub&RequestHandlerInterface $routingHandlerStub
+         */
+        $routingHandlerStub = $this->createStub(RequestHandlerInterface::class);
+        /**
+         * @var Stub&CsrfTokenGenerator $tokenGenerator
+         */
+        $tokenGenerator = $this->createStub(CsrfTokenGenerator::class);
         $responseFactory = new ResponseFactoryStub();
         $tokenStorage = new MemoryTokenStorageStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
 
         $validToken = new CsrfToken(new DateTimeImmutable("now"));
-        $tokenStorage->add($validToken);
         $request = (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]);
-
-        $routingResponseBody = $streamFactory->createStream($template);
-        $routingResponse = $responseFactory->createResponse()->withBody($routingResponseBody);
-        $sut = new CsrfResponseFilterMiddleware($routingResponse, $responseFactory, new MemoryRWStreamFactoryStub(), $tokenStorage);
-        $responseWithFormKeys = $sut->process($request, $requestHandlerStub);
-        $token = $tokenStorage->queryOne(1);
+        $tokenGenerator->method("generate")->willReturn($validToken);
+        $routingResponse = $responseFactory
+            ->createResponse()
+            ->withBody(
+                $streamFactory->createStream($template)
+            );
+        $routingHandlerStub->method("handle")->willReturn($routingResponse);
+        $sut = new CsrfResponseFilterMiddleware(
+            $tokenStorage,
+            $tokenGenerator,
+            new ResponseFilterScanStrategy(
+                $validToken,
+                $responseFactory,
+                $streamFactory
+            ),
+        );
+        $responseWithFormKeys = $sut->process($request, $routingHandlerStub);
+        $token = $tokenStorage->queryOne(0);
         $tokenForUri = urlencode($token->asString());
         $expected = <<<HTML
         <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>

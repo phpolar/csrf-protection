@@ -6,7 +6,6 @@ namespace Phpolar\CsrfProtection;
 
 use DateTimeImmutable;
 use Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler;
-use Phpolar\CsrfProtection\Http\CsrfResponseFilter;
 use Phpolar\CsrfProtection\Http\ResponseFilterScanStrategy;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryROStreamFactoryStub;
@@ -88,14 +87,12 @@ final class MemoryUsageTest extends TestCase
 
     private function filterResponse(): self
     {
-        $responseFilter = new CsrfResponseFilter(
-            new ResponseFilterScanStrategy(
-                $this->token,
-                new ResponseFactoryStub(),
-                new MemoryRWStreamFactoryStub()
-            )
+        $responseFilter = new ResponseFilterScanStrategy(
+            $this->token,
+            new ResponseFactoryStub(),
+            new MemoryRWStreamFactoryStub()
         );
-        $responseFilter->transform($this->response);
+        $responseFilter->algorithm($this->response);
         return $this;
     }
 
