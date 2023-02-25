@@ -17,11 +17,10 @@ use Psr\Http\Message\StreamInterface;
 
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
-#[CoversClass(CsrfResponseFilter::class)]
 #[CoversClass(ResponseFilterPatternStrategy::class)]
 #[CoversClass(ResponseFilterScanStrategy::class)]
 #[UsesClass(CsrfToken::class)]
-final class CsrfResponseFilterTest extends TestCase
+final class ResponseFilterStrategyTest extends TestCase
 {
     private string $tokenKey = REQUEST_ID_KEY;
 
@@ -41,7 +40,7 @@ final class CsrfResponseFilterTest extends TestCase
         $token = new CsrfToken(new DateTimeImmutable("now"));
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
-        $sut = new CsrfResponseFilter(new ResponseFilterPatternStrategy($token, $streamFactory));
+        $sut = new ResponseFilterPatternStrategy($token, $streamFactory);
         $forms = <<<HTML
         <form action="somewhere" method="post"></form>
         <form></form>
@@ -60,7 +59,7 @@ final class CsrfResponseFilterTest extends TestCase
         HTML;
         $this->stream = $streamFactory->createStream($forms);
         $response = $responseFactory->createResponse();
-        $responseWithFormKeys = $sut->transform($response->withBody($this->stream));
+        $responseWithFormKeys = $sut->algorithm($response->withBody($this->stream));
         $actual = $responseWithFormKeys->getBody()->getContents();
         $this->assertSame($expected, $actual);
     }
@@ -71,7 +70,7 @@ final class CsrfResponseFilterTest extends TestCase
         $token = new CsrfToken(new DateTimeImmutable("now"));
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
-        $sut = new CsrfResponseFilter(new ResponseFilterPatternStrategy($token, $streamFactory));
+        $sut = new ResponseFilterPatternStrategy($token, $streamFactory);
         $forms = <<<HTML
         <p></p>
         <p></p>
@@ -84,7 +83,7 @@ final class CsrfResponseFilterTest extends TestCase
         HTML;
         $this->stream = $streamFactory->createStream($forms);
         $response = $responseFactory->createResponse();
-        $responseWithFormKeys = $sut->transform($response->withBody($this->stream));
+        $responseWithFormKeys = $sut->algorithm($response->withBody($this->stream));
         $actual = $responseWithFormKeys->getBody()->getContents();
         $this->assertSame($expected, $actual);
     }
@@ -97,7 +96,7 @@ final class CsrfResponseFilterTest extends TestCase
         $tokenForUri = urlencode($token->asString());
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
-        $sut = new CsrfResponseFilter(new ResponseFilterPatternStrategy($token, $streamFactory));
+        $sut = new ResponseFilterPatternStrategy($token, $streamFactory);
         $links = <<<HTML
         <a href="http://somewhere.com?action=doSomething">some text</a>
         <a href="http://somewhere.com?action=doSomething">some text</a>
@@ -110,7 +109,7 @@ final class CsrfResponseFilterTest extends TestCase
         HTML;
         $this->stream = $streamFactory->createStream($links);
         $response = $responseFactory->createResponse();
-        $responseWithFormKeys = $sut->transform($response->withBody($this->stream));
+        $responseWithFormKeys = $sut->algorithm($response->withBody($this->stream));
         $actual = $responseWithFormKeys->getBody()->getContents();
         $this->assertSame($expected, $actual);
     }
@@ -123,7 +122,7 @@ final class CsrfResponseFilterTest extends TestCase
         $tokenForUri = urlencode($token->asString());
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
-        $sut = new CsrfResponseFilter(new ResponseFilterScanStrategy($token, $responseFactory, $streamFactory));
+        $sut = new ResponseFilterScanStrategy($token, $responseFactory, $streamFactory);
         $links = <<<HTML
         <a href="http://somewhere.com?action=doSomething">some text</a>
         <form action="somewhere" method="post"></form>
@@ -148,7 +147,7 @@ final class CsrfResponseFilterTest extends TestCase
         HTML;
         $this->stream = $streamFactory->createStream($links);
         $response = $responseFactory->createResponse();
-        $responseWithFormKeys = $sut->transform($response->withBody($this->stream));
+        $responseWithFormKeys = $sut->algorithm($response->withBody($this->stream));
         $actual = $responseWithFormKeys->getBody()->getContents();
         $this->assertSame($expected, $actual);
     }
