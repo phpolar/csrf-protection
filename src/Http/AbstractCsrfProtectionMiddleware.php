@@ -83,9 +83,9 @@ abstract class AbstractCsrfProtectionMiddleware implements MiddlewareInterface
         );
     }
 
-    protected function getResponseFilter(CsrfToken $token): ResponseFilterContext
+    protected function getResponseFilter(CsrfToken $token): CsrfResponseFilter
     {
-        return new ResponseFilterContext(
+        return new CsrfResponseFilter(
             $this->filterStrategy ?? new ResponseFilterScanStrategy(
                 $token,
                 $this->responseFactory,
