@@ -14,14 +14,16 @@ use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
 use Phpolar\CsrfProtection\Tests\Stubs\RequestStub;
 use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-/**
- * @runTestsInSeparateProcesses
- * @coversNothing
- */
+#[RunTestsInSeparateProcesses]
+#[CoversNothing]
 final class MemoryUsageTest extends TestCase
 {
     private ResponseInterface $response;
@@ -39,21 +41,9 @@ final class MemoryUsageTest extends TestCase
             ->createRequest();
     }
 
-    public function thresholds()
-    {
-        return [
-            [
-                (int) PROJECT_MEMORY_USAGE_THRESHOLD,
-            ],
-        ];
-    }
-
-    /**
-     * @test
-     * @dataProvider thresholds()
-     * @testdox Memory usage shall be below $threshold bytes
-     */
-    public function shallBeBelowThreshold(int $threshold)
+    #[Test]
+    #[TestDox("Memory usage shall be below " . PROJECT_MEMORY_USAGE_THRESHOLD . " bytes")]
+    public function shallBeBelowThreshold()
     {
         $memoryUsed = -memory_get_usage();
         $this->filterResponse()
@@ -61,7 +51,7 @@ final class MemoryUsageTest extends TestCase
         $after = memory_get_usage();
         $memoryUsed += $after;
         $this->assertGreaterThan(0, $memoryUsed);
-        $this->assertLessThanOrEqual($threshold, $memoryUsed);
+        $this->assertLessThanOrEqual((int) PROJECT_MEMORY_USAGE_THRESHOLD, $memoryUsed);
     }
 
     private function createTokenAndAddToStorage(): self
