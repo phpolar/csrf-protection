@@ -23,7 +23,15 @@ abstract class AbstractTokenStorage
      */
     public function add(CsrfToken $token): void
     {
-        $this->tokens[] = $token;
+        $maxTokens = $this->getMaxCount();
+        $this->tokens = count($this->tokens) >= $maxTokens ? [
+            ...array_filter(
+                $this->tokens,
+                static fn ($index) => $index > 0,
+                ARRAY_FILTER_USE_KEY,
+            ),
+            $token
+        ] : [...$this->tokens, $token];
     }
 
     /**
@@ -65,6 +73,11 @@ abstract class AbstractTokenStorage
             static fn (CsrfToken $token) => $token->isExpired() === false
         );
     }
+
+    /**
+     * Returns the max count of tokens
+     */
+    abstract protected function getMaxCount(): int;
 
     /**
      * Gets all tokens

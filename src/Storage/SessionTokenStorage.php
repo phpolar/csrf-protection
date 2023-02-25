@@ -7,6 +7,7 @@ namespace Phpolar\CsrfProtection\Storage;
 use Phpolar\CsrfProtection\CsrfToken;
 
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
+use const Phpolar\CsrfProtection\TOKEN_MAX;
 
 /**
  * Uses the session to store the CSRF token
@@ -16,6 +17,7 @@ final class SessionTokenStorage extends AbstractTokenStorage
 {
     public function __construct(
         private string $requestId = REQUEST_ID_KEY,
+        private int $maxCount = TOKEN_MAX,
     ) {
         $this->loadFromSession();
     }
@@ -31,6 +33,11 @@ final class SessionTokenStorage extends AbstractTokenStorage
             return;
         }
         $_SESSION[$this->requestId] = $this->queryAll();
+    }
+
+    protected function getMaxCount(): int
+    {
+        return $this->maxCount;
     }
 
     public function queryAll(): array
