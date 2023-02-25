@@ -12,7 +12,7 @@ use DateTimeImmutable;
  */
 class CsrfTokenGenerator
 {
-    public function __construct(private $ttl = TOKEN_DEFAULT_TTL)
+    public function __construct(private int $ttl = TOKEN_DEFAULT_TTL)
     {
     }
 

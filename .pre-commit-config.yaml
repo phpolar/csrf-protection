@@ -35,4 +35,4 @@ repos:
     hooks:
     # Hooks using native
     - id: phpmd         # static analyzer for PHP code
-      exclude: (examples|test|src/Http/ResponseFilterScanStrategy\.php|src/Storage/SessionTokenStorage\.php|src/Http/CsrfResponseFilterMiddleware\.php|src/Http/AbstractCsrfProtectionMiddleware\.php)
+      exclude: (examples|test||src/Storage/SessionTokenStorage\.php|src/Http/CsrfResponseFilterMiddleware\.php)
