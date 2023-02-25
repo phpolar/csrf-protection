@@ -18,7 +18,6 @@ use Psr\Http\Message\StreamInterface;
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
 #[CoversClass(ResponseFilterPatternStrategy::class)]
-#[CoversClass(ResponseFilterScanStrategy::class)]
 #[UsesClass(CsrfToken::class)]
 final class ResponseFilterStrategyTest extends TestCase
 {
@@ -122,7 +121,7 @@ final class ResponseFilterStrategyTest extends TestCase
         $tokenForUri = urlencode($token->asString());
         $responseFactory = new ResponseFactoryStub();
         $streamFactory = new MemoryRWStreamFactoryStub();
-        $sut = new ResponseFilterScanStrategy($token, $responseFactory, $streamFactory);
+        $sut = new ResponseFilterPatternStrategy($token, $streamFactory);
         $links = <<<HTML
         <a href="http://somewhere.com?action=doSomething">some text</a>
         <form action="somewhere" method="post"></form>
