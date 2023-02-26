@@ -20,49 +20,26 @@ composer require phpolar/csrf-protection
 ## Usage
 
 ```php
-// check request
-$middleWare = new CsrfRequestCheckMiddleware(
-  $responseFactory,
-  $streamFactory,
-);
-$response = $middleWare->process($request, $errorHandler);
-// handler error
+$csrfChecking = $this->container->get(CsrfRequestCheckMiddleware::class);
+$csrfFiltering = $this->container->get(CsrfResponseFilterMiddleware::class);
+
+$app->use($csrfChecking);
+$app->use($csrfFiltering);
+
 // ...
 
-// set up response for CSRF detection
-$middleWare = new CsrfResponseFilterMiddleware(
-  $routingResponse,
-  $responseFactory,
-  $streamFactory,
-);
-$detectableResponse = $middleWare->process($request, $errorHandler);
+$response = $csrfCheckMiddleware->process($request, $nextHandler);
 
-// or
+// ...
 
-$middleWare = new CsrfResponseFilterMiddleware(
-  $routingResponse,
-  $responseFactory,
-  $streamFactory,
-  $tokenStorage,
-  $logger,
-);
-
-// or
-
-$middleWare = new CsrfResponseFilterMiddleware(
-  $routingResponse,
-  $responseFactory,
-  $streamFactory,
-);
-
-$middleware->useLogger($logger);
-$middleware->useStorage($memcachedStore);
+$preparedResponse = $middleWare->process($request, $routingHandler);
 ```
 
 ## Resources
 
 1. [PSR-7](https://www.php-fig.org/psr/psr-7/)
 1. [PSR-15](https://www.php-fig.org/psr/psr-15/)
+1. [Example middleware setup](https://www.php-fig.org/psr/psr-15/meta/#63-example-interface-interactions)
 
 ## [API Documentation](https://phpolar.github.io/csrf-protection/)
 
