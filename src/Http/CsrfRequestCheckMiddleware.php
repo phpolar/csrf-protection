@@ -11,7 +11,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 /**
- * Adds support for CSRF attack mitigation
+ * Takes care of request validation logic for CSRF attack mitigation
  */
 class CsrfRequestCheckMiddleware implements MiddlewareInterface
 {
@@ -20,11 +20,13 @@ class CsrfRequestCheckMiddleware implements MiddlewareInterface
     }
 
     /**
-     * Provide protection against CSRF attack.
+     * Produces a response for an invalid request or
+     * delegates request handling to the provided handler.
      *
-     * If the request fails the check,
-     * the provided request handler will be used
-     * to create the request.
+     * if the request fails the check,
+     * this middleware will return a *canned response*
+     * with a response that is either **Method Not Allowed**,
+     * **Bad Request** or **Forbidden**.
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
