@@ -169,7 +169,9 @@ response.</p>
     <span>
                                 &nbsp;: <abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>    </span>
 </dt>
-<dd>Provide protection against CSRF attack.</dd>
+<dd>Stores a *request validation token* in
+server state and attaches the token to the
+response.</dd>
 
         </dl>
 
@@ -257,19 +259,20 @@ response.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfResponseFilterMiddleware.php"><a href="files/http-csrfresponsefiltermiddleware.html"><abbr title="Http/CsrfResponseFilterMiddleware.php">CsrfResponseFilterMiddleware.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Provide protection against CSRF attack.</p>
+        <p class="phpdocumentor-summary">Stores a *request validation token* in
+server state and attaches the token to the
+response.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">process</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ServerRequestInterface">ServerRequestInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Server\RequestHandlerInterface">RequestHandlerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$handler</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></span></code>
 
-        <section class="phpdocumentor-description"><p>If the request fails the check,
-the provided request handler will be used
-to create the request.</p>
+        <section class="phpdocumentor-description"><p>The stored token SHOULD then be used to validate
+futher requests.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>

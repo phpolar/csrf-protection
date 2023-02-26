@@ -103,7 +103,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfRequestCheckMiddleware",
             "name": "CsrfRequestCheckMiddleware",
-            "summary": "Adds\u0020support\u0020for\u0020CSRF\u0020attack\u0020mitigation",
+            "summary": "Takes\u0020care\u0020of\u0020request\u0020validation\u0020logic\u0020for\u0020CSRF\u0020attack\u0020mitigation",
             "url": "classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html"
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfRequestCheckMiddleware\u003A\u003A__construct\u0028\u0029",
@@ -113,7 +113,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfRequestCheckMiddleware\u003A\u003Aprocess\u0028\u0029",
             "name": "process",
-            "summary": "Provide\u0020protection\u0020against\u0020CSRF\u0020attack.",
+            "summary": "Produces\u0020a\u0020response\u0020for\u0020an\u0020invalid\u0020request\u0020or\ndelegates\u0020request\u0020handling\u0020to\u0020the\u0020provided\u0020handler.",
             "url": "classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html#method_process"
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfResponseFilterMiddleware",
@@ -128,7 +128,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfResponseFilterMiddleware\u003A\u003Aprocess\u0028\u0029",
             "name": "process",
-            "summary": "Provide\u0020protection\u0020against\u0020CSRF\u0020attack.",
+            "summary": "Stores\u0020a\u0020\u002Arequest\u0020validation\u0020token\u002A\u0020in\nserver\u0020state\u0020and\u0020attaches\u0020the\u0020token\u0020to\u0020the\nresponse.",
             "url": "classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddleware.html#method_process"
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterPatternStrategy",

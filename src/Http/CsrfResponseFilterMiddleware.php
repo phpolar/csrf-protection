@@ -26,11 +26,12 @@ class CsrfResponseFilterMiddleware implements MiddlewareInterface
     }
 
     /**
-     * Provide protection against CSRF attack.
+     * Stores a *request validation token* in
+     * server state and attaches the token to the
+     * response.
      *
-     * If the request fails the check,
-     * the provided request handler will be used
-     * to create the request.
+     * The stored token SHOULD then be used to validate
+     * futher requests.
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {

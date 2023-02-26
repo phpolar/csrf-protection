@@ -127,7 +127,7 @@
 
     </aside>
 
-            <p class="phpdocumentor-summary">Adds support for CSRF attack mitigation</p>
+            <p class="phpdocumentor-summary">Takes care of request validation logic for CSRF attack mitigation</p>
 
 
 
@@ -167,7 +167,8 @@
     <span>
                                 &nbsp;: <abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>    </span>
 </dt>
-<dd>Provide protection against CSRF attack.</dd>
+<dd>Produces a response for an invalid request or
+delegates request handling to the provided handler.</dd>
 
         </dl>
 
@@ -239,19 +240,21 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfRequestCheckMiddleware.php"><a href="files/http-csrfrequestcheckmiddleware.html"><abbr title="Http/CsrfRequestCheckMiddleware.php">CsrfRequestCheckMiddleware.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Provide protection against CSRF attack.</p>
+        <p class="phpdocumentor-summary">Produces a response for an invalid request or
+delegates request handling to the provided handler.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">process</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ServerRequestInterface">ServerRequestInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Server\RequestHandlerInterface">RequestHandlerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$handler</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></span></code>
 
-        <section class="phpdocumentor-description"><p>If the request fails the check,
-the provided request handler will be used
-to create the request.</p>
+        <section class="phpdocumentor-description"><p>if the request fails the check,
+this middleware will return a <em>canned response</em>
+with a response that is either <strong>Method Not Allowed</strong>,
+<strong>Bad Request</strong> or <strong>Forbidden</strong>.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
