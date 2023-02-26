@@ -15,7 +15,13 @@ use const Phpolar\CsrfProtection\TOKEN_MAX;
  */
 final class SessionTokenStorage extends AbstractTokenStorage
 {
+    /**
+     * @param array<string,mixed> $sessionVars
+     * @param string $requestId
+     * @param int $maxCount
+     */
     public function __construct(
+        private array $sessionVars,
         private string $requestId = REQUEST_ID_KEY,
         private int $maxCount = TOKEN_MAX,
     ) {
@@ -32,7 +38,7 @@ final class SessionTokenStorage extends AbstractTokenStorage
         if ($this->sessionIsNotActive() === true) {
             return;
         }
-        $_SESSION[$this->requestId] = $this->queryAll();
+        $this->sessionVars[$this->requestId] = $this->queryAll();
     }
 
     protected function getMaxCount(): int
@@ -57,8 +63,11 @@ final class SessionTokenStorage extends AbstractTokenStorage
         if ($this->sessionIsNotActive() === true) {
             return;
         }
+        if (is_array($this->sessionVars[$this->requestId]) === false) {
+            return;
+        }
         $storedTokens = array_filter(
-            $_SESSION[$this->requestId] ?? [],
+            $this->sessionVars[$this->requestId] ?? [],
             fn ($stored) => $stored instanceof CsrfToken,
         );
         array_walk(

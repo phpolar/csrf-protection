@@ -160,26 +160,28 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    #[TestDox("Shall return 'Bad Request' HTTP Response when there is no request ID in the request data")]
+    #[TestDox("Shall return 'Bad Request' HTTP Response when there is no request ID in a \$requestMethod request")]
     #[DataProviderExternal(CsrfCheckDataProvider::class, "tokenNotExists")]
     public function testNoId(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
+        string $requestMethod, // used for test dox output
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+            $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::BAD_REQUEST;
         $this->assertSame($expected, $actual);
     }
 
-    #[TestDox("Shall return 'Forbidden' HTTP Response when the token is invalid")]
+    #[TestDox("Shall return 'Forbidden' HTTP Response when the request ID is invalid in a \$requestMethod request")]
     #[DataProviderExternal(CsrfCheckDataProvider::class, "invalidToken")]
     public function testInvalid(
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
+        string $requestMethod, // used for test dox output
     ) {
         $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
         $response = $sut->handle($request);

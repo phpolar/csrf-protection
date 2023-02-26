@@ -21,8 +21,8 @@
   </coverage>
   <php>
     <const name="SRC_GLOB" value="/src{/,/**/}*.php"/>
-    <const name="PROJECT_SIZE_THRESHOLD" value="9200"/>
-    <const name="PROJECT_MEMORY_USAGE_THRESHOLD" value="245000"/>
+    <const name="PROJECT_SIZE_THRESHOLD" value="6500"/>
+    <const name="PROJECT_MEMORY_USAGE_THRESHOLD" value="205000"/>
     <const name="Phpolar\CsrfProtection\Tests\CSRF_TEMPLATE_SIZE_FACTOR" value="10000000"/>
   </php>
 </phpunit>

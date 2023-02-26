@@ -15,7 +15,7 @@ final class RequestStub implements ServerRequestInterface
         private string $method = "GET",
         private string $url = "",
         private array $queryParams = [],
-        private array|object $parsedBody = []
+        private array|object|null $parsedBody = null,
     ) {
     }
 
