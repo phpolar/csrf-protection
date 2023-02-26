@@ -11,6 +11,16 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/phpolar-csrfprotection.html#constant_FORBIDDEN_REQUEST_MESSAGE"
         },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\TOKEN_MAX",
+            "name": "TOKEN_MAX",
+            "summary": "",
+            "url": "namespaces/phpolar-csrfprotection.html#constant_TOKEN_MAX"
+        },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\TOKEN_DEFAULT_TTL",
+            "name": "TOKEN_DEFAULT_TTL",
+            "summary": "",
+            "url": "namespaces/phpolar-csrfprotection.html#constant_TOKEN_DEFAULT_TTL"
+        },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\CsrfToken",
             "name": "CsrfToken",
             "summary": "Represents\u0020a\u0020token\u0020used\u0020to\u0020determine\u0020the\u0020validity\u0020ot\u0020a\u0020request.",
@@ -36,35 +46,20 @@ Search.appendIndex(
             "summary": "Determines\u0020if\u0020the\u0020given\u0020string\u0020is\u0020represented\u0020by\u0020this\u0020object.",
             "url": "classes/Phpolar-CsrfProtection-CsrfToken.html#method_represents"
         },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\AbstractCsrfProtectionMiddleware",
-            "name": "AbstractCsrfProtectionMiddleware",
-            "summary": "Adds\u0020support\u0020for\u0020CSRF\u0020attack\u0020mitigation",
-            "url": "classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html"
+            "fqsen": "\\Phpolar\\CsrfProtection\\CsrfTokenGenerator",
+            "name": "CsrfTokenGenerator",
+            "summary": "Generates\u0020a\u0020token\u0020used\u0020to\u0020identify\nvalid\u0020requests.",
+            "url": "classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html"
         },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\AbstractCsrfProtectionMiddleware\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Phpolar\\CsrfProtection\\CsrfTokenGenerator\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method___construct"
+            "url": "classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#method___construct"
         },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\AbstractCsrfProtectionMiddleware\u003A\u003AuseLogger\u0028\u0029",
-            "name": "useLogger",
-            "summary": "Configure\u0020logging",
-            "url": "classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_useLogger"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\AbstractCsrfProtectionMiddleware\u003A\u003AuseStorage\u0028\u0029",
-            "name": "useStorage",
-            "summary": "Allows\u0020configuring\u0020a\u0020provided\u0020storage\u0020mechanism\u0020for\u0020the\u0020CSRF\u0020token",
-            "url": "classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_useStorage"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\AbstractCsrfProtectionMiddleware\u003A\u003AuseResponseFilterStrategy\u0028\u0029",
-            "name": "useResponseFilterStrategy",
-            "summary": "Allows\u0020configuring\u0020a\u0020provided\u0020response\u0020filter\u0020strategy",
-            "url": "classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_useResponseFilterStrategy"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\AbstractCsrfProtectionMiddleware\u003A\u003Aprocess\u0028\u0029",
-            "name": "process",
-            "summary": "Provide\u0020protection\u0020against\u0020CSRF\u0020attack.",
-            "url": "classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_process"
+            "fqsen": "\\Phpolar\\CsrfProtection\\CsrfTokenGenerator\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Produces\u0020the\u0020token.",
+            "url": "classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#method_generate"
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfProtectionRequestHandler",
             "name": "CsrfProtectionRequestHandler",
@@ -111,6 +106,11 @@ Search.appendIndex(
             "summary": "Adds\u0020support\u0020for\u0020CSRF\u0020attack\u0020mitigation",
             "url": "classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html"
         },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfRequestCheckMiddleware\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html#method___construct"
+        },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfRequestCheckMiddleware\u003A\u003Aprocess\u0028\u0029",
             "name": "process",
             "summary": "Provide\u0020protection\u0020against\u0020CSRF\u0020attack.",
@@ -131,36 +131,6 @@ Search.appendIndex(
             "summary": "Provide\u0020protection\u0020against\u0020CSRF\u0020attack.",
             "url": "classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddleware.html#method_process"
         },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfResponseFilterMiddlewareFactory",
-            "name": "CsrfResponseFilterMiddlewareFactory",
-            "summary": "Use\u0020to\u0020create\u0020the\u0020\u0060CsrfResponseFilterMiddleware\u0060.",
-            "url": "classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfResponseFilterMiddlewareFactory\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html#method___construct"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfResponseFilterMiddlewareFactory\u003A\u003AgetMiddleware\u0028\u0029",
-            "name": "getMiddleware",
-            "summary": "Gets\u0020an\u0020instance\u0020of\u0020CsrfResponseFilterMiddleware",
-            "url": "classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html#method_getMiddleware"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterContext",
-            "name": "ResponseFilterContext",
-            "summary": "Provides\u0020support\u0020for\u0020adding\u0020CSRF\u0020protection\nto\u0020PSR\u002D7\u0020HTTP\u0020responses",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterContext\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html#method___construct"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterContext\u003A\u003Atransform\u0028\u0029",
-            "name": "transform",
-            "summary": "Add\u0020CSRF\u0020protection\u0020to\u0020the\u0020HTTP\u0020response",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html#method_transform"
-        },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterPatternStrategy",
             "name": "ResponseFilterPatternStrategy",
             "summary": "Attaches\u0020the\u0020request\u0020id\u0020to\u0020forms\u0020and\u0020links\u0020using\u0020a\u0020pattern\u0020match\u0020and\u0020replace\u0020algorithm",
@@ -175,21 +145,6 @@ Search.appendIndex(
             "name": "algorithm",
             "summary": "Execute\u0020the\u0020algoritm\u0020defined\u0020by\u0020the\u0020strategy",
             "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterPatternStrategy.html#method_algorithm"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterScanStrategy",
-            "name": "ResponseFilterScanStrategy",
-            "summary": "Attaches\u0020the\u0020request\u0020id\u0020to\u0020forms\u0020and\u0020links\u0020using\u0020a\u0020single\u0020pass\u0020scan\u0020algorithm",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterScanStrategy.html"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterScanStrategy\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterScanStrategy.html#method___construct"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterScanStrategy\u003A\u003Aalgorithm\u0028\u0029",
-            "name": "algorithm",
-            "summary": "Execute\u0020the\u0020algoritm\u0020defined\u0020by\u0020the\u0020strategy",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterScanStrategy.html#method_algorithm"
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterStrategyInterface",
             "name": "ResponseFilterStrategyInterface",

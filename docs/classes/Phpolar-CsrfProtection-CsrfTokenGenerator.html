@@ -98,12 +98,11 @@
                     <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/phpolar.html">Phpolar</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/phpolar-csrfprotection.html">CsrfProtection</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/phpolar-csrfprotection-http.html">Http</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    CsrfRequestCheckMiddleware
+    CsrfTokenGenerator
 
     
             <div class="phpdocumentor-element__package">
@@ -114,20 +113,18 @@
                             </ul>
         </div>
     
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <abbr title="\Psr\Http\Server\MiddlewareInterface">MiddlewareInterface</abbr>                    </span>
     
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfRequestCheckMiddleware.php"><a href="files/http-csrfrequestcheckmiddleware.html"><abbr title="Http/CsrfRequestCheckMiddleware.php">CsrfRequestCheckMiddleware.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="CsrfTokenGenerator.php"><a href="files/csrftokengenerator.html"><abbr title="CsrfTokenGenerator.php">CsrfTokenGenerator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Adds support for CSRF attack mitigation</p>
+            <p class="phpdocumentor-summary">Generates a token used to identify
+valid requests.</p>
 
 
 
@@ -135,18 +132,6 @@
 
 
 
-<h3 id="interfaces_class_traits">
-    Interfaces, Classes, Traits and Enums
-    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
-</h3>
-
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Psr\Http\Server\MiddlewareInterface">MiddlewareInterface</abbr></dt>
-        <dd></dd>
-    
-    
-    
-    </dl>
 
 
 <h3 id="toc">
@@ -156,18 +141,18 @@
 
 <dl class="phpdocumentor-table-of-contents">
                         <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html#method___construct">__construct()</a>
+    <a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html#method_process">process()</a>
+    <a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#method_generate">generate()</a>
     <span>
-                                &nbsp;: <abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>    </span>
+                                &nbsp;: <a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>    </span>
 </dt>
-<dd>Provide protection against CSRF attack.</dd>
+<dd>Produces the token.</dd>
 
         </dl>
 
@@ -180,7 +165,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -190,28 +175,28 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfRequestCheckMiddleware.php"><a href="files/http-csrfrequestcheckmiddleware.html"><abbr title="Http/CsrfRequestCheckMiddleware.php">CsrfRequestCheckMiddleware.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="CsrfTokenGenerator.php"><a href="files/csrftokengenerator.html"><abbr title="CsrfTokenGenerator.php">CsrfTokenGenerator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Server\RequestHandlerInterface">RequestHandlerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$csrfCheckHandler</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ttl</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">TOKEN_DEFAULT_TTL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
         <section class="phpdocumentor-description"></section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$csrfCheckHandler</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Server\RequestHandlerInterface">RequestHandlerInterface</abbr></span>
-                            </dt>
+                <span class="phpdocumentor-signature__argument__name">$ttl</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">TOKEN_DEFAULT_TTL</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
 
@@ -232,52 +217,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_process">
-        process()
-        <a href="classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html#method_process" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_generate">
+        generate()
+        <a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#method_generate" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfRequestCheckMiddleware.php"><a href="files/http-csrfrequestcheckmiddleware.html"><abbr title="Http/CsrfRequestCheckMiddleware.php">CsrfRequestCheckMiddleware.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="CsrfTokenGenerator.php"><a href="files/csrftokengenerator.html"><abbr title="CsrfTokenGenerator.php">CsrfTokenGenerator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Provide protection against CSRF attack.</p>
+        <p class="phpdocumentor-summary">Produces the token.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">process</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ServerRequestInterface">ServerRequestInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Server\RequestHandlerInterface">RequestHandlerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$handler</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">generate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a></span></code>
 
-        <section class="phpdocumentor-description"><p>If the request fails the check,
-the provided request handler will be used
-to create the request.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$request</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ServerRequestInterface">ServerRequestInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$handler</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Server\RequestHandlerInterface">RequestHandlerInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
+    
+    
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a></span>
             &mdash;
         
     
@@ -360,7 +322,7 @@ to create the request.</p>
 </section>
             </div>
         </div>
-        <a href="classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

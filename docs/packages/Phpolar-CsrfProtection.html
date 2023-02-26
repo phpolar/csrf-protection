@@ -115,8 +115,9 @@
     
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a></dt>
         <dd>Represents a token used to determine the validity ot a request.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\AbstractCsrfProtectionMiddleware">AbstractCsrfProtectionMiddleware</abbr></a></dt>
-        <dd>Adds support for CSRF attack mitigation</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html"><abbr title="\Phpolar\CsrfProtection\CsrfTokenGenerator">CsrfTokenGenerator</abbr></a></dt>
+        <dd>Generates a token used to identify
+valid requests.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfProtectionRequestHandler.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler">CsrfProtectionRequestHandler</abbr></a></dt>
         <dd>Refuses to process an invalid request</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfRequestCheckMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfRequestCheckMiddleware">CsrfRequestCheckMiddleware</abbr></a></dt>
@@ -125,15 +126,8 @@
         <dd>Adds support for CSRF attack mitigation
 by attaching identifiers to the valid
 response.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddlewareFactory.html"><abbr title="\Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddlewareFactory">CsrfResponseFilterMiddlewareFactory</abbr></a></dt>
-        <dd>Use to create the `CsrfResponseFilterMiddleware`.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterContext.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterContext">ResponseFilterContext</abbr></a></dt>
-        <dd>Provides support for adding CSRF protection
-to PSR-7 HTTP responses</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterPatternStrategy.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterPatternStrategy">ResponseFilterPatternStrategy</abbr></a></dt>
         <dd>Attaches the request id to forms and links using a pattern match and replace algorithm</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterScanStrategy.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterScanStrategy">ResponseFilterScanStrategy</abbr></a></dt>
-        <dd>Attaches the request id to forms and links using a single pass scan algorithm</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a></dt>
         <dd>Used to store and validate tokens used to mitigate CSRF attacks</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\SessionTokenStorage">SessionTokenStorage</abbr></a></dt>
@@ -160,6 +154,20 @@ to PSR-7 HTTP responses</dd>
     <a href="namespaces/phpolar-csrfprotection.html#constant_REQUEST_ID_KEY">REQUEST_ID_KEY</a>
     <span>
         &nbsp;= &quot;CSRF-PROTECTION-TOKEN&quot;                            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/phpolar-csrfprotection.html#constant_TOKEN_DEFAULT_TTL">TOKEN_DEFAULT_TTL</a>
+    <span>
+        &nbsp;= 1800                            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/phpolar-csrfprotection.html#constant_TOKEN_MAX">TOKEN_MAX</a>
+    <span>
+        &nbsp;= 10                            </span>
 </dt>
 <dd></dd>
 
@@ -219,6 +227,64 @@ to PSR-7 HTTP responses</dd>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">REQUEST_ID_KEY</span>
     = <span class="phpdocumentor-signature__default-value">&quot;CSRF-PROTECTION-TOKEN&quot;</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_TOKEN_DEFAULT_TTL">
+        TOKEN_DEFAULT_TTL
+        <a href="namespaces/phpolar-csrfprotection.html#constant_TOKEN_DEFAULT_TTL" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="constants.php"><a href="files/constants.html"><abbr title="constants.php">constants.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">TOKEN_DEFAULT_TTL</span>
+    = <span class="phpdocumentor-signature__default-value">1800</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_TOKEN_MAX">
+        TOKEN_MAX
+        <a href="namespaces/phpolar-csrfprotection.html#constant_TOKEN_MAX" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="constants.php"><a href="files/constants.html"><abbr title="constants.php">constants.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">11</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">TOKEN_MAX</span>
+    = <span class="phpdocumentor-signature__default-value">10</span>
 </code>
 
 
