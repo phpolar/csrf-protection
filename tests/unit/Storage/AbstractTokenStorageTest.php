@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -27,12 +26,6 @@ final class AbstractTokenStorageTest extends TestCase
         foreach (range(1, TOKEN_MAX) as $n) {
             yield [new CsrfToken(new DateTimeImmutable())];
         }
-    }
-
-    public static function invalidTokens(): Generator
-    {
-        yield [new CsrfToken((new DateTimeImmutable())->sub(new DateInterval("PT10S")), 9)];
-        yield [new CsrfToken(new DateTimeImmutable("2000-10-10"))];
     }
 
     public static function excessiveTokenCount(): array
@@ -57,20 +50,50 @@ final class AbstractTokenStorageTest extends TestCase
     }
 
     #[TestDox("Shall know if a token is invalid")]
-    #[DataProvider("invalidTokens")]
-    public function test2(CsrfToken $token)
+    public function test2()
     {
         $sut = new MemoryTokenStorageStub();
+        $token = new CsrfToken(new DateTimeImmutable("yesterday"));
         $sut->add($token);
         $this->assertFalse($sut->isValid($token->asString()));
     }
 
-    #[TestDox("Shall say a token is invalid if it is not contained in the storage")]
-    #[DataProvider("invalidTokens")]
-    public function test3(CsrfToken $token)
+    #[TestDox("Shall know if a token is invalid")]
+    public function test2b()
     {
         $sut = new MemoryTokenStorageStub();
+        $token = new CsrfToken(new DateTimeImmutable());
+        $sut->add(new CsrfToken(new DateTimeImmutable()));
+        $this->assertFalse($sut->isValid($token->asString()));
+    }
+
+    #[TestDox("Shall know if any of the tokens it contains is expired")]
+    public function test2a()
+    {
+        $sut = new MemoryTokenStorageStub();
+        $invalidTokens = array_map(static fn () => new CsrfToken(new DateTimeImmutable("yesterday")), range(1, 3));
+        $token = new CsrfToken(new DateTimeImmutable());
+        array_walk($invalidTokens, $sut->add(...));
         $sut->add($token);
+        $this->assertTrue($sut->isValid($token->asString()));
+    }
+
+    #[TestDox("Shall know if any of the tokens it contains matches")]
+    public function test2z()
+    {
+        $sut = new MemoryTokenStorageStub();
+        $invalidTokens = array_map(static fn () => new CsrfToken(new DateTimeImmutable("now")), range(1, 3));
+        $token = new CsrfToken(new DateTimeImmutable());
+        array_walk($invalidTokens, $sut->add(...));
+        $sut->add($token);
+        $this->assertTrue($sut->isValid($token->asString()));
+    }
+
+    #[TestDox("Shall say a token is invalid if it is not contained in the storage")]
+    public function test3()
+    {
+        $sut = new MemoryTokenStorageStub();
+        $token = new CsrfToken(new DateTimeImmutable());
         $this->assertFalse($sut->isValid($token->asString()));
     }
 
@@ -90,7 +113,6 @@ final class AbstractTokenStorageTest extends TestCase
 
     #[TestDox("Shall not allow more than " . TOKEN_MAX . " tokens")]
     #[DataProvider("excessiveTokenCount")]
-    #[Group("me")]
     public function test5(array $excessiveTokens)
     {
         $sut = new MemoryTokenStorageStub();
@@ -99,5 +121,13 @@ final class AbstractTokenStorageTest extends TestCase
         }
         $tokens = $sut->queryAll();
         $this->assertCount(TOKEN_MAX, $tokens);
+    }
+
+    #[TestDox("Shall say token is invalid when it does not contain any tokens")]
+    public function test6()
+    {
+        $sut = new MemoryTokenStorageStub();
+        $token = new CsrfToken(new DateTimeImmutable());
+        $this->assertFalse($sut->isValid($token->asString()));
     }
 }
