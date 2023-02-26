@@ -18,7 +18,7 @@ final class CsrfToken
 
     public function __construct(
         DateTimeImmutable $createdOn,
-        int $ttl = 1800,
+        int $ttl = TOKEN_DEFAULT_TTL,
     ) {
         // the valid could be negative
         $intervalVal = abs($ttl);

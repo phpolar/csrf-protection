@@ -24,7 +24,8 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
     public const FORBIDDEN = "Forbidden";
     public const OK = "OK";
     public const METHOD_NOT_ALLOWED = "Method Not Allowed";
-    private ServerRequestInterface $request;
+    private const SAFE_METHODS = ["HEAD", "OPTIONS"];
+    private const UNSAFE_METHODS = ["DELETE", "PUT", "GET", "POST"];
 
     public function __construct(
         private ResponseFactoryInterface $responseFactory,
@@ -40,30 +41,38 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $this->request = $request;
-        return match (strtoupper($request->getMethod())) {
-            "DELETE" => match ($this->queryParamsHasRequestId()) {
-                false => $this->badRequest(),
-                true => $this->responseBasedOnRequestIdValidation($this->getRequestId()),
-            },
-            "GET" => match ($this->hasQueryParams()) {
-                false => $this->success(),
-                true => match ($this->queryParamsHasRequestId()) {
-                    false => $this->badRequest(),
-                    true => $this->responseBasedOnRequestIdValidation($this->getRequestId()),
+        $method = strtoupper($request->getMethod());
+
+        if (in_array($method, self::SAFE_METHODS) === true) {
+            return $this->success();
+        }
+
+        if (in_array($method, self::UNSAFE_METHODS) === true) {
+            if ($method === "GET") {
+                if (count($request->getQueryParams()) === 0) {
+                    return $this->success();
                 }
-            },
-            "HEAD", "OPTIONS" => $this->success(),
-            "POST" => match ($this->parsedBodyHasRequestId()) {
-                false => $this->badRequest(),
-                true => $this->responseBasedOnPostRequestIdValidation($this->getRequestId()),
-            },
-            "PUT" => match ($this->parsedBodyHasRequestId()) {
-                false => $this->badRequest(),
-                true => $this->responseBasedOnRequestIdValidation($this->getRequestId()),
-            },
-            default => $this->methodNotAllowed(),
-        };
+            }
+            $requestId = $this->getRequestId($request);
+            if ($requestId === "") {
+                return $this->badRequest();
+            }
+            if ($this->storage->isValid($requestId) === true) {
+                if ($method === "POST") {
+                    return $this->create(
+                        ResponseCode::CREATED,
+                        self::CREATED,
+                    );
+                }
+                return $this->success();
+            }
+            return $this->forbidden();
+        }
+
+        return $this->create(
+            ResponseCode::METHOD_NOT_ALLLOWED,
+            self::METHOD_NOT_ALLOWED
+        );
     }
 
     /**
@@ -85,29 +94,9 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
         string $reason
     ): ResponseInterface {
         return $this->responseFactory->createResponse(
-            (int) $responseCode,
+            $responseCode,
             $reason
         );
-    }
-
-    /**
-     * Returns a 'CREATED' response
-     */
-    private function created(): ResponseInterface
-    {
-        return $this->create(
-            ResponseCode::CREATED,
-            self::CREATED,
-        );
-    }
-
-    /**
-     * @return array<string,string>|object
-     */
-    private function data(): array|object
-    {
-        $request = $this->request;
-        return empty($request->getParsedBody()) === true ? $request->getQueryParams() : $request->getParsedBody();
     }
 
     /**
@@ -124,37 +113,16 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
     /**
      * Retrieves the token from the request data or an empty string
      */
-    private function getRequestId(): string
+    private function getRequestId(ServerRequestInterface $request): string
     {
-        $data = $this->data();
-        if (is_object($data) === false) {
-            return $data[$this->requestId];
-        }
-        // @codeCoverageIgnoreStart
-        if (property_exists($data, $this->requestId) === false) {
+        $data = $request->getParsedBody() ?? $request->getQueryParams();
+        if (is_object($data) === true) {
+            if (property_exists($data, $this->requestId) === true) {
+                return $data->{$this->requestId};
+            }
             return "";
         }
-        // @codeCoverageIgnoreEnd
-        return $data->{$this->requestId};
-    }
-
-    /**
-     * Determines if the request has query params
-     */
-    private function hasQueryParams(): bool
-    {
-        return count($this->request->getQueryParams()) > 0;
-    }
-
-    /**
-     * Returns a 'Method Not Allowed' response
-     */
-    private function methodNotAllowed(): ResponseInterface
-    {
-        return $this->create(
-            ResponseCode::METHOD_NOT_ALLLOWED,
-            self::METHOD_NOT_ALLOWED
-        );
+        return $data[$this->requestId] ?? "";
     }
 
     /**
@@ -166,43 +134,5 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
             ResponseCode::OK,
             self::OK
         );
-    }
-
-    /**
-     * Retrieves a token from the parsed body of the request
-     */
-    private function parsedBodyHasRequestId(): bool
-    {
-        $data = $this->request->getParsedBody();
-        if (is_object($data) === false) {
-            return isset($data[$this->requestId]) === true;
-        }
-        return property_exists($data, $this->requestId);
-    }
-
-    private function responseBasedOnPostRequestIdValidation(
-        string $token,
-    ): ResponseInterface {
-        return match ($this->storage->isValid($token)) {
-            true => $this->created(),
-            false => $this->forbidden(),
-        };
-    }
-
-    private function responseBasedOnRequestIdValidation(
-        string $token,
-    ): ResponseInterface {
-        return match ($this->storage->isValid($token)) {
-            true => $this->success(),
-            false => $this->forbidden(),
-        };
-    }
-
-    /**
-     * Retrieves a token from the query params of the request
-     */
-    private function queryParamsHasRequestId(): bool
-    {
-        return isset($this->request->getQueryParams()[$this->requestId]);
     }
 }

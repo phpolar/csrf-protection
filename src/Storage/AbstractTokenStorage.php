@@ -39,12 +39,16 @@ abstract class AbstractTokenStorage
      */
     public function isValid(string $stringToken): bool
     {
-        return array_reduce(
-            $this->tokens,
-            static fn (bool $prev, CsrfToken $token) => $prev
-                || ($token->represents($stringToken) === true && $token->isExpired() === false),
-            false
-        );
+        foreach ($this->tokens as $token) {
+            if ($token->represents($stringToken) === false) {
+                continue;
+            }
+            if ($token->isExpired() === true) {
+                continue;
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
