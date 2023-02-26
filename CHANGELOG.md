@@ -1,3 +1,32 @@
+## 2.0.0 (2023-02-25)
+
+### BREAKING CHANGE
+
+- The `CsrfResponseFilterMiddleware` and `CsrfProtectionRequestHandler` will no longer accept a `LoggerInterface` instance as an argument.  Logging invalid requests can be handled in another request handler or middleware.
+- Closes #45, Closes #46, Closes #47, Closes #48, Closes #49
+- Issue #38
+- Closes #30
+- Closes #23, Closes #24
+
+### Fix
+
+- remove logging
+- **CsrfToken**: allow negative ttl
+- reduce max number of tokens
+
+### Refactor
+
+- improve path coverage
+- **CsrfTokenGenerator**: add type declaration to ttl parameter
+- **ResponseFilterScanStrategy**: remove this class
+- simplify the csrf response filter middleware
+- **SessionTokenStorage**: improve variable name
+- **CsrfRequestCheckMiddleware**: delegate to next handler when request is valid
+- **CsrfResponseFilter**: implement response filter interface
+- **CsrfResponseFilter**: rename class
+- **CsrfToken**: calculate expires on when created
+- rename classes
+
 ## 1.3.3 (2023-02-22)
 
 ### Fix
