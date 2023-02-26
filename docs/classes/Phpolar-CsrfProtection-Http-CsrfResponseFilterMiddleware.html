@@ -105,9 +105,6 @@
         <h2 class="phpdocumentor-content__title">
     CsrfResponseFilterMiddleware
 
-        <span class="phpdocumentor-element__extends">
-        extends <a href="classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html"><abbr title="\Phpolar\CsrfProtection\Http\AbstractCsrfProtectionMiddleware">AbstractCsrfProtectionMiddleware</abbr></a>
-    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -117,13 +114,16 @@
                             </ul>
         </div>
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <abbr title="\Psr\Http\Server\MiddlewareInterface">MiddlewareInterface</abbr>                    </span>
     
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfResponseFilterMiddleware.php"><a href="files/http-csrfresponsefiltermiddleware.html"><abbr title="Http/CsrfResponseFilterMiddleware.php">CsrfResponseFilterMiddleware.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -137,6 +137,18 @@ response.</p>
 
 
 
+<h3 id="interfaces_class_traits">
+    Interfaces, Classes, Traits and Enums
+    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
+</h3>
+
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Psr\Http\Server\MiddlewareInterface">MiddlewareInterface</abbr></dt>
+        <dd></dd>
+    
+    
+    
+    </dl>
 
 
 <h3 id="toc">
@@ -158,27 +170,6 @@ response.</p>
                                 &nbsp;: <abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>    </span>
 </dt>
 <dd>Provide protection against CSRF attack.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_useLogger">useLogger()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-<dd>Configure logging</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_useResponseFilterStrategy">useResponseFilterStrategy()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-<dd>Allows configuring a provided response filter strategy</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_useStorage">useStorage()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-<dd>Allows configuring a provided storage mechanism for the CSRF token</dd>
 
         </dl>
 
@@ -206,63 +197,39 @@ response.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfResponseFilterMiddleware.php"><a href="files/http-csrfresponsefiltermiddleware.html"><abbr title="Http/CsrfResponseFilterMiddleware.php">CsrfResponseFilterMiddleware.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$routingResponse</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ResponseFactoryInterface">ResponseFactoryInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseFactory</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\StreamFactoryInterface">StreamFactoryInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$streamFactory</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$storage</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Log\LoggerInterface">LoggerInterface</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$logger</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filterStrategy</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$storage</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html"><abbr title="\Phpolar\CsrfProtection\CsrfTokenGenerator">CsrfTokenGenerator</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tokenGenerator</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filterStrategy</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
         <section class="phpdocumentor-description"></section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$routingResponse</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$responseFactory</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\ResponseFactoryInterface">ResponseFactoryInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$streamFactory</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Http\Message\StreamFactoryInterface">StreamFactoryInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$storage</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a>|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a></span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$logger</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Log\LoggerInterface">LoggerInterface</abbr>|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+                <span class="phpdocumentor-signature__argument__name">$tokenGenerator</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html"><abbr title="\Phpolar\CsrfProtection\CsrfTokenGenerator">CsrfTokenGenerator</abbr></a></span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$filterStrategy</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a>|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a></span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
 
@@ -290,7 +257,7 @@ response.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="Http/CsrfResponseFilterMiddleware.php"><a href="files/http-csrfresponsefiltermiddleware.html"><abbr title="Http/CsrfResponseFilterMiddleware.php">CsrfResponseFilterMiddleware.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -329,177 +296,6 @@ to create the request.</p>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><abbr title="\Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_useLogger">
-        useLogger()
-        <a href="classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_useLogger" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Http/AbstractCsrfProtectionMiddleware.php"><a href="files/http-abstractcsrfprotectionmiddleware.html"><abbr title="Http/AbstractCsrfProtectionMiddleware.php">AbstractCsrfProtectionMiddleware.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">41</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Configure logging</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">useLogger</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Log\LoggerInterface">LoggerInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$logger</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$logger</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Psr\Log\LoggerInterface">LoggerInterface</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">codeCoverageIgnore</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                             
-                                    </dd>
-                        </dl>
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">self</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_useResponseFilterStrategy">
-        useResponseFilterStrategy()
-        <a href="classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_useResponseFilterStrategy" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Http/AbstractCsrfProtectionMiddleware.php"><a href="files/http-abstractcsrfprotectionmiddleware.html"><abbr title="Http/AbstractCsrfProtectionMiddleware.php">AbstractCsrfProtectionMiddleware.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">61</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Allows configuring a provided response filter strategy</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">useResponseFilterStrategy</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filterStrategy</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$filterStrategy</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"><abbr title="\Phpolar\CsrfProtection\Http\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">codeCoverageIgnore</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                             
-                                    </dd>
-                        </dl>
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">self</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_useStorage">
-        useStorage()
-        <a href="classes/Phpolar-CsrfProtection-Http-AbstractCsrfProtectionMiddleware.html#method_useStorage" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Http/AbstractCsrfProtectionMiddleware.php"><a href="files/http-abstractcsrfprotectionmiddleware.html"><abbr title="Http/AbstractCsrfProtectionMiddleware.php">AbstractCsrfProtectionMiddleware.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">51</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Allows configuring a provided storage mechanism for the CSRF token</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">useStorage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$storage</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$storage</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">codeCoverageIgnore</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                             
-                                    </dd>
-                        </dl>
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">self</span>
             &mdash;
         
     
