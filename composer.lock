@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cbed99ae3e3911ad18073641ee390fa6",
+    "content-hash": "e8464bc86dc6ce6e9e264968d9f6ff2d",
     "packages": [
         {
             "name": "phpolar/http-codes",
@@ -53,47 +53,6 @@
                 "source": "https://github.com/phpolar/http-codes/tree/0.0.6"
             },
             "time": "2023-01-16T19:44:19+00:00"
-        },
-        {
-            "name": "phpolar/response-filter",
-            "version": "0.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpolar/response-filter.git",
-                "reference": "ba5e45b7311130c3af8201e82c37440cc942bb3e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpolar/response-filter/zipball/ba5e45b7311130c3af8201e82c37440cc942bb3e",
-                "reference": "ba5e45b7311130c3af8201e82c37440cc942bb3e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7",
-                "psr/http-message": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phpolar\\ResponseFilter\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Eric Fortmeyer",
-                    "email": "e.fortmeyer01@gmail.com"
-                }
-            ],
-            "description": "Provides a means to transform a PSR-7 HTTP Response.",
-            "support": {
-                "issues": "https://github.com/phpolar/response-filter/issues",
-                "source": "https://github.com/phpolar/response-filter/tree/0.1.1"
-            },
-            "time": "2023-02-25T18:20:41+00:00"
         },
         {
             "name": "psr/http-message",
