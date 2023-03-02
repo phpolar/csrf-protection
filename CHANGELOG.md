@@ -1,3 +1,9 @@
+## 2.0.1 (2023-03-01)
+
+### Fix
+
+- remove unused dependency
+
 ## 2.0.0 (2023-02-25)
 
 ### BREAKING CHANGE
