@@ -1,3 +1,7 @@
+<p align="center">
+    <img width="240" src="./phpolar.svg" />
+</p>
+
 # Csrf Protection
 
 PSR-7 and PSR-15 based CSRF protection for HTTP requests
