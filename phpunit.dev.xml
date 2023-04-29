@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" bootstrap="vendor/autoload.php" executionOrder="depends,defects" beStrictAboutOutputDuringTests="true" failOnRisky="true" failOnWarning="false" colors="true" cacheDirectory=".phpunit.cache" requireCoverageMetadata="true" beStrictAboutCoverageMetadata="true">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd" bootstrap="vendor/autoload.php" executionOrder="depends,defects" beStrictAboutOutputDuringTests="true" failOnRisky="true" failOnWarning="false" colors="true" cacheDirectory=".phpunit.cache" requireCoverageMetadata="true" beStrictAboutCoverageMetadata="true">
   <testsuites>
     <testsuite name="default">
       <directory>tests/unit</directory>
@@ -14,15 +14,16 @@
       <directory>tests/unit</directory>
     </testsuite>
   </testsuites>
-  <coverage>
-    <include>
-      <directory suffix=".php">src</directory>
-    </include>
-  </coverage>
+  <coverage/>
   <php>
     <const name="SRC_GLOB" value="/src{/,/**/}*.php"/>
     <const name="PROJECT_SIZE_THRESHOLD" value="6500"/>
     <const name="PROJECT_MEMORY_USAGE_THRESHOLD" value="205000"/>
     <const name="Phpolar\CsrfProtection\Tests\CSRF_TEMPLATE_SIZE_FACTOR" value="10000000"/>
   </php>
+  <source>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+  </source>
 </phpunit>
