@@ -56,7 +56,7 @@
         "psr/http-middleware-implementation": "^1.0"
     },
     "suggest": {
-        "laminas/laminas-diactoros": "Provides a PSR-7 implementation",
+        "nyholm/psr7": "A fast, simple PSR-7 implementation",
         "monolog/monolog": "Allows for logging forbidden requests"
     },
     "scripts": {
