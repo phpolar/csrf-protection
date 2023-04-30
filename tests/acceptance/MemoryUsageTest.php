@@ -8,11 +8,10 @@ use DateTimeImmutable;
 use Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler;
 use Phpolar\CsrfProtection\Http\ResponseFilterPatternStrategy;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
-use Phpolar\CsrfProtection\Tests\Stubs\MemoryROStreamFactoryStub;
-use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
-use Phpolar\CsrfProtection\Tests\Stubs\RequestStub;
-use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
+use Phpolar\HttpMessageTestUtils\RequestStub;
+use Phpolar\HttpMessageTestUtils\ResponseFactoryStub;
+use Phpolar\HttpMessageTestUtils\StreamFactoryStub;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\Test;
@@ -64,7 +63,7 @@ final class MemoryUsageTest extends TestCase
     private function createResponse(): self
     {
         $responseFactory = new ResponseFactoryStub();
-        $streamFactory = new MemoryROStreamFactoryStub();
+        $streamFactory = new StreamFactoryStub("r");
         $response = $responseFactory->createResponse();
         $stream = $streamFactory->createStream(
             <<<HTML
@@ -89,7 +88,7 @@ final class MemoryUsageTest extends TestCase
     {
         $responseFilter = new ResponseFilterPatternStrategy(
             $this->token,
-            new MemoryRWStreamFactoryStub()
+            new StreamFactoryStub("w+")
         );
         $responseFilter->algorithm($this->response);
         return $this;

@@ -7,9 +7,6 @@
     <testsuite name="acceptance">
       <directory>tests/acceptance</directory>
     </testsuite>
-    <testsuite name="benchmark">
-      <directory>tests/benchmark</directory>
-    </testsuite>
     <testsuite name="unit">
       <directory>tests/unit</directory>
     </testsuite>

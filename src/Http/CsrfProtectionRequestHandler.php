@@ -115,7 +115,8 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
      */
     private function getRequestId(ServerRequestInterface $request): string
     {
-        $data = $request->getParsedBody() ?? $request->getQueryParams();
+        $parsedBody = $request->getParsedBody();
+        $data = empty($parsedBody) ? $request->getQueryParams() : $parsedBody;
         if (is_object($data) === true) {
             if (property_exists($data, $this->requestId) === true) {
                 return $data->{$this->requestId};

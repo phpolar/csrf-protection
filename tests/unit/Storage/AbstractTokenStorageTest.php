@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Storage;
 
-use DateInterval;
 use DateTimeImmutable;
 use Generator;
 use Phpolar\CsrfProtection\CsrfToken;
