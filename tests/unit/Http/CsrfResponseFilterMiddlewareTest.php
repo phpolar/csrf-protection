@@ -8,10 +8,10 @@ use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\CsrfTokenGenerator;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
-use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
-use Phpolar\CsrfProtection\Tests\Stubs\RequestStub;
-use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
+use Phpolar\HttpMessageTestUtils\RequestStub;
+use Phpolar\HttpMessageTestUtils\ResponseFactoryStub;
+use Phpolar\HttpMessageTestUtils\StreamFactoryStub;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -64,7 +64,7 @@ final class CsrfResponseFilterMiddlewareTest extends TestCase
         $tokenGenerator = $this->createStub(CsrfTokenGenerator::class);
         $responseFactory = new ResponseFactoryStub();
         $tokenStorage = new MemoryTokenStorageStub();
-        $streamFactory = new MemoryRWStreamFactoryStub();
+        $streamFactory = new StreamFactoryStub("w+");
 
         $validToken = new CsrfToken(new DateTimeImmutable("now"));
         $request = (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]);
