@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d2fc8e94b80d8e7aa540f282c7fea58",
+    "content-hash": "61eae8f09adb73c465ed34cdfbbdfce5",
     "packages": [
         {
             "name": "phpolar/http-codes",
@@ -1647,6 +1647,47 @@
                 }
             ],
             "time": "2022-09-10T08:44:15+00:00"
+        },
+        {
+            "name": "phpolar/http-message-test-utils",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpolar/http-message-test-utils.git",
+                "reference": "fae8687423037f4edaf528949f383c52fdd290cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpolar/http-message-test-utils/zipball/fae8687423037f4edaf528949f383c52fdd290cd",
+                "reference": "fae8687423037f4edaf528949f383c52fdd290cd",
+                "shasum": ""
+            },
+            "require": {
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phpolar\\HttpMessageTestUtils\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric Fortmeyer",
+                    "email": "e.fortmeyer01@gmail.com"
+                }
+            ],
+            "description": "A PSR-7 Http Message Stub Library",
+            "support": {
+                "issues": "https://github.com/phpolar/http-message-test-utils/issues",
+                "source": "https://github.com/phpolar/http-message-test-utils/tree/0.1.0"
+            },
+            "time": "2023-04-30T01:12:14+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",

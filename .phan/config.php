@@ -341,7 +341,7 @@ return [
     'directory_list' => [
         'src',
         'vendor/psr',
-        'vendor/phpolar',
+        'vendor/phpolar/http-codes',
     ],
 
     // A list of individual files to include in analysis

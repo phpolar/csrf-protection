@@ -6,8 +6,8 @@ namespace Phpolar\CsrfProtection\Http;
 
 use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
-use Phpolar\CsrfProtection\Tests\Stubs\MemoryRWStreamFactoryStub;
-use Phpolar\CsrfProtection\Tests\Stubs\ResponseFactoryStub;
+use Phpolar\HttpMessageTestUtils\ResponseFactoryStub;
+use Phpolar\HttpMessageTestUtils\StreamFactoryStub;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -38,7 +38,7 @@ final class ResponseFilterStrategyTest extends TestCase
     {
         $token = new CsrfToken(new DateTimeImmutable("now"));
         $responseFactory = new ResponseFactoryStub();
-        $streamFactory = new MemoryRWStreamFactoryStub();
+        $streamFactory = new StreamFactoryStub("w+");
         $sut = new ResponseFilterPatternStrategy($token, $streamFactory);
         $forms = <<<HTML
         <form action="somewhere" method="post"></form>
@@ -68,7 +68,7 @@ final class ResponseFilterStrategyTest extends TestCase
     {
         $token = new CsrfToken(new DateTimeImmutable("now"));
         $responseFactory = new ResponseFactoryStub();
-        $streamFactory = new MemoryRWStreamFactoryStub();
+        $streamFactory = new StreamFactoryStub("w+");
         $sut = new ResponseFilterPatternStrategy($token, $streamFactory);
         $forms = <<<HTML
         <p></p>
@@ -94,7 +94,7 @@ final class ResponseFilterStrategyTest extends TestCase
         $token = new CsrfToken(new DateTimeImmutable("now"));
         $tokenForUri = urlencode($token->asString());
         $responseFactory = new ResponseFactoryStub();
-        $streamFactory = new MemoryRWStreamFactoryStub();
+        $streamFactory = new StreamFactoryStub("w+");
         $sut = new ResponseFilterPatternStrategy($token, $streamFactory);
         $links = <<<HTML
         <a href="http://somewhere.com?action=doSomething">some text</a>
@@ -120,7 +120,7 @@ final class ResponseFilterStrategyTest extends TestCase
         $token = new CsrfToken(new DateTimeImmutable("now"));
         $tokenForUri = urlencode($token->asString());
         $responseFactory = new ResponseFactoryStub();
-        $streamFactory = new MemoryRWStreamFactoryStub();
+        $streamFactory = new StreamFactoryStub("w+");
         $sut = new ResponseFilterPatternStrategy($token, $streamFactory);
         $links = <<<HTML
         <a href="http://somewhere.com?action=doSomething">some text</a>
