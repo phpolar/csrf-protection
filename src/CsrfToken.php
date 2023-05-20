@@ -20,7 +20,7 @@ final class CsrfToken
         DateTimeImmutable $createdOn,
         int $ttl = TOKEN_DEFAULT_TTL,
     ) {
-        // the valid could be negative
+        // the value could be negative
         $intervalVal = abs($ttl);
         $secondsToChange = new DateInterval("PT{$intervalVal}S");
         $this->expiresOn = $ttl > 0 ? $createdOn->add($secondsToChange) : $createdOn->sub($secondsToChange);
