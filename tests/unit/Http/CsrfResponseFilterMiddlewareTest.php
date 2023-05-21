@@ -53,7 +53,8 @@ final class CsrfResponseFilterMiddlewareTest extends TestCase
         HTML;
 
         $streamFactory = new StreamFactoryStub("w+");
-        $responseFactory = new ResponseFactoryStub($streamFactory->createStream($template));
+        $this->stream = $streamFactory->createStream($template);
+        $responseFactory = new ResponseFactoryStub($this->stream);
         $tokenStorage = new MemoryTokenStorageStub();
 
         $validToken = new CsrfToken(new DateTimeImmutable("now"));
