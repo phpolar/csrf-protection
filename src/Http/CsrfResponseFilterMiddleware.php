@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
-use Phpolar\CsrfProtection\CsrfTokenGenerator;
+use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\Http\Message\ResponseFilterInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -20,8 +20,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 class CsrfResponseFilterMiddleware implements MiddlewareInterface
 {
     public function __construct(
+        private CsrfToken $token,
         private AbstractTokenStorage $storage,
-        private CsrfTokenGenerator $tokenGenerator,
         private ResponseFilterInterface $responseFilter,
     ) {
     }
@@ -34,10 +34,11 @@ class CsrfResponseFilterMiddleware implements MiddlewareInterface
      * The stored token SHOULD then be used to validate
      * futher requests.
      */
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
-    {
-        $token = $this->tokenGenerator->generate();
-        $this->storage->add($token);
+    public function process(
+        ServerRequestInterface $request,
+        RequestHandlerInterface $handler
+    ): ResponseInterface {
+        $this->storage->add($this->token);
         $response = $handler->handle($request);
         return $this->responseFilter->filter($response);
     }

@@ -41,21 +41,6 @@ Search.appendIndex(
             "summary": "Determines\u0020if\u0020the\u0020given\u0020string\u0020is\u0020represented\u0020by\u0020this\u0020object.",
             "url": "classes/Phpolar-CsrfProtection-CsrfToken.html#method_represents"
         },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\CsrfTokenGenerator",
-            "name": "CsrfTokenGenerator",
-            "summary": "Generates\u0020a\u0020token\u0020used\u0020to\u0020identify\nvalid\u0020requests.",
-            "url": "classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\CsrfTokenGenerator\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#method___construct"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\CsrfTokenGenerator\u003A\u003Agenerate\u0028\u0029",
-            "name": "generate",
-            "summary": "Produces\u0020the\u0020token.",
-            "url": "classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html#method_generate"
-        },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Http\\CsrfProtectionRequestHandler",
             "name": "CsrfProtectionRequestHandler",
             "summary": "Refuses\u0020to\u0020process\u0020an\u0020invalid\u0020request",
