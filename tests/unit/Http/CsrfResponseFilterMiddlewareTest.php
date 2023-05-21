@@ -62,14 +62,12 @@ final class CsrfResponseFilterMiddlewareTest extends TestCase
         /**
          * @var Stub&CsrfTokenGenerator $tokenGenerator
          */
-        $tokenGenerator = $this->createStub(CsrfTokenGenerator::class);
         $responseFactory = new ResponseFactoryStub();
         $tokenStorage = new MemoryTokenStorageStub();
         $streamFactory = new StreamFactoryStub("w+");
 
         $validToken = new CsrfToken(new DateTimeImmutable("now"));
         $request = (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]);
-        $tokenGenerator->method("generate")->willReturn($validToken);
         $routingResponse = $responseFactory
             ->createResponse()
             ->withBody(
@@ -77,8 +75,8 @@ final class CsrfResponseFilterMiddlewareTest extends TestCase
             );
         $routingHandlerStub->method("handle")->willReturn($routingResponse);
         $sut = new CsrfResponseFilterMiddleware(
+            $validToken,
             $tokenStorage,
-            $tokenGenerator,
             new CsrfResponseFilter(
                 new ResponseFilterPatternStrategy(
                     $validToken,
