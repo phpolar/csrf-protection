@@ -25,7 +25,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 #[CoversClass(CsrfRequestCheckMiddleware::class)]
 #[UsesClass(CsrfProtectionRequestHandler::class)]
 #[UsesClass(AbstractTokenStorage::class)]
-#[UsesClass(ResponseFilterPatternStrategy::class)]
 #[UsesClass(CsrfToken::class)]
 final class CsrfRequestCheckMiddlewareTest extends TestCase
 {
