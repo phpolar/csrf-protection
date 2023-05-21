@@ -5,20 +5,25 @@ declare(strict_types=1);
 namespace Phpolar\CsrfProtection;
 
 use DateTimeImmutable;
+use Generator;
 use Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler;
-use Phpolar\CsrfProtection\Http\ResponseFilterPatternStrategy;
+use Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddleware;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
+use Phpolar\CsrfResponseFilter\Http\Message\ResponseFilterPatternStrategy;
 use Phpolar\HttpMessageTestUtils\RequestStub;
 use Phpolar\HttpMessageTestUtils\ResponseFactoryStub;
 use Phpolar\HttpMessageTestUtils\StreamFactoryStub;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 #[RunTestsInSeparateProcesses]
 #[CoversNothing]
@@ -39,17 +44,43 @@ final class MemoryUsageTest extends TestCase
             ->createRequest();
     }
 
-    #[Test]
-    #[TestDox("Memory usage shall be below " . PROJECT_MEMORY_USAGE_THRESHOLD . " bytes")]
-    public function shallBeBelowThreshold()
+    public static function thresholds(): Generator
     {
+        yield [(int) PROJECT_MEMORY_USAGE_THRESHOLD];
+    }
+
+    #[Test]
+    #[TestDox("Memory usage shall be below \$threshold bytes")]
+    #[DataProvider("thresholds")]
+    public function shallBeBelowThreshold(int $threshold)
+    {
+        $responseFilterMiddleware = new CsrfResponseFilterMiddleware(
+            new MemoryTokenStorageStub(),
+            new CsrfTokenGenerator(),
+            new ResponseFilterPatternStrategy(
+                $this->token,
+                new StreamFactoryStub("w+"),
+                REQUEST_ID_KEY,
+            ),
+        );
+        $handler = new CsrfProtectionRequestHandler(
+            new ResponseFactoryStub(),
+            new MemoryTokenStorageStub(),
+        );
+        $request = new RequestStub();
+        /**
+         * @var MockObject&RequestHandlerInterface $requestHandler
+         */
+        $requestHandler = $this->createMock(RequestHandlerInterface::class);
+        $requestHandler->method("handle")->willReturn($this->response);
+
         $memoryUsed = -memory_get_usage();
-        $this->filterResponse()
-            ->checkRequest();
+        $handler->handle($this->request);
+        $responseFilterMiddleware->process($request, $requestHandler);
         $after = memory_get_usage();
         $memoryUsed += $after;
         $this->assertGreaterThan(0, $memoryUsed);
-        $this->assertLessThanOrEqual((int) PROJECT_MEMORY_USAGE_THRESHOLD, $memoryUsed);
+        $this->assertLessThanOrEqual($threshold, $memoryUsed);
     }
 
     private function createTokenAndAddToStorage(): self
@@ -81,26 +112,6 @@ final class MemoryUsageTest extends TestCase
     {
         $request = new RequestStub();
         $this->request = $request->withParsedBody((object) [REQUEST_ID_KEY => $this->token]);
-        return $this;
-    }
-
-    private function filterResponse(): self
-    {
-        $responseFilter = new ResponseFilterPatternStrategy(
-            $this->token,
-            new StreamFactoryStub("w+")
-        );
-        $responseFilter->algorithm($this->response);
-        return $this;
-    }
-
-    private function checkRequest(): self
-    {
-        $handler = new CsrfProtectionRequestHandler(
-            new ResponseFactoryStub(),
-            new MemoryTokenStorageStub(),
-        );
-        $handler->handle($this->request);
         return $this;
     }
 }

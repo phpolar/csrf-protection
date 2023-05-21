@@ -6,11 +6,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/phpolar-csrfprotection.html#constant_REQUEST_ID_KEY"
         },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\FORBIDDEN_REQUEST_MESSAGE",
-            "name": "FORBIDDEN_REQUEST_MESSAGE",
-            "summary": "",
-            "url": "namespaces/phpolar-csrfprotection.html#constant_FORBIDDEN_REQUEST_MESSAGE"
-        },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\TOKEN_MAX",
             "name": "TOKEN_MAX",
             "summary": "",
@@ -36,10 +31,10 @@ Search.appendIndex(
             "summary": "Determines\u0020if\u0020the\u0020token\u0020is\u0020expired.",
             "url": "classes/Phpolar-CsrfProtection-CsrfToken.html#method_isExpired"
         },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\CsrfToken\u003A\u003AasString\u0028\u0029",
-            "name": "asString",
+            "fqsen": "\\Phpolar\\CsrfProtection\\CsrfToken\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
             "summary": "Returns\u0020the\u0020string\u0020represented\u0020by\u0020the\u0020this\u0020object.",
-            "url": "classes/Phpolar-CsrfProtection-CsrfToken.html#method_asString"
+            "url": "classes/Phpolar-CsrfProtection-CsrfToken.html#method___toString"
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\CsrfToken\u003A\u003Arepresents\u0028\u0029",
             "name": "represents",
@@ -130,31 +125,6 @@ Search.appendIndex(
             "name": "process",
             "summary": "Stores\u0020a\u0020\u002Arequest\u0020validation\u0020token\u002A\u0020in\nserver\u0020state\u0020and\u0020attaches\u0020the\u0020token\u0020to\u0020the\nresponse.",
             "url": "classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddleware.html#method_process"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterPatternStrategy",
-            "name": "ResponseFilterPatternStrategy",
-            "summary": "Attaches\u0020the\u0020request\u0020id\u0020to\u0020forms\u0020and\u0020links\u0020using\u0020a\u0020pattern\u0020match\u0020and\u0020replace\u0020algorithm",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterPatternStrategy.html"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterPatternStrategy\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterPatternStrategy.html#method___construct"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterPatternStrategy\u003A\u003Aalgorithm\u0028\u0029",
-            "name": "algorithm",
-            "summary": "Execute\u0020the\u0020algoritm\u0020defined\u0020by\u0020the\u0020strategy",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterPatternStrategy.html#method_algorithm"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterStrategyInterface",
-            "name": "ResponseFilterStrategyInterface",
-            "summary": "Provides\u0020support\u0020for\u0020swapping\u0020implementations",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html"
-        },                {
-            "fqsen": "\\Phpolar\\CsrfProtection\\Http\\ResponseFilterStrategyInterface\u003A\u003Aalgorithm\u0028\u0029",
-            "name": "algorithm",
-            "summary": "Execute\u0020the\u0020algoritm\u0020defined\u0020by\u0020the\u0020strategy",
-            "url": "classes/Phpolar-CsrfProtection-Http-ResponseFilterStrategyInterface.html#method_algorithm"
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractTokenStorage",
             "name": "AbstractTokenStorage",

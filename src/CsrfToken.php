@@ -6,11 +6,12 @@ namespace Phpolar\CsrfProtection;
 
 use DateInterval;
 use DateTimeImmutable;
+use Stringable;
 
 /**
  * Represents a token used to determine the validity ot a request.
  */
-final class CsrfToken
+final class CsrfToken implements Stringable
 {
     private string $token;
 
@@ -38,7 +39,7 @@ final class CsrfToken
     /**
      * Returns the string represented by the this object.
      */
-    public function asString(): string
+    public function __toString(): string
     {
         return $this->token;
     }

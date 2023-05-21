@@ -18,6 +18,22 @@
             ]
         },
         {
+            "label": "test",
+            "type": "process",
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "command": "composer",
+            "args": [
+                "test:unit"
+            ]
+        },
+        {
             "label": "check",
             "type": "process",
             "presentation": {

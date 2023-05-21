@@ -97,7 +97,7 @@ final class CsrfCheckDataProvider
         $expiredToken = new CsrfToken(new DateTimeImmutable("2000-10-10"));
         $tokenStorage = new MemoryTokenStorageStub();
         $tokenStorage->add($expiredToken);
-        $requestDataWithExpiredToken = [REQUEST_ID_KEY => $expiredToken->asString()];
+        $requestDataWithExpiredToken = [REQUEST_ID_KEY => (string) $expiredToken];
         return [
             [
                 (new RequestStub("POST"))->withParsedBody($requestDataWithExpiredToken),
@@ -144,49 +144,49 @@ final class CsrfCheckDataProvider
         $tokenStorage = new MemoryTokenStorageStub();
         $tokenStorage->add($expiredToken);
         yield [
-            (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => $expiredToken->asString()]),
+            (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => (string) $expiredToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "POST",
         ];
         yield [
-            (new RequestStub("post"))->withParsedBody((object) [REQUEST_ID_KEY => $expiredToken->asString()]),
+            (new RequestStub("post"))->withParsedBody((object) [REQUEST_ID_KEY => (string) $expiredToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "post",
         ];
         yield [
-            (new RequestStub("PUT"))->withParsedBody([REQUEST_ID_KEY => $expiredToken->asString()]),
+            (new RequestStub("PUT"))->withParsedBody([REQUEST_ID_KEY => (string) $expiredToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "PUT",
         ];
         yield [
-            (new RequestStub("put"))->withParsedBody((object) [REQUEST_ID_KEY => $expiredToken->asString()]),
+            (new RequestStub("put"))->withParsedBody((object) [REQUEST_ID_KEY => (string) $expiredToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "put",
         ];
         yield [
-            (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => $expiredToken->asString()]),
+            (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $expiredToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "GET",
         ];
         yield [
-            (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => $expiredToken->asString()]),
+            (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => (string) $expiredToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "get",
         ];
         yield [
-            (new RequestStub("DELETE"))->withQueryParams([REQUEST_ID_KEY => $expiredToken->asString()]),
+            (new RequestStub("DELETE"))->withQueryParams([REQUEST_ID_KEY => (string) $expiredToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "DELETE",
         ];
         yield [
-            (new RequestStub("delete"))->withQueryParams([REQUEST_ID_KEY => $expiredToken->asString()]),
+            (new RequestStub("delete"))->withQueryParams([REQUEST_ID_KEY => (string) $expiredToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "delete",
@@ -194,49 +194,49 @@ final class CsrfCheckDataProvider
         $freshToken = new CsrfToken(new DateTimeImmutable("now"));
         $storageWithoutToken = new MemoryTokenStorageStub();
         yield [
-            (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $freshToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "GET",
         ];
         yield [
-            (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => (string) $freshToken]),
             $tokenStorage,
             new ResponseFactoryStub(),
             "get",
         ];
         yield [
-            (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWithoutToken,
             new ResponseFactoryStub(),
             "POST",
         ];
         yield [
-            (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWithoutToken,
             new ResponseFactoryStub(),
             "posT",
         ];
         yield [
-            (new RequestStub("PUT"))->withParsedBody([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("PUT"))->withParsedBody([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWithoutToken,
             new ResponseFactoryStub(),
             "PUT",
         ];
         yield [
-            (new RequestStub("put"))->withParsedBody([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("put"))->withParsedBody([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWithoutToken,
             new ResponseFactoryStub(),
             "put",
         ];
         yield [
-            (new RequestStub("DELETE"))->withQueryParams([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("DELETE"))->withQueryParams([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWithoutToken,
             new ResponseFactoryStub(),
             "DELETE",
         ];
         yield [
-            (new RequestStub("delete"))->withQueryParams([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("delete"))->withQueryParams([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWithoutToken,
             new ResponseFactoryStub(),
             "delete",
@@ -246,49 +246,49 @@ final class CsrfCheckDataProvider
         $storageWitNonMatchingToken = new MemoryTokenStorageStub();
         $storageWitNonMatchingToken->add($nonMatchingToken);
         yield [
-            (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWitNonMatchingToken,
             new ResponseFactoryStub(),
             "POST"
         ];
         yield [
-            (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWitNonMatchingToken,
             new ResponseFactoryStub(),
             "post"
         ];
         yield [
-            (new RequestStub("PUT"))->withParsedBody([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("PUT"))->withParsedBody([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWitNonMatchingToken,
             new ResponseFactoryStub(),
             "PUT"
         ];
         yield [
-            (new RequestStub("put"))->withParsedBody([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("put"))->withParsedBody([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWitNonMatchingToken,
             new ResponseFactoryStub(),
             "put"
         ];
         yield [
-            (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWitNonMatchingToken,
             new ResponseFactoryStub(),
             "GET"
         ];
         yield [
-            (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWitNonMatchingToken,
             new ResponseFactoryStub(),
             "get"
         ];
         yield [
-            (new RequestStub("DELETE"))->withQueryParams([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("DELETE"))->withQueryParams([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWitNonMatchingToken,
             new ResponseFactoryStub(),
             "DELETE"
         ];
         yield [
-            (new RequestStub("delete"))->withQueryParams([REQUEST_ID_KEY => $freshToken->asString()]),
+            (new RequestStub("delete"))->withQueryParams([REQUEST_ID_KEY => (string) $freshToken]),
             $storageWitNonMatchingToken,
             new ResponseFactoryStub(),
             "delete"
@@ -302,28 +302,28 @@ final class CsrfCheckDataProvider
         $tokenStorage->add($validToken);
         return [
             [
-                (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::CREATED,
                 "POST"
             ],
             [
-                (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::CREATED,
                 "post"
             ],
             [
-                (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
                 "GET"
             ],
             [
-                (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
@@ -339,19 +339,19 @@ final class CsrfCheckDataProvider
         $tokenStorage->add($validToken);
         return [
             [
-                (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::CREATED,
             ],
             [
-                (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::CREATED,
             ],
             [
-                (new RequestStub("post"))->withParsedBody((object) [REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("post"))->withParsedBody((object) [REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::CREATED,
@@ -366,13 +366,13 @@ final class CsrfCheckDataProvider
         $tokenStorage->add($validToken);
         return [
             [
-                (new RequestStub("DELETE"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("DELETE"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
             ],
             [
-                (new RequestStub("delete"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("delete"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
@@ -387,13 +387,13 @@ final class CsrfCheckDataProvider
         $tokenStorage->add($validToken);
         return [
             [
-                (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
             ],
             [
-                (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
@@ -429,7 +429,7 @@ final class CsrfCheckDataProvider
         foreach ($notImplementedMethods as $notImplementedmethod) {
             yield [
                 (new RequestStub($notImplementedmethod))
-                    ->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                    ->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::METHOD_NOT_ALLLOWED,
@@ -444,13 +444,13 @@ final class CsrfCheckDataProvider
         $tokenStorage->add($validToken);
         return [
             [
-                (new RequestStub("PUT"))->withParsedBody([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("PUT"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
             ],
             [
-                (new RequestStub("put"))->withParsedBody([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("put"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
@@ -465,13 +465,13 @@ final class CsrfCheckDataProvider
         $tokenStorage->add($validToken);
         return [
             [
-                (new RequestStub("HEAD"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("HEAD"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
             ],
             [
-                (new RequestStub("head"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub("head"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
@@ -486,13 +486,13 @@ final class CsrfCheckDataProvider
         $tokenStorage->add($invalidToken);
         return [
             [
-                (new RequestStub("HEAD"))->withQueryParams([REQUEST_ID_KEY => $invalidToken->asString()]),
+                (new RequestStub("HEAD"))->withQueryParams([REQUEST_ID_KEY => (string) $invalidToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
             ],
             [
-                (new RequestStub("head"))->withQueryParams([REQUEST_ID_KEY => $invalidToken->asString()]),
+                (new RequestStub("head"))->withQueryParams([REQUEST_ID_KEY => (string) $invalidToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
@@ -524,7 +524,7 @@ final class CsrfCheckDataProvider
             ] as $method
         ) {
             yield [
-                (new RequestStub($method))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]),
+                (new RequestStub($method))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,
@@ -544,7 +544,7 @@ final class CsrfCheckDataProvider
             ] as $method
         ) {
             yield [
-                (new RequestStub($method))->withQueryParams([REQUEST_ID_KEY => $invalidToken->asString()]),
+                (new RequestStub($method))->withQueryParams([REQUEST_ID_KEY => (string) $invalidToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
                 ResponseCode::OK,

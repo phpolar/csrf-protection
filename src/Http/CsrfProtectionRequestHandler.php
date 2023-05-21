@@ -11,7 +11,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\HttpCodes\ResponseCode;
 
-use const Phpolar\CsrfProtection\FORBIDDEN_REQUEST_MESSAGE;
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
 /**
@@ -31,7 +30,6 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
         private ResponseFactoryInterface $responseFactory,
         private AbstractTokenStorage $storage,
         private string $requestId = REQUEST_ID_KEY,
-        private string $forbiddenMsg = FORBIDDEN_REQUEST_MESSAGE,
     ) {
     }
 
