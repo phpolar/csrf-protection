@@ -6,7 +6,7 @@ namespace Phpolar\CsrfProtection\Http;
 
 use Phpolar\CsrfProtection\CsrfTokenGenerator;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
-use Phpolar\Http\Message\ResponseFilterStrategyInterface;
+use Phpolar\Http\Message\ResponseFilterInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -22,7 +22,7 @@ class CsrfResponseFilterMiddleware implements MiddlewareInterface
     public function __construct(
         private AbstractTokenStorage $storage,
         private CsrfTokenGenerator $tokenGenerator,
-        private ResponseFilterStrategyInterface $filterStrategy,
+        private ResponseFilterInterface $responseFilter,
     ) {
     }
 
@@ -39,6 +39,6 @@ class CsrfResponseFilterMiddleware implements MiddlewareInterface
         $token = $this->tokenGenerator->generate();
         $this->storage->add($token);
         $response = $handler->handle($request);
-        return $this->filterStrategy->algorithm($response);
+        return $this->responseFilter->filter($response);
     }
 }

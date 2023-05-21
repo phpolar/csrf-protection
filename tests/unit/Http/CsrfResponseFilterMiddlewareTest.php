@@ -9,6 +9,7 @@ use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\CsrfTokenGenerator;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
+use Phpolar\CsrfResponseFilter\Http\Message\CsrfResponseFilter;
 use Phpolar\CsrfResponseFilter\Http\Message\ResponseFilterPatternStrategy;
 use Phpolar\HttpMessageTestUtils\RequestStub;
 use Phpolar\HttpMessageTestUtils\ResponseFactoryStub;
@@ -78,10 +79,12 @@ final class CsrfResponseFilterMiddlewareTest extends TestCase
         $sut = new CsrfResponseFilterMiddleware(
             $tokenStorage,
             $tokenGenerator,
-            new ResponseFilterPatternStrategy(
-                $validToken,
-                $streamFactory,
-                $this->tokenKey,
+            new CsrfResponseFilter(
+                new ResponseFilterPatternStrategy(
+                    $validToken,
+                    $streamFactory,
+                    $this->tokenKey,
+                ),
             ),
         );
         $responseWithFormKeys = $sut->process($request, $routingHandlerStub);
