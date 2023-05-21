@@ -56,8 +56,6 @@ final class MemoryUsageTest extends TestCase
     public function shallBeBelowThreshold(int $threshold)
     {
         $responseFilterMiddleware = new CsrfResponseFilterMiddleware(
-            $this->token,
-            new MemoryTokenStorageStub(),
             new CsrfResponseFilter(
                 new ResponseFilterPatternStrategy(
                     $this->token,
@@ -67,8 +65,9 @@ final class MemoryUsageTest extends TestCase
             ),
         );
         $handler = new CsrfProtectionRequestHandler(
-            new ResponseFactoryStub(),
+            $this->token,
             new MemoryTokenStorageStub(),
+            new ResponseFactoryStub(),
         );
         $request = new RequestStub();
         /**

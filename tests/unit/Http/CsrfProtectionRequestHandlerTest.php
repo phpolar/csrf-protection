@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
+use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider;
@@ -27,7 +28,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::CREATED;
@@ -41,7 +46,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::OK;
@@ -55,7 +64,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::OK;
@@ -69,7 +82,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::OK;
@@ -83,7 +100,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::OK;
@@ -97,7 +118,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::METHOD_NOT_ALLOWED;
@@ -111,7 +136,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::OK;
@@ -125,7 +154,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::OK;
@@ -139,7 +172,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::OK;
@@ -153,7 +190,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::OK;
@@ -168,7 +209,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         ResponseFactoryInterface $responseFactory,
         string $requestMethod, // used for test dox output
     ) {
-            $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::BAD_REQUEST;
@@ -183,7 +228,11 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         ResponseFactoryInterface $responseFactory,
         string $requestMethod, // used for test dox output
     ) {
-        $sut = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $sut = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
         $expected = CsrfProtectionRequestHandler::FORBIDDEN;
