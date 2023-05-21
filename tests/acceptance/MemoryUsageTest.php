@@ -10,6 +10,7 @@ use Phpolar\CsrfProtection\Http\CsrfProtectionRequestHandler;
 use Phpolar\CsrfProtection\Http\CsrfResponseFilterMiddleware;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
+use Phpolar\CsrfResponseFilter\Http\Message\CsrfResponseFilter;
 use Phpolar\CsrfResponseFilter\Http\Message\ResponseFilterPatternStrategy;
 use Phpolar\HttpMessageTestUtils\RequestStub;
 use Phpolar\HttpMessageTestUtils\ResponseFactoryStub;
@@ -57,10 +58,12 @@ final class MemoryUsageTest extends TestCase
         $responseFilterMiddleware = new CsrfResponseFilterMiddleware(
             new MemoryTokenStorageStub(),
             new CsrfTokenGenerator(),
-            new ResponseFilterPatternStrategy(
-                $this->token,
-                new StreamFactoryStub("w+"),
-                REQUEST_ID_KEY,
+            new CsrfResponseFilter(
+                new ResponseFilterPatternStrategy(
+                    $this->token,
+                    new StreamFactoryStub("w+"),
+                    REQUEST_ID_KEY,
+                ),
             ),
         );
         $handler = new CsrfProtectionRequestHandler(
