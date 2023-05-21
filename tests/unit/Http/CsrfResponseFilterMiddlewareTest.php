@@ -9,6 +9,7 @@ use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\CsrfTokenGenerator;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
+use Phpolar\CsrfResponseFilter\Http\Message\ResponseFilterPatternStrategy;
 use Phpolar\HttpMessageTestUtils\RequestStub;
 use Phpolar\HttpMessageTestUtils\ResponseFactoryStub;
 use Phpolar\HttpMessageTestUtils\StreamFactoryStub;
@@ -67,7 +68,7 @@ final class CsrfResponseFilterMiddlewareTest extends TestCase
         $streamFactory = new StreamFactoryStub("w+");
 
         $validToken = new CsrfToken(new DateTimeImmutable("now"));
-        $request = (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => $validToken->asString()]);
+        $request = (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]);
         $tokenGenerator->method("generate")->willReturn($validToken);
         $routingResponse = $responseFactory
             ->createResponse()
@@ -80,24 +81,25 @@ final class CsrfResponseFilterMiddlewareTest extends TestCase
             $tokenGenerator,
             new ResponseFilterPatternStrategy(
                 $validToken,
-                $streamFactory
+                $streamFactory,
+                $this->tokenKey,
             ),
         );
         $responseWithFormKeys = $sut->process($request, $routingHandlerStub);
         $token = $tokenStorage->queryOne(0);
-        $tokenForUri = urlencode($token->asString());
+        $tokenForUri = urlencode((string) $token);
         $expected = <<<HTML
         <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         <form action="somewhere" method="post">
-            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token}" />
         </form>
         <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         <form>
-            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token}" />
         </form>
         <a href="http://somewhere.com?{$this->tokenKey}={$tokenForUri}&action=doSomething">some text</a>
         <form>
-            <input type="hidden" name="{$this->tokenKey}" value="{$token->asString()}" />
+            <input type="hidden" name="{$this->tokenKey}" value="{$token}" />
         </form>
         HTML;
         $actual = $responseWithFormKeys->getBody()->getContents();

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61eae8f09adb73c465ed34cdfbbdfce5",
+    "content-hash": "5c220e275831dc647fc42c1357c67764",
     "packages": [
         {
             "name": "phpolar/http-codes",
@@ -53,6 +53,44 @@
                 "source": "https://github.com/phpolar/http-codes/tree/0.0.6"
             },
             "time": "2023-01-16T19:44:19+00:00"
+        },
+        {
+            "name": "phpolar/response-filter",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpolar/response-filter.git",
+                "reference": "40490cf5d246bc44c3809fefa9b81e17a1cd8670"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpolar/response-filter/zipball/40490cf5d246bc44c3809fefa9b81e17a1cd8670",
+                "reference": "40490cf5d246bc44c3809fefa9b81e17a1cd8670",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7",
+                "psr/http-message": "^2.0"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "^3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phpolar\\Http\\Message\\": "src/Http/Message/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Supports filtering PSR-7 HTTP Responses",
+            "support": {
+                "issues": "https://github.com/phpolar/response-filter/issues",
+                "source": "https://github.com/phpolar/response-filter/tree/1.0.1"
+            },
+            "time": "2023-05-21T00:31:42+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1647,6 +1685,56 @@
                 }
             ],
             "time": "2022-09-10T08:44:15+00:00"
+        },
+        {
+            "name": "phpolar/csrf-response-filter",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpolar/csrf-response-filter.git",
+                "reference": "ae8b37d9f81450b54e4f53ebc9adcca598418043"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpolar/csrf-response-filter/zipball/ae8b37d9f81450b54e4f53ebc9adcca598418043",
+                "reference": "ae8b37d9f81450b54e4f53ebc9adcca598418043",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "phpolar/response-filter": "^1.0",
+                "psr/http-message": "^2.0"
+            },
+            "provide": {
+                "phpolar/response-filter-implementation": "^1.0"
+            },
+            "require-dev": {
+                "ext-ast": "*",
+                "ext-openssl": "*",
+                "phan/phan": "^5.4",
+                "php-coveralls/php-coveralls": "^2.5",
+                "phpmd/phpmd": "^2.13",
+                "phpolar/http-message-test-utils": "^0.1.0",
+                "phpstan/phpstan": "^1.9",
+                "phpunit/phpunit": "10.0",
+                "squizlabs/php_codesniffer": "^3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phpolar\\CsrfResponseFilter\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Adds CSRF tokens to PSR-7 HTTP Responses",
+            "support": {
+                "issues": "https://github.com/phpolar/csrf-response-filter/issues",
+                "source": "https://github.com/phpolar/csrf-response-filter/tree/1.0.0"
+            },
+            "time": "2023-05-21T02:08:36+00:00"
         },
         {
             "name": "phpolar/http-message-test-utils",

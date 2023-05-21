@@ -45,7 +45,7 @@ final class AbstractTokenStorageTest extends TestCase
     {
         $sut = new MemoryTokenStorageStub();
         $sut->add($token);
-        $this->assertTrue($sut->isValid($token->asString()));
+        $this->assertTrue($sut->isValid((string) $token));
     }
 
     #[TestDox("Shall know if a token is invalid")]
@@ -54,7 +54,7 @@ final class AbstractTokenStorageTest extends TestCase
         $sut = new MemoryTokenStorageStub();
         $token = new CsrfToken(new DateTimeImmutable("yesterday"));
         $sut->add($token);
-        $this->assertFalse($sut->isValid($token->asString()));
+        $this->assertFalse($sut->isValid((string) $token));
     }
 
     #[TestDox("Shall know if a token is invalid")]
@@ -63,7 +63,7 @@ final class AbstractTokenStorageTest extends TestCase
         $sut = new MemoryTokenStorageStub();
         $token = new CsrfToken(new DateTimeImmutable());
         $sut->add(new CsrfToken(new DateTimeImmutable()));
-        $this->assertFalse($sut->isValid($token->asString()));
+        $this->assertFalse($sut->isValid((string) $token));
     }
 
     #[TestDox("Shall know if any of the tokens it contains is expired")]
@@ -74,7 +74,7 @@ final class AbstractTokenStorageTest extends TestCase
         $token = new CsrfToken(new DateTimeImmutable());
         array_walk($invalidTokens, $sut->add(...));
         $sut->add($token);
-        $this->assertTrue($sut->isValid($token->asString()));
+        $this->assertTrue($sut->isValid((string) $token));
     }
 
     #[TestDox("Shall know if any of the tokens it contains matches")]
@@ -85,7 +85,7 @@ final class AbstractTokenStorageTest extends TestCase
         $token = new CsrfToken(new DateTimeImmutable());
         array_walk($invalidTokens, $sut->add(...));
         $sut->add($token);
-        $this->assertTrue($sut->isValid($token->asString()));
+        $this->assertTrue($sut->isValid((string) $token));
     }
 
     #[TestDox("Shall say a token is invalid if it is not contained in the storage")]
@@ -93,7 +93,7 @@ final class AbstractTokenStorageTest extends TestCase
     {
         $sut = new MemoryTokenStorageStub();
         $token = new CsrfToken(new DateTimeImmutable());
-        $this->assertFalse($sut->isValid($token->asString()));
+        $this->assertFalse($sut->isValid((string) $token));
     }
 
     #[TestDox("Shall clear all expired tokens")]
@@ -127,6 +127,6 @@ final class AbstractTokenStorageTest extends TestCase
     {
         $sut = new MemoryTokenStorageStub();
         $token = new CsrfToken(new DateTimeImmutable());
-        $this->assertFalse($sut->isValid($token->asString()));
+        $this->assertFalse($sut->isValid((string) $token));
     }
 }

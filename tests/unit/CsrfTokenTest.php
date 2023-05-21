@@ -19,7 +19,7 @@ final class CsrfTokenTest extends TestCase
         $token = new CsrfToken(
             new DateTimeImmutable("now")
         );
-        $this->assertIsString($token->asString());
+        $this->assertIsString((string) $token);
     }
 
     #[TestDox("Shall know if it represents a string")]
@@ -28,7 +28,7 @@ final class CsrfTokenTest extends TestCase
         $token = new CsrfToken(
             new DateTimeImmutable("now")
         );
-        $tokenAsString = $token->asString();
+        $tokenAsString = (string) $token;
         $this->assertTrue($token->represents($tokenAsString));
     }
 
