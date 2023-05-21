@@ -206,12 +206,20 @@ response.</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$storage</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html"><abbr title="\Phpolar\CsrfProtection\CsrfTokenGenerator">CsrfTokenGenerator</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tokenGenerator</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Phpolar\Http\Message\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filterStrategy</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$token</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$storage</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Phpolar\Http\Message\ResponseFilterInterface">ResponseFilterInterface</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseFilter</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
         <section class="phpdocumentor-description"></section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$token</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$storage</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a></span>
@@ -221,16 +229,8 @@ response.</dd>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$tokenGenerator</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-CsrfTokenGenerator.html"><abbr title="\Phpolar\CsrfProtection\CsrfTokenGenerator">CsrfTokenGenerator</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$filterStrategy</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Phpolar\Http\Message\ResponseFilterStrategyInterface">ResponseFilterStrategyInterface</abbr></span>
+                <span class="phpdocumentor-signature__argument__name">$responseFilter</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Phpolar\Http\Message\ResponseFilterInterface">ResponseFilterInterface</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
