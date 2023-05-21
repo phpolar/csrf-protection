@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
+use DateTimeImmutable;
+use Phpolar\CsrfProtection\CsrfToken;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -28,7 +30,11 @@ final class CsrfProtectionTest extends TestCase
         ResponseFactoryInterface $responseFactory,
         string $requestType // variable used in testdox input
     ) {
-        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $handler->handle($request);
         $this->assertSame(
             400,
@@ -45,7 +51,11 @@ final class CsrfProtectionTest extends TestCase
         ResponseFactoryInterface $responseFactory,
         string $requestType // variable used in testdox input
     ) {
-        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $handler->handle($request);
         $this->assertSame(
             403,
@@ -63,7 +73,11 @@ final class CsrfProtectionTest extends TestCase
         int $expectedCode,
         string $requestType // variable used in testdox input
     ) {
-        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $response = $handler->handle($request);
         $this->assertSame(
             $expectedCode,

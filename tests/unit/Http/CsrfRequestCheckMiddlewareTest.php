@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
+use DateTimeImmutable;
 use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider;
@@ -45,7 +46,11 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
     ) {
-        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $handlerStub = new class () implements RequestHandlerInterface {
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
@@ -66,7 +71,11 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
         ResponseFactoryInterface $responseFactory,
     ) {
         $expectedResponseContent = "The request is safe!";
-        $handler = new CsrfProtectionRequestHandler($responseFactory, $tokenStorage);
+        $handler = new CsrfProtectionRequestHandler(
+            new CsrfToken(new DateTimeImmutable("now")),
+            $tokenStorage,
+            $responseFactory,
+        );
         $handlerStub = new class ($expectedResponseContent) implements RequestHandlerInterface {
             public function __construct(private string $expectedResponseContent)
             {
