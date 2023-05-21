@@ -47,4 +47,9 @@ $preparedResponse = $middleWare->process($request, $routingHandler);
 
 ## [API Documentation](https://phpolar.github.io/csrf-protection/)
 
+## Thresholds
+|Source Code Size|Memory Usage|
+|----------------|------------|
+|4.5 kB|108 kB
+
 [Back to top](#csrf-protection)

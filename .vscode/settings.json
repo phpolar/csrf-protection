@@ -1,12 +1,12 @@
 {
   "intelephense.telemetry.enabled": false,
   "intelephense.diagnostics.undefinedFunctions": false,
-  "triggerTaskOnSave.restart": true,
-  "triggerTaskOnSave.selectedTask": "lint-fix",
+"triggerTaskOnSave.restart": true,
   "triggerTaskOnSave.showNotifications": true,
   "triggerTaskOnSave.showStatusBarToggle": true,
   "triggerTaskOnSave.tasks": {
-      "lint-fix": ["{src,tests}/**/*.php"]
+      "lint-fix": ["{src,tests}/**/*.php"],
+      "test": ["{src,tests}/**/*.php"]
   },
   "prettier.enable": false,
   "eslint.enable": false,

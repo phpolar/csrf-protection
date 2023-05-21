@@ -6,6 +6,7 @@ namespace Phpolar\CsrfProtection\Http;
 
 use Phpolar\CsrfProtection\CsrfTokenGenerator;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
+use Phpolar\Http\Message\ResponseFilterStrategyInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
