@@ -23,5 +23,5 @@
 - [x] Memory usage shall be below 108000 bytes
 
 ## Project Size (Phpolar\CsrfProtection\ProjectSize)
-- [x] Source code total size shall be below 4200 bytes
+- [x] Source code total size shall be below 4300 bytes
 

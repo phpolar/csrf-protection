@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
+use Phpolar\CsrfProtection\CsrfToken;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -27,8 +28,9 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
     private const UNSAFE_METHODS = ["DELETE", "PUT", "GET", "POST"];
 
     public function __construct(
-        private ResponseFactoryInterface $responseFactory,
+        private CsrfToken $token,
         private AbstractTokenStorage $storage,
+        private ResponseFactoryInterface $responseFactory,
         private string $requestId = REQUEST_ID_KEY,
     ) {
     }
@@ -48,6 +50,7 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
         if (in_array($method, self::UNSAFE_METHODS) === true) {
             if ($method === "GET") {
                 if (count($request->getQueryParams()) === 0) {
+                    $this->storage->add($this->token);
                     return $this->success();
                 }
             }
@@ -62,6 +65,7 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
                         self::CREATED,
                     );
                 }
+                $this->storage->add($this->token);
                 return $this->success();
             }
             return $this->forbidden();
