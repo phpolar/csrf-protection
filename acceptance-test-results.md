@@ -16,6 +16,8 @@
 - [x] Shall prevent a CSRF attack when token is expired in get request
 - [x] Shall allow request when token is valid in POST request
 - [x] Shall allow request when token is valid in post request
+- [x] Shall allow request when token is valid in PUT request
+- [x] Shall allow request when token is valid in put request
 - [x] Shall allow request when token is valid in GET request
 - [x] Shall allow request when token is valid in get request
 
@@ -23,5 +25,5 @@
 - [x] Memory usage shall be below 108000 bytes
 
 ## Project Size (Phpolar\CsrfProtection\ProjectSize)
-- [x] Source code total size shall be below 4300 bytes
+- [x] Source code total size shall be below 4500 bytes
 

@@ -89,6 +89,7 @@
         "test:unit": "@test --configuration=phpunit.dev.xml --testsuite unit",
         "test:acceptance": "@test --configuration=phpunit.dev.xml --testsuite acceptance",
         "test:acceptance:report": "@test --configuration=phpunit.dev.xml --testsuite acceptance --testdox-text acceptance-test-results.md",
+        "test:integration": "@test --configuration=phpunit.dev.xml --testsuite integration",
         "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --testsuite unit --configuration=phpunit.ci.xml --path-coverage\""
     },
     "config": {

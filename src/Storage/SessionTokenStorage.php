@@ -11,17 +11,11 @@ use const Phpolar\CsrfProtection\TOKEN_MAX;
 
 /**
  * Uses the session to store the CSRF token
- * @codeCoverageIgnore
  */
 final class SessionTokenStorage extends AbstractTokenStorage
 {
-    /**
-     * @param array<string,mixed> $sessionVars
-     * @param string $requestId
-     * @param int $maxCount
-     */
     public function __construct(
-        private array $sessionVars,
+        private AbstractSession $sessionVars,
         private string $requestId = REQUEST_ID_KEY,
         private int $maxCount = TOKEN_MAX,
     ) {
@@ -35,7 +29,7 @@ final class SessionTokenStorage extends AbstractTokenStorage
 
     public function commit(): void
     {
-        if ($this->sessionIsNotActive() === true) {
+        if ($this->sessionVars->isNotActive() === true) {
             return;
         }
         $this->sessionVars[$this->requestId] = $this->queryAll();
@@ -60,24 +54,20 @@ final class SessionTokenStorage extends AbstractTokenStorage
 
     private function loadFromSession(): void
     {
-        if ($this->sessionIsNotActive() === true) {
+        if ($this->sessionVars->isNotActive() === true) {
             return;
         }
-        if (is_array($this->sessionVars[$this->requestId]) === false) {
+        if (isset($this->sessionVars[$this->requestId]) === false) {
             return;
         }
+        $requestIdEntry = $this->sessionVars[$this->requestId];
         $storedTokens = array_filter(
-            $this->sessionVars[$this->requestId] ?? [],
+            $requestIdEntry,
             fn ($stored) => $stored instanceof CsrfToken,
         );
         array_walk(
             $storedTokens,
             $this->add(...),
         );
-    }
-
-    private function sessionIsNotActive(): bool
-    {
-        return php_sapi_name() !== "cli" && session_status() !== PHP_SESSION_ACTIVE;
     }
 }
