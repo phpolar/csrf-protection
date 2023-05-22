@@ -316,6 +316,20 @@ final class CsrfCheckDataProvider
                 "post"
             ],
             [
+                (new RequestStub("PUT"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
+                $tokenStorage,
+                new ResponseFactoryStub(),
+                ResponseCode::OK,
+                "PUT"
+            ],
+            [
+                (new RequestStub("put"))->withParsedBody((object) [REQUEST_ID_KEY => (string) $validToken]),
+                $tokenStorage,
+                new ResponseFactoryStub(),
+                ResponseCode::OK,
+                "put"
+            ],
+            [
                 (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),

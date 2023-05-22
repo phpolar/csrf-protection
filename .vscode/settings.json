@@ -2,7 +2,6 @@
   "intelephense.telemetry.enabled": false,
   "intelephense.diagnostics.undefinedFunctions": false,
 "triggerTaskOnSave.restart": true,
-  "triggerTaskOnSave.showNotifications": true,
   "triggerTaskOnSave.showStatusBarToggle": true,
   "triggerTaskOnSave.tasks": {
       "lint-fix": ["{src,tests}/**/*.php"],

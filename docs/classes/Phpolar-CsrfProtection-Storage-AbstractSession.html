@@ -103,11 +103,8 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    SessionTokenStorage
+    AbstractSession
 
-        <span class="phpdocumentor-element__extends">
-        extends <a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractTokenStorage">AbstractTokenStorage</abbr></a>
-    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -117,24 +114,54 @@
                             </ul>
         </div>
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <abbr title="\ArrayAccess">ArrayAccess</abbr>                    </span>
     
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Storage/SessionTokenStorage.php"><a href="files/storage-sessiontokenstorage.html"><abbr title="Storage/SessionTokenStorage.php">SessionTokenStorage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractSession.php"><a href="files/storage-abstractsession.html"><abbr title="Storage/AbstractSession.php">AbstractSession.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Uses the session to store the CSRF token</p>
+            <p class="phpdocumentor-summary">A testable session abstraction.</p>
+
+
+
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">implements</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>ArrayAccess&lt;int|string,array&lt;\Phpolar\CsrfProtection\CsrfToken&gt;&gt;</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
 
 
 
+<h3 id="interfaces_class_traits">
+    Interfaces, Classes, Traits and Enums
+    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
+</h3>
 
-
-
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\ArrayAccess">ArrayAccess</abbr></dt>
+        <dd></dd>
+    
+    
+    
+    </dl>
 
 
 <h3 id="toc">
@@ -144,60 +171,46 @@
 
 <dl class="phpdocumentor-table-of-contents">
                         <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method___construct">__construct()</a>
+    <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method___destruct">__destruct()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html#method_add">add()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Adds a token to the storage</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html#method_clearExpired">clearExpired()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Removes all expired tokens</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method_commit">commit()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Store the token between requests</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html#method_isValid">isValid()</a>
+    <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_isNotActive">isNotActive()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Determines if the storage contains a matching token and if it is valid.</dd>
+<dd>Determine if the session is not active.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method_queryAll">queryAll()</a>
+    <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetExists">offsetExists()</a>
     <span>
-                                &nbsp;: array&lt;string|int, <a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>&gt;    </span>
+                                &nbsp;: bool    </span>
 </dt>
-<dd>Returns all tokens</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method_queryOne">queryOne()</a>
+    <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetGet">offsetGet()</a>
     <span>
-                                &nbsp;: <a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>|null    </span>
+                                &nbsp;: mixed    </span>
 </dt>
-<dd>Returns a single token</dd>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetSet">offsetSet()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetUnset">offsetUnset()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd></dd>
 
         </dl>
 
@@ -210,7 +223,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -220,47 +233,29 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Storage/SessionTokenStorage.php"><a href="files/storage-sessiontokenstorage.html"><abbr title="Storage/SessionTokenStorage.php">SessionTokenStorage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractSession.php"><a href="files/storage-abstractsession.html"><abbr title="Storage/AbstractSession.php">AbstractSession.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractSession">AbstractSession</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sessionVars</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$requestId</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">REQUEST_ID_KEY</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxCount</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">TOKEN_MAX</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;int|string, array&lt;string|int, <a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$sessionVars</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$sessionVars</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html"><abbr title="\Phpolar\CsrfProtection\Storage\AbstractSession">AbstractSession</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;int|string, array&lt;string|int, <a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>&gt;&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$requestId</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">REQUEST_ID_KEY</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$maxCount</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">TOKEN_MAX</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
@@ -276,174 +271,64 @@
         class="phpdocumentor-element
             -method
             -public
-                                                        "
+                        -abstract                                "
 >
-    <h4 class="phpdocumentor-element__name" id="method___destruct">
-        __destruct()
-        <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method___destruct" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_isNotActive">
+        isNotActive()
+        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_isNotActive" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Storage/SessionTokenStorage.php"><a href="files/storage-sessiontokenstorage.html"><abbr title="Storage/SessionTokenStorage.php">SessionTokenStorage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractSession.php"><a href="files/storage-abstractsession.html"><abbr title="Storage/AbstractSession.php">AbstractSession.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Determine if the session is not active.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">isNotActive</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">bool</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_offsetExists">
+        offsetExists()
+        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetExists" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractSession.php"><a href="files/storage-abstractsession.html"><abbr title="Storage/AbstractSession.php">AbstractSession.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__destruct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">offsetExists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$offset</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
         <section class="phpdocumentor-description"></section>
 
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_add">
-        add()
-        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html#method_add" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractTokenStorage.php"><a href="files/storage-abstracttokenstorage.html"><abbr title="Storage/AbstractTokenStorage.php">AbstractTokenStorage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">24</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Adds a token to the storage</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">add</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$token</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$token</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_clearExpired">
-        clearExpired()
-        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html#method_clearExpired" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractTokenStorage.php"><a href="files/storage-abstracttokenstorage.html"><abbr title="Storage/AbstractTokenStorage.php">AbstractTokenStorage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">68</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Removes all expired tokens</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">clearExpired</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_commit">
-        commit()
-        <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method_commit" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Storage/SessionTokenStorage.php"><a href="files/storage-sessiontokenstorage.html"><abbr title="Storage/SessionTokenStorage.php">SessionTokenStorage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">30</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Store the token between requests</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">commit</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_isValid">
-        isValid()
-        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html#method_isValid" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractTokenStorage.php"><a href="files/storage-abstracttokenstorage.html"><abbr title="Storage/AbstractTokenStorage.php">AbstractTokenStorage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">36</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Determines if the storage contains a matching token and if it is valid.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isValid</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$stringToken</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$stringToken</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-signature__argument__name">$offset</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -465,62 +350,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_queryAll">
-        queryAll()
-        <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method_queryAll" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_offsetGet">
+        offsetGet()
+        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetGet" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Storage/SessionTokenStorage.php"><a href="files/storage-sessiontokenstorage.html"><abbr title="Storage/SessionTokenStorage.php">SessionTokenStorage.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractSession.php"><a href="files/storage-abstractsession.html"><abbr title="Storage/AbstractSession.php">AbstractSession.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Returns all tokens</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">queryAll</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">offsetGet</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$offset</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-    
-    
-    
+        <section class="phpdocumentor-description"></section>
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>&gt;</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_queryOne">
-        queryOne()
-        <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method_queryOne" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="Storage/SessionTokenStorage.php"><a href="files/storage-sessiontokenstorage.html"><abbr title="Storage/SessionTokenStorage.php">SessionTokenStorage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">49</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Returns a single token</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">queryOne</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$index</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>|null</span></code>
-
-    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$index</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                <span class="phpdocumentor-signature__argument__name">$offset</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -531,7 +383,103 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Phpolar-CsrfProtection-CsrfToken.html"><abbr title="\Phpolar\CsrfProtection\CsrfToken">CsrfToken</abbr></a>|null</span>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_offsetSet">
+        offsetSet()
+        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetSet" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractSession.php"><a href="files/storage-abstractsession.html"><abbr title="Storage/AbstractSession.php">AbstractSession.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">30</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">offsetSet</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$offset</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$offset</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$value</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_offsetUnset">
+        offsetUnset()
+        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetUnset" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="Storage/AbstractSession.php"><a href="files/storage-abstractsession.html"><abbr title="Storage/AbstractSession.php">AbstractSession.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">34</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">offsetUnset</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$offset</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$offset</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -614,7 +562,7 @@
 </section>
             </div>
         </div>
-        <a href="classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

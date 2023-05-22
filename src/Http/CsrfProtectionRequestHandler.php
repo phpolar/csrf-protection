@@ -6,8 +6,8 @@ namespace Phpolar\CsrfProtection\Http;
 
 use Phpolar\CsrfProtection\CsrfToken;
 use Psr\Http\Message\ResponseFactoryInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\HttpCodes\ResponseCode;
@@ -39,103 +39,111 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
      * Determines the response based on the validity
      * of the request.
      */
-    public function handle(ServerRequestInterface $request): ResponseInterface
+    public function handle(Request $request): Response
     {
         $method = strtoupper($request->getMethod());
-
         if (in_array($method, self::SAFE_METHODS) === true) {
-            return $this->success();
+            return $this->handleSafeRequest();
         }
-
         if (in_array($method, self::UNSAFE_METHODS) === true) {
-            if ($method === "GET") {
-                if (count($request->getQueryParams()) === 0) {
-                    $this->storage->add($this->token);
-                    return $this->success();
-                }
-            }
-            $requestId = $this->getRequestId($request);
-            if ($requestId === "") {
-                return $this->badRequest();
-            }
-            if ($this->storage->isValid($requestId) === true) {
-                if ($method === "POST") {
-                    return $this->create(
-                        ResponseCode::CREATED,
-                        self::CREATED,
-                    );
-                }
-                $this->storage->add($this->token);
-                return $this->success();
-            }
-            return $this->forbidden();
+            return $this->handleUnsafeMethods($method, $request);
         }
-
-        return $this->create(
-            ResponseCode::METHOD_NOT_ALLLOWED,
-            self::METHOD_NOT_ALLOWED
-        );
+        return $this->methodNotAllowed();
     }
 
     /**
      * Returns a 'Bad Request' response
      */
-    private function badRequest(): ResponseInterface
+    private function badRequest(): Response
     {
-        return $this->create(
+        return $this->responseFactory->createResponse(
             ResponseCode::BAD_REQUEST,
             self::BAD_REQUEST,
         );
     }
 
     /**
-     * Creates a response
+     * Returns a 'Created' response
      */
-    private function create(
-        int $responseCode,
-        string $reason
-    ): ResponseInterface {
+    private function created(): Response
+    {
         return $this->responseFactory->createResponse(
-            $responseCode,
-            $reason
+            ResponseCode::CREATED,
+            self::CREATED,
         );
     }
 
     /**
      * Returns a 'Forbidden' response
      */
-    private function forbidden(): ResponseInterface
+    private function forbidden(): Response
     {
-        return $this->create(
+        return $this->responseFactory->createResponse(
             ResponseCode::FORBIDDEN,
             self::FORBIDDEN,
         );
     }
 
-    /**
-     * Retrieves the token from the request data or an empty string
-     */
-    private function getRequestId(ServerRequestInterface $request): string
+    private function handleSafeRequest(): Response
     {
-        $parsedBody = $request->getParsedBody();
-        $data = empty($parsedBody) === true ? $request->getQueryParams() : $parsedBody;
-        if (is_object($data) === true) {
-            if (property_exists($data, $this->requestId) === true) {
-                return $data->{$this->requestId};
+        return $this->success();
+    }
+
+    private function handleUnsafeMethods(string $method, Request $request): Response
+    {
+        $queryParams = $request->getQueryParams();
+        $noQueryParams = count($queryParams) === 0;
+        $data = array_merge((array) $request->getParsedBody(), $queryParams);
+        $noRequestId = isset($data[$this->requestId]) === false;
+        $isGetRequest = $method === "GET";
+        $notPostRequest = $method !== "POST";
+
+        if ($noQueryParams === true) {
+            if ($isGetRequest === true) {
+                $this->storage->add($this->token);
+                return $this->handleSafeRequest();
             }
-            return "";
         }
-        return $data[$this->requestId] ?? "";
+        if ($noRequestId === true) {
+            return $this->badRequest();
+        }
+        if ($this->tokenIsInvalid($data) === true) {
+            return $this->forbidden();
+        }
+        if ($notPostRequest === true) {
+            $this->storage->add($this->token);
+            return $this->success();
+        }
+        return $this->created();
+    }
+
+    /**
+     * Returns a 'Method Not Allowed' response
+     */
+    private function methodNotAllowed(): Response
+    {
+        return $this->responseFactory->createResponse(
+            ResponseCode::METHOD_NOT_ALLLOWED,
+            self::METHOD_NOT_ALLOWED,
+        );
     }
 
     /**
      * Returns a 'OK' response
      */
-    private function success(): ResponseInterface
+    private function success(): Response
     {
-        return $this->create(
+        return $this->responseFactory->createResponse(
             ResponseCode::OK,
             self::OK
         );
+    }
+
+    /**
+     * @param array<string,string> $data
+     */
+    private function tokenIsInvalid(array $data): bool
+    {
+        return $this->storage->isValid($data[$this->requestId]) === false;
     }
 }
