@@ -118,7 +118,20 @@ final class AbstractTokenStorageTest extends TestCase
             $sut->add($token);
         }
         $tokens = $sut->queryAll();
-        $this->assertCount(TOKEN_MAX, $tokens);
+        $this->assertCount($tokenMax, $tokens);
+    }
+
+    #[TestDox("Shall allow a token to be added after max count threshold has been reached")]
+    #[DataProvider("tooManyTokens")]
+    public function test5a(array $excessiveTokens)
+    {
+        $sut = new MemoryTokenStorageStub();
+        foreach ($excessiveTokens as $token) {
+            $sut->add($token);
+        }
+        $lastToken = new CsrfToken(new DateTimeImmutable("now"));
+        $sut->add($lastToken);
+        $this->assertContainsEquals($lastToken, $sut->queryAll());
     }
 
     #[TestDox("Shall say a token is valid if it contains an expired twin")]

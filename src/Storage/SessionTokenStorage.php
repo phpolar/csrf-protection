@@ -42,13 +42,11 @@ final class SessionTokenStorage extends AbstractTokenStorage
 
     public function queryAll(): array
     {
-        $this->loadFromSession();
         return $this->getTokens();
     }
 
     public function queryOne(int $index = 0): ?CsrfToken
     {
-        $this->loadFromSession();
         return $this->getToken($index);
     }
 
