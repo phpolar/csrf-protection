@@ -27,15 +27,14 @@ final class AbstractTokenStorageTest extends TestCase
         }
     }
 
-    public static function excessiveTokenCount(): array
+    public static function tooManyTokens(): Generator
     {
-        return [
-            [
-                array_map(
-                    static fn () => new CsrfToken(new DateTimeImmutable()),
-                    range(1, TOKEN_MAX + 1)
-                )
-            ],
+        yield [
+            array_map(
+                static fn () => new CsrfToken(new DateTimeImmutable()),
+                range(1, TOKEN_MAX + 1)
+            ),
+            TOKEN_MAX,
         ];
     }
 
@@ -110,9 +109,9 @@ final class AbstractTokenStorageTest extends TestCase
         }
     }
 
-    #[TestDox("Shall not allow more than " . TOKEN_MAX . " tokens")]
-    #[DataProvider("excessiveTokenCount")]
-    public function test5(array $excessiveTokens)
+    #[TestDox("Shall not allow more than \$tokenMax tokens")]
+    #[DataProvider("tooManyTokens")]
+    public function test5(array $excessiveTokens, int $tokenMax)
     {
         $sut = new MemoryTokenStorageStub();
         foreach ($excessiveTokens as $token) {
@@ -122,8 +121,20 @@ final class AbstractTokenStorageTest extends TestCase
         $this->assertCount(TOKEN_MAX, $tokens);
     }
 
-    #[TestDox("Shall say token is invalid when it does not contain any tokens")]
+    #[TestDox("Shall say a token is valid if it contains an expired twin")]
     public function test6()
+    {
+        $sut = new MemoryTokenStorageStub();
+        $expiredToken = new CsrfToken(new DateTimeImmutable("last month"));
+        $freshToken = new CsrfToken(new DateTimeImmutable("now"));
+        $sut->add($expiredToken);
+        $sut->add($freshToken);
+        $token = $sut->queryOne(0);
+        $this->assertFalse($token->isExpired());
+    }
+
+    #[TestDox("Shall say token is invalid when it does not contain any tokens")]
+    public function test7()
     {
         $sut = new MemoryTokenStorageStub();
         $token = new CsrfToken(new DateTimeImmutable());

@@ -24,31 +24,26 @@ abstract class AbstractTokenStorage
     public function add(CsrfToken $token): void
     {
         $maxTokens = $this->getMaxCount();
-        $this->tokens = count($this->tokens) >= $maxTokens ? [
-            ...array_filter(
-                $this->tokens,
-                static fn ($index) => $index > 0,
-                ARRAY_FILTER_USE_KEY,
-            ),
-            $token
-        ] : [...$this->tokens, $token];
+        if (count($this->tokens) >= $maxTokens) {
+            array_shift($this->tokens);
+        }
+        array_push($this->tokens, $token);
     }
 
     /**
-     * Determines if the storage contains the token and if it is valid
+     * Determines if the storage contains a matching token and if it is valid.
      */
     public function isValid(string $stringToken): bool
     {
-        foreach ($this->tokens as $token) {
-            if ($token->represents($stringToken) === false) {
-                continue;
-            }
-            if ($token->isExpired() === true) {
-                continue;
-            }
-            return true;
-        }
-        return false;
+        $matchingTokens = array_filter(
+            $this->tokens,
+            static fn (CsrfToken $token) => $token->represents($stringToken),
+        );
+        $freshMatchingTokens = array_filter(
+            $matchingTokens,
+            static fn (CsrfToken $token) => $token->isExpired() === false,
+        );
+        return count($freshMatchingTokens) > 0;
     }
 
     /**
@@ -72,10 +67,13 @@ abstract class AbstractTokenStorage
      */
     public function clearExpired(): void
     {
-        $this->tokens = array_filter(
-            $this->tokens,
-            static fn (CsrfToken $token) => $token->isExpired() === false
-        );
+        $this->tokens = [
+            // re-index the array
+            ...array_filter(
+                $this->tokens,
+                static fn (CsrfToken $token) => $token->isExpired() === false
+            )
+        ];
     }
 
     /**
@@ -85,7 +83,6 @@ abstract class AbstractTokenStorage
 
     /**
      * Gets all tokens
-     * @codeCoverageIgnore
      */
     protected function getToken(int $index): ?CsrfToken
     {
@@ -95,7 +92,6 @@ abstract class AbstractTokenStorage
 
     /**
      * Gets all tokens
-     * @codeCoverageIgnore
      * @return CsrfToken[]
      */
     protected function getTokens(): array

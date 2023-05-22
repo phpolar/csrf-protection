@@ -111,6 +111,41 @@ Search.appendIndex(
             "summary": "Stores\u0020a\u0020\u002Arequest\u0020validation\u0020token\u002A\u0020in\nserver\u0020state\u0020and\u0020attaches\u0020the\u0020token\u0020to\u0020the\nresponse.",
             "url": "classes/Phpolar-CsrfProtection-Http-CsrfResponseFilterMiddleware.html#method_process"
         },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractSession",
+            "name": "AbstractSession",
+            "summary": "A\u0020testable\u0020session\u0020abstraction.",
+            "url": "classes/Phpolar-CsrfProtection-Storage-AbstractSession.html"
+        },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractSession\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method___construct"
+        },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractSession\u003A\u003AoffsetExists\u0028\u0029",
+            "name": "offsetExists",
+            "summary": "",
+            "url": "classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetExists"
+        },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractSession\u003A\u003AoffsetGet\u0028\u0029",
+            "name": "offsetGet",
+            "summary": "",
+            "url": "classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetGet"
+        },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractSession\u003A\u003AoffsetSet\u0028\u0029",
+            "name": "offsetSet",
+            "summary": "",
+            "url": "classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetSet"
+        },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractSession\u003A\u003AoffsetUnset\u0028\u0029",
+            "name": "offsetUnset",
+            "summary": "",
+            "url": "classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_offsetUnset"
+        },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractSession\u003A\u003AisNotActive\u0028\u0029",
+            "name": "isNotActive",
+            "summary": "Determine\u0020if\u0020the\u0020session\u0020is\u0020not\u0020active.",
+            "url": "classes/Phpolar-CsrfProtection-Storage-AbstractSession.html#method_isNotActive"
+        },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractTokenStorage",
             "name": "AbstractTokenStorage",
             "summary": "Used\u0020to\u0020store\u0020and\u0020validate\u0020tokens\u0020used\u0020to\u0020mitigate\u0020CSRF\u0020attacks",
@@ -123,7 +158,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractTokenStorage\u003A\u003AisValid\u0028\u0029",
             "name": "isValid",
-            "summary": "Determines\u0020if\u0020the\u0020storage\u0020contains\u0020the\u0020token\u0020and\u0020if\u0020it\u0020is\u0020valid",
+            "summary": "Determines\u0020if\u0020the\u0020storage\u0020contains\u0020a\u0020matching\u0020token\u0020and\u0020if\u0020it\u0020is\u0020valid.",
             "url": "classes/Phpolar-CsrfProtection-Storage-AbstractTokenStorage.html#method_isValid"
         },                {
             "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\AbstractTokenStorage\u003A\u003Acommit\u0028\u0029",
@@ -175,6 +210,16 @@ Search.appendIndex(
             "name": "queryOne",
             "summary": "Returns\u0020a\u0020single\u0020token",
             "url": "classes/Phpolar-CsrfProtection-Storage-SessionTokenStorage.html#method_queryOne"
+        },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\SessionWrapper",
+            "name": "SessionWrapper",
+            "summary": "Allows\u0020for\u0020testable\u0020session\u0020handling.",
+            "url": "classes/Phpolar-CsrfProtection-Storage-SessionWrapper.html"
+        },                {
+            "fqsen": "\\Phpolar\\CsrfProtection\\Storage\\SessionWrapper\u003A\u003AisNotActive\u0028\u0029",
+            "name": "isNotActive",
+            "summary": "Determine\u0020if\u0020the\u0020session\u0020is\u0020not\u0020active.",
+            "url": "classes/Phpolar-CsrfProtection-Storage-SessionWrapper.html#method_isNotActive"
         },                {
             "fqsen": "\\",
             "name": "\\",
