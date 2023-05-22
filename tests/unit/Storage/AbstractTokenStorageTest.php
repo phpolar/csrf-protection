@@ -140,4 +140,15 @@ final class AbstractTokenStorageTest extends TestCase
         $token = new CsrfToken(new DateTimeImmutable());
         $this->assertFalse($sut->isValid((string) $token));
     }
+
+    #[TestDox("Shall not add a token if it already is in storage")]
+    public function test8()
+    {
+        $sut = new MemoryTokenStorageStub();
+        $tokenA = new CsrfToken(new DateTimeImmutable());
+        $tokenB = $tokenA;
+        $sut->add($tokenA);
+        $sut->add($tokenB);
+        $this->assertCount(1, $sut->queryAll());
+    }
 }
