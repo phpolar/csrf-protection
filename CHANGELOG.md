@@ -1,3 +1,41 @@
+## 3.0.3 (2023-06-13)
+
+### Fix
+
+- prune dist
+
+## 3.0.2 (2023-05-22)
+
+### Fix
+
+- **SessionTokenStorage**: allow adding tokens after max count threshold is reached
+
+## 3.0.1 (2023-05-22)
+
+### Fix
+
+- **AbstractTokenStorage**: do not add tokens more than once
+
+## 3.0.0 (2023-05-21)
+
+### BREAKING CHANGE
+
+- Use the `SessionWrapper` instead of passing the global session array. The list of tokens will be re-indexed after expired tokens are cleared.
+- Inject token in request handler instead of request middleware.
+- Inject the token into the `CsrfResponseFilterMiddleware`'s constructor.  The `CsrfTokenGenerator` has been removed.
+- Use a response filter to create `CsrfResponseFilterMiddleware` instead of a response filter strategy.
+
+### Feat
+
+- **CsrfResponseFilterMiddleware**: use response filter instead of response filter strategy
+- use response filter library
+
+### Fix
+
+- fix various session handling issues
+- add token in handler instead of middleware
+- inject the token into the middleware
+
 ## 2.1.0 (2023-04-29)
 
 ### Feat
