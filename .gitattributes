@@ -18,5 +18,6 @@
 /SECURITY.md                export-ignore
 /tests                      export-ignore
 /.vscode                    export-ignore
+/phpolar.svg                export-ignore
 
 *.php diff=php
