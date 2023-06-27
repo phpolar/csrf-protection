@@ -1685,16 +1685,16 @@
         },
         {
             "name": "phpolar/csrf-response-filter",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpolar/csrf-response-filter.git",
-                "reference": "ae8b37d9f81450b54e4f53ebc9adcca598418043"
+                "reference": "402457c28ac773113e43248156fba7fe9bc1e180"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpolar/csrf-response-filter/zipball/ae8b37d9f81450b54e4f53ebc9adcca598418043",
-                "reference": "ae8b37d9f81450b54e4f53ebc9adcca598418043",
+                "url": "https://api.github.com/repos/phpolar/csrf-response-filter/zipball/402457c28ac773113e43248156fba7fe9bc1e180",
+                "reference": "402457c28ac773113e43248156fba7fe9bc1e180",
                 "shasum": ""
             },
             "require": {
@@ -1711,9 +1711,9 @@
                 "phan/phan": "^5.4",
                 "php-coveralls/php-coveralls": "^2.5",
                 "phpmd/phpmd": "^2.13",
-                "phpolar/http-message-test-utils": "^0.1.0",
+                "phpolar/http-message-test-utils": "^0.1.0 || ^0.2.0",
                 "phpstan/phpstan": "^1.9",
-                "phpunit/phpunit": "10.0",
+                "phpunit/phpunit": "10.2.2",
                 "squizlabs/php_codesniffer": "^3.7"
             },
             "type": "library",
@@ -1729,9 +1729,9 @@
             "description": "Adds CSRF tokens to PSR-7 HTTP Responses",
             "support": {
                 "issues": "https://github.com/phpolar/csrf-response-filter/issues",
-                "source": "https://github.com/phpolar/csrf-response-filter/tree/1.0.0"
+                "source": "https://github.com/phpolar/csrf-response-filter/tree/1.0.1"
             },
-            "time": "2023-05-21T02:08:36+00:00"
+            "time": "2023-06-26T02:25:57+00:00"
         },
         {
             "name": "phpolar/http-message-test-utils",
