@@ -16,13 +16,15 @@
 name: PHPMD
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ "main" ]
-  schedule:
-    - cron: '19 7 * * 6'
+    paths:
+      - '**.php'
+      - '!tests/**'
+      - '!examples/**'
+      - '!config/**'
+      - '!.phan/**'
 
 permissions:
   contents: read

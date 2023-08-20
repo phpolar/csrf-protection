@@ -1,0 +1,46 @@
+name: Pull Request Quality Check
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'composer.*'
+      - '**.php'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.1
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+    - name: Install dependencies
+      run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast && composer dumpautoload
+
+    - name: Scanning for lint errors
+      run: composer ci:lint
+
+    - name: Run test suite
+      run: composer ci:test
+
+    - name: Generate Code Coverage Badge
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: composer ci:generate-coverage-badge
