@@ -1,0 +1,39 @@
+name: PHP Build Latest and Nightly
+
+on:
+  schedule:
+    - cron: '19 7 * * 6'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    continue-on-error: true
+    strategy:
+      matrix:
+        operating-system: ['ubuntu-22.04', 'ubuntu-20.04', 'windows-latest', 'macos-latest']
+        php-versions: [latest, nightly]
+        phpunit-versions: ['latest']
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+    - name: Install dependencies
+      run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
+
+    - name: Run test suite
+      run: composer ci:test-build
