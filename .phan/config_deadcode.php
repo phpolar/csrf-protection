@@ -354,6 +354,7 @@ return [
         'src',
         'vendor/psr',
         'vendor/phpolar',
+        'vendor/php-contrib',
     ],
 
     // A list of individual files to include in analysis
