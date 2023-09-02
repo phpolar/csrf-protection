@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
-use Phpolar\Http\Message\ResponseFilterInterface;
+use PhpContrib\Http\Message\ResponseFilterInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;

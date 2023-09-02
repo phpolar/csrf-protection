@@ -342,7 +342,7 @@ return [
         'src',
         'vendor/psr',
         'vendor/phpolar/http-codes',
-        'vendor/phpolar/response-filter',
+        'vendor/php-contrib/response-filter',
     ],
 
     // A list of individual files to include in analysis
