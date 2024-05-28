@@ -4,9 +4,6 @@
     <testsuite name="default">
       <directory>tests/unit</directory>
     </testsuite>
-    <testsuite name="unit">
-      <directory>tests/unit</directory>
-    </testsuite>
   </testsuites>
   <coverage/>
   <source>
