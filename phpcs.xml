@@ -43,11 +43,7 @@
     <rule ref="PSR12.Classes.ClosingBrace"/>
     <rule ref="PSR12.Classes.ClassInstantiation"/>
 
-    <rule ref="Generic.Files.OneClassPerFile">
-        <properties>
-            <property name="error" value="true" />
-        </properties>
-    </rule>
+    <rule ref="Generic.Files.OneClassPerFile" />
 
     <rule ref="Generic.Files.LineLength">
         <properties>
