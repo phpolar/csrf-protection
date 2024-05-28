@@ -75,7 +75,7 @@
         "ci:analyze": "composer exec \"@analyze\"",
         "ci:lint": "composer exec \"@lint\"",
         "ci:lint-fix": "composer exec \"@lint-fix\"",
-        "ci:test": "XDEBUG_MODE=coverage composer exec \"@test:unit --configuration=phpunit.ci.xml --coverage-clover=build/logs/clover.xml \"",
+        "ci:test": "XDEBUG_MODE=coverage composer exec \"@test --configuration=phpunit.ci.xml --coverage-clover=build/logs/clover.xml \"",
         "ci:generate-coverage-badge": "composer exec \"php-coveralls -v\"",
         "docs:generate": "composer exec \"phpdoc --setting graphs.enabled=true\"",
         "lint": "phpcs",
@@ -90,7 +90,7 @@
         "test:acceptance": "@test --configuration=phpunit.dev.xml --testsuite acceptance",
         "test:acceptance:report": "@test --configuration=phpunit.dev.xml --testsuite acceptance --testdox-text acceptance-test-results.md",
         "test:integration": "@test --configuration=phpunit.dev.xml --testsuite integration",
-        "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --testsuite unit --configuration=phpunit.ci.xml --path-coverage\""
+        "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --configuration=phpunit.ci.xml --path-coverage\""
     },
     "config": {
         "sort-packages": true
