@@ -10,7 +10,7 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        operating-system: ['ubuntu-22.04', 'ubuntu-20.04', 'windows-latest', 'macos-latest']
+        operating-system: ['ubuntu-24.10', 'ubuntu-22.04', 'ubuntu-20.04', 'windows-latest', 'macos-latest']
         php-versions: [latest, nightly]
         phpunit-versions: ['latest']
     steps:
