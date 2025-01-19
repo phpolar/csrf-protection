@@ -1,0 +1,39 @@
+name: PHP Old Stable Version Builds
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build_php_old_stable:
+    runs-on: ${{ matrix.operating-system }}
+    continue-on-error: true
+    strategy:
+      matrix:
+        operating-system: [ 'ubuntu-24.04', 'ubuntu-22.04', 'ubuntu-20.04', 'windows-latest', 'macos-latest' ]
+        php-versions: ['8.1', '8.2', '8.3']
+        phpunit-versions: ['latest']
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+    - name: Install dependencies
+      run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
+
+    - name: Run test suite
+      run: composer ci:test-build
