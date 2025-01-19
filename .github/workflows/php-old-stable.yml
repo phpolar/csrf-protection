@@ -36,4 +36,4 @@ jobs:
       run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
 
     - name: Run test suite
-      run: composer ci:test
+      run: composer ci:test-build
