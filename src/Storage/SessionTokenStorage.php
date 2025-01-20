@@ -40,6 +40,9 @@ final class SessionTokenStorage extends AbstractTokenStorage
         return $this->maxCount;
     }
 
+    /**
+     * @return CsrfToken[]
+     */
     public function queryAll(): array
     {
         return $this->getTokens();
@@ -58,11 +61,7 @@ final class SessionTokenStorage extends AbstractTokenStorage
         if (isset($this->sessionVars[$this->requestId]) === false) {
             return;
         }
-        $requestIdEntry = $this->sessionVars[$this->requestId];
-        $storedTokens = array_filter(
-            $requestIdEntry,
-            fn ($stored) => $stored instanceof CsrfToken,
-        );
+        $storedTokens = $this->sessionVars[$this->requestId];
         array_walk(
             $storedTokens,
             $this->add(...),
