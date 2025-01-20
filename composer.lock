@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5e5079e3c78d8204dae3fc21340395e",
+    "content-hash": "73bc20b26ae0ab0ce3aaeba9bc828784",
     "packages": [
         {
             "name": "php-contrib/response-filter",
@@ -5051,7 +5051,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1",
+        "php": "^7.4 || ^8.0",
         "ext-mbstring": "*"
     },
     "platform-dev": {

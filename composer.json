@@ -11,7 +11,7 @@
         "request handlers"
     ],
     "require": {
-        "php": ">=8.1",
+        "php": "^7.4 || ^8.0",
         "ext-mbstring": "*",
         "php-contrib/response-filter": "^2.0",
         "phpolar/http-codes": "^0.0.6",
