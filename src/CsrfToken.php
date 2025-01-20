@@ -6,6 +6,7 @@ namespace Phpolar\CsrfProtection;
 
 use DateInterval;
 use DateTimeImmutable;
+use Exception;
 use Stringable;
 
 /**
@@ -25,7 +26,14 @@ final class CsrfToken implements Stringable
         $intervalVal = abs($ttl);
         $secondsToChange = new DateInterval("PT{$intervalVal}S");
         $this->expiresOn = $ttl > 0 ? $createdOn->add($secondsToChange) : $createdOn->sub($secondsToChange);
-        $this->token = base64_encode(random_bytes(32));
+
+        // @codeCoverageIgnoreStart
+        try {
+            $this->token = base64_encode(random_bytes(32));
+        } catch (Exception) {
+            $this->token = uniqid(more_entropy:  true);
+        }
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -37,7 +45,7 @@ final class CsrfToken implements Stringable
     }
 
     /**
-     * Returns the string represented by the this object.
+     * Returns the string represented by the `this` object.
      */
     public function __toString(): string
     {
