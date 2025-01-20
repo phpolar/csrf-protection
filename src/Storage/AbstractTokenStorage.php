@@ -23,7 +23,7 @@ abstract class AbstractTokenStorage
      */
     public function add(CsrfToken $token): void
     {
-        $alreadyContains = array_search($token, $this->tokens) !== false;
+        $alreadyContains = in_array($token, $this->tokens);
         $alreadyAtCountThreshold = count($this->tokens) >= $this->getMaxCount();
         if ($alreadyContains === true) {
             return;
@@ -31,7 +31,7 @@ abstract class AbstractTokenStorage
         if ($alreadyAtCountThreshold === true) {
             array_shift($this->tokens);
         }
-        array_push($this->tokens, $token);
+        $this->tokens[] = $token;
     }
 
     /**

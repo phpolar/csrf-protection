@@ -1,3 +1,22 @@
+## 3.1.4 (2025-01-20)
+
+### Fix
+
+- **composer**: allow php 7.4
+- **SessionTokenStorage**: do not check token type validity
+- **CsrfToken**: handle exception when creating token
+
+### Refactor
+
+- **AbstractSession**: improve type annotations
+- **AbstractTokenStorage**: use in_array and square bracket array push
+
+## 3.1.3 (2025-01-20)
+
+### Fix
+
+- **composer**: require php-contrib/response-filter 2.0
+
 ## 3.1.2 (2025-01-01)
 
 ## 3.1.1 (2024-12-01)

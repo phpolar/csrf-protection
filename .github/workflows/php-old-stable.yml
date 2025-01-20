@@ -1,17 +1,17 @@
-name: PHP Build Latest and Nightly
+name: PHP Old Stable Version Builds
 
 on:
-  schedule:
-    - cron: '19 7 * * 6'
+  push:
+    branches: [main]
 
 jobs:
-  build:
+  build_php_old_stable:
     runs-on: ${{ matrix.operating-system }}
     continue-on-error: true
     strategy:
       matrix:
-        operating-system: ['ubuntu-24.04', 'ubuntu-22.04', 'ubuntu-20.04', 'windows-latest', 'macos-latest']
-        php-versions: [latest, nightly]
+        operating-system: [ 'ubuntu-24.04', 'ubuntu-22.04', 'ubuntu-20.04', 'windows-latest', 'macos-latest' ]
+        php-versions: ['8.1', '8.2', '8.3']
         phpunit-versions: ['latest']
     steps:
     - uses: actions/checkout@v4

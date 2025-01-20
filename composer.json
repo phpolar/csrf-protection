@@ -1,5 +1,4 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
     "name": "phpolar/csrf-protection",
     "description": "Provides request checking and response filtering to mitigate CSRF attacks",
     "type": "library",
@@ -12,9 +11,9 @@
         "request handlers"
     ],
     "require": {
-        "php": ">=8.1",
+        "php": "^7.4 || ^8.0",
         "ext-mbstring": "*",
-        "php-contrib/response-filter": "^1.0",
+        "php-contrib/response-filter": "^2.0",
         "phpolar/http-codes": "^0.0.6",
         "psr/http-message": "^2.0",
         "psr/http-server-handler": "^1.0",
@@ -26,10 +25,10 @@
         "phan/phan": "^5.4",
         "php-coveralls/php-coveralls": "^2.5",
         "phpmd/phpmd": "^2.13",
-        "phpolar/csrf-response-filter": "^1.0",
+        "phpolar/csrf-response-filter": "^1.1.2",
         "phpolar/http-message-test-utils": "^0.2.0",
-        "phpstan/phpstan": "^1.9",
-        "phpunit/phpunit": "^11.1.3",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^10.0 || ^11.4",
         "squizlabs/php_codesniffer": "^3.7"
     },
     "license": "MIT",
@@ -75,6 +74,7 @@
         "ci:analyze": "composer exec \"@analyze\"",
         "ci:lint": "composer exec \"@lint\"",
         "ci:lint-fix": "composer exec \"@lint-fix\"",
+        "ci:test-build": "composer exec \"@test --configuration=phpunit.ci.xml\"",
         "ci:test": "XDEBUG_MODE=coverage composer exec \"@test --configuration=phpunit.ci.xml --coverage-clover=build/logs/clover.xml \"",
         "ci:generate-coverage-badge": "composer exec \"php-coveralls -v\"",
         "docs:generate": "composer exec \"phpdoc --setting graphs.enabled=true\"",

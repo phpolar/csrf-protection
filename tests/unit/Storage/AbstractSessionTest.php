@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Storage;
 
+use DateTimeImmutable;
+use Phpolar\CsrfProtection\CsrfToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -15,7 +17,7 @@ final class AbstractSessionTest extends TestCase
     public static function scenarios(): \Generator
     {
         $givenKey = uniqid();
-        $givenValue = uniqid();
+        $givenValue = [new CsrfToken(new DateTimeImmutable())];
         $values = [];
         $sut = new class ($values) extends AbstractSession
         {
@@ -33,7 +35,7 @@ final class AbstractSessionTest extends TestCase
 
     #[TestDox("Shall set an entry and get the value")]
     #[DataProvider("scenarios")]
-    public function testa(string $givenKey, string $givenValue, AbstractSession $sut)
+    public function testa(string $givenKey, array $givenValue, AbstractSession $sut)
     {
         $sut[$givenKey] = $givenValue;
         $this->assertSame($givenValue, $sut[$givenKey]);
@@ -41,7 +43,7 @@ final class AbstractSessionTest extends TestCase
 
     #[TestDox("Shall know if a given key is set")]
     #[DataProvider("scenarios")]
-    public function testb(string $givenKey, string $givenValue, AbstractSession $sut)
+    public function testb(string $givenKey, array $givenValue, AbstractSession $sut)
     {
         $sut[$givenKey] = $givenValue;
         $this->assertTrue(isset($sut[$givenKey]));
@@ -49,7 +51,7 @@ final class AbstractSessionTest extends TestCase
 
     #[TestDox("Shall allow for unsetting entries")]
     #[DataProvider("scenarios")]
-    public function testc(string $givenKey, string $givenValue, AbstractSession $sut)
+    public function testc(string $givenKey, array $givenValue, AbstractSession $sut)
     {
         $sut[$givenKey] = $givenValue;
         unset($sut[$givenKey]);
@@ -58,7 +60,7 @@ final class AbstractSessionTest extends TestCase
 
     #[TestDox("Shall know if a given entry is not set")]
     #[DataProvider("scenarios")]
-    public function testd(string $givenKey, string $givenValue, AbstractSession $sut)
+    public function testd(string $givenKey, array $givenValue, AbstractSession $sut)
     {
         $this->assertFalse(isset($sut[$givenKey]));
     }
