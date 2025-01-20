@@ -1,3 +1,9 @@
+## 3.1.3 (2025-01-20)
+
+### Fix
+
+- **composer**: require php-contrib/response-filter 2.0
+
 ## 3.1.2 (2025-01-01)
 
 ## 3.1.1 (2024-12-01)
