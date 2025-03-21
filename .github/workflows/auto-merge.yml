@@ -2,7 +2,8 @@ name: Dependabot auto-merge
 on:
   pull_request:
     branches: [ main ]
-    paths: composer.lock
+    paths:
+      - composer.lock
 
 permissions:
   contents: write
@@ -10,8 +11,13 @@ permissions:
 
 jobs:
   dependabot:
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login == 'dependabot[bot]' || github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-24.04
+    if: |
+      (github.event.pull_request.user.login == 'dependabot[bot]' || github.actor == 'dependabot[bot]') &&
+      ! contains(github.event.pull_request.title, 'bump phpstan') ||
+      ! contains(github.event.pull_request.title, 'bump phpunit') ||
+      ! contains(github.event.pull_request.title, 'bump squizlabs/php_codesniffer')
+
     steps:
       - name: Dependabot metadata
         id: dependabot-metadata
