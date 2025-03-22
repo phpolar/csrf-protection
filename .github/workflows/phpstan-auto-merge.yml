@@ -36,6 +36,7 @@ jobs:
       - name: PR check
         run: composer ci:analyze
       - name: Dependabot metadata
+        if: ${{ success() }}
         id: dependabot-metadata
         uses: dependabot/fetch-metadata@v2.3.0
         with:
