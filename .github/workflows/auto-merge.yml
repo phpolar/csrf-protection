@@ -10,7 +10,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  dependabot:
+  dependabot_auto_merge:
     runs-on: ubuntu-24.04
     if: |
       (github.event.pull_request.user.login == 'dependabot[bot]' || github.actor == 'dependabot[bot]') &&

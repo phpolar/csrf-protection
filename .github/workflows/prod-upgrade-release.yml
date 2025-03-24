@@ -1,0 +1,22 @@
+name: Prod Upgrade Release
+
+on:
+  schedule:
+    - cron: '23 23 * * 0'
+
+jobs:
+  prod_upgrade_release:
+    env:
+      DEP_UPGRADE_AUTHOR: dependabot
+      DEP_UPGRADE_TYPE: direct:production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create release when prod deps upgraded
+        run: |
+          LATEST_TAG="$(git describe --tags --abbrev=0)"
+          NEW_TAG=$(echo $LATEST_TAG | awk 'BEGIN { FS = "." } { print $1"."$2"."$3+1 }')
+          if [ -n "$(git log HEAD $LATEST_TAG  --author $DEP_UPGRADE_AUTHOR --grep $DEP_UPGRADE_TYPE)" ]; then
+              git tag -a "$NEW_TAG" -m "$NEW_TAG"
+              git push --tags
+              gh release create "$NEW_TAG" --generate-notes --title "Dependency upgrade release"
+          fi

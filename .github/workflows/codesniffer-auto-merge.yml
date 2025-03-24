@@ -10,7 +10,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  dependabot:
+  dependabot_auto_merge_code_sniffer:
     runs-on: ubuntu-24.04
     if: |
       (github.event.pull_request.user.login == 'dependabot[bot]' || github.actor == 'dependabot[bot]') &&
@@ -21,10 +21,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.3
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
       - name: Cache Composer packages
-        id: composer-cache
         uses: actions/cache@v4
         with:
           path: vendor
@@ -32,7 +34,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
       - name: Install dependencies
-        run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast && composer dumpautoload
+        run: composer install --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
       - name: PR check
         run: composer ci:lint
       - name: Dependabot metadata
