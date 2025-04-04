@@ -1,0 +1,12 @@
+name: Source code or test changes
+on:
+  pull_request:
+    branches:
+      - 'main'
+    paths:
+      - '**.php'
+      - '!.phan/**'
+jobs:
+  pr_quality_check:
+    uses: phpolar/github-workflows/.github/workflows/pr-quality.yml@v1
+    secrets: inherit
