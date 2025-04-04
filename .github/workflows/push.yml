@@ -1,0 +1,11 @@
+name: Build Check
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '*.php'
+      - 'composer.lock'
+jobs:
+  build_php_old_stable:
+    uses: phpolar/github-workflows/.github/workflows/php-old-stable.yml@v1

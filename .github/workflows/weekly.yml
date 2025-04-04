@@ -1,0 +1,7 @@
+name: Weekly Check
+on:
+  schedule:
+    - cron: '19 7 * * 6'
+jobs:
+  build_latest_and_nightly:
+    uses: phpolar/github-workflows/.github/workflows/php-latest.yml@v1

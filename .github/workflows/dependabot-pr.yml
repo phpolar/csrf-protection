@@ -1,0 +1,20 @@
+name: Dependabot Pull Request Auto Merge
+on:
+  pull_request:
+    branches:
+      - 'main'
+    paths:
+      - 'composer.lock'
+jobs:
+  dependabot_auto_merge:
+    uses: phpolar/github-workflows/.github/workflows/auto-merge.yml@v1
+    secrets: inherit
+  dependabot_auto_merge_code_sniffer:
+    uses: phpolar/github-workflows/.github/workflows/codesniffer-auto-merge.yml@v1
+    secrets: inherit
+  dependabot_auto_merge_phpstan:
+    uses: phpolar/github-workflows/.github/workflows/phpstan-auto-merge.yml@v1
+    secrets: inherit
+  dependabot_auto_merge_phpunit:
+    uses: phpolar/github-workflows/.github/workflows/phpunit-auto-merge.yml@v1
+    secrets: inherit
