@@ -5,6 +5,9 @@ on:
       - 'main'
     paths:
       - 'composer.lock'
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   dependabot_auto_merge:
     uses: phpolar/github-workflows/.github/workflows/auto-merge.yml@v1
