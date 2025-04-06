@@ -2,6 +2,8 @@ name: Prod Upgrade Release
 on:
   schedule:
     - cron: '25 23 * * 0'
+permissions:
+  contents: write
 jobs:
   prod_upgrade_release:
     uses: phpolar/github-workflows/.github/workflows/prod-upgrade-release.yml@v1
