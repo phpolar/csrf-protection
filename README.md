@@ -6,7 +6,7 @@
 
 PSR-7 and PSR-15 based CSRF protection for HTTP requests
 
-[![Coverage Status](https://coveralls.io/repos/github/phpolar/csrf-protection/badge.svg?branch=main)](https://coveralls.io/github/phpolar/csrf-protection?branch=main) [![Latest Stable Version](https://poser.pugx.org/phpolar/csrf-protection/v)](https://packagist.org/packages/phpolar/csrf-protection) [![Total Downloads](https://poser.pugx.org/phpolar/csrf-protection/downloads)](https://packagist.org/packages/phpolar/csrf-protection) [![PHP Version Require](https://poser.pugx.org/phpolar/csrf-protection/require/php)](https://packagist.org/packages/phpolar/csrf-protection) [![PHPMD](https://github.com/phpolar/csrf-protection/actions/workflows/phpmd.yml/badge.svg)](https://github.com/phpolar/csrf-protection/actions/workflows/phpmd.yml) [![PHP Build Latest and Nightly](https://github.com/phpolar/csrf-protection/actions/workflows/php-latest.yml/badge.svg)](https://github.com/phpolar/csrf-protection/actions/workflows/php-latest.yml)
+[![Coverage Status](https://coveralls.io/repos/github/phpolar/csrf-protection/badge.svg?branch=main)](https://coveralls.io/github/phpolar/csrf-protection?branch=main) [![Latest Stable Version](https://poser.pugx.org/phpolar/csrf-protection/v)](https://packagist.org/packages/phpolar/csrf-protection) [![Total Downloads](https://poser.pugx.org/phpolar/csrf-protection/downloads)](https://packagist.org/packages/phpolar/csrf-protection) [![PHP Version Require](https://poser.pugx.org/phpolar/csrf-protection/require/php)](https://packagist.org/packages/phpolar/csrf-protection) [![Weekly Check](https://github.com/phpolar/csrf-protection/actions/workflows/weekly.yml/badge.svg)](https://github.com/phpolar/csrf-protection/actions/workflows/weekly.yml)
 
 ## Table of Contents
 
@@ -48,6 +48,7 @@ $preparedResponse = $middleWare->process($request, $routingHandler);
 ## [API Documentation](https://phpolar.github.io/csrf-protection/)
 
 ## Thresholds
+
 |Source Code Size|Memory Usage|
 |----------------|------------|
 |4.3 kB|108 kB
