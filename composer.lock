@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "535567aa5bb2a840d60f4a517d0b6398",
+    "content-hash": "d765aa54fa9b1fe289ba46ba35ac542f",
     "packages": [
         {
             "name": "php-contrib/response-filter",
@@ -1773,16 +1773,16 @@
         },
         {
             "name": "phpolar/http-message-test-utils",
-            "version": "0.2.1",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpolar/http-message-test-utils.git",
-                "reference": "69c5e89d311a25601794d9ad10d0f254c9e3a6e5"
+                "reference": "1a080e8ccd9860a79b7dd2205ac566a0fd266a31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpolar/http-message-test-utils/zipball/69c5e89d311a25601794d9ad10d0f254c9e3a6e5",
-                "reference": "69c5e89d311a25601794d9ad10d0f254c9e3a6e5",
+                "url": "https://api.github.com/repos/phpolar/http-message-test-utils/zipball/1a080e8ccd9860a79b7dd2205ac566a0fd266a31",
+                "reference": "1a080e8ccd9860a79b7dd2205ac566a0fd266a31",
                 "shasum": ""
             },
             "require": {
@@ -1808,9 +1808,9 @@
             "description": "A PSR-7 Http Message Stub Library",
             "support": {
                 "issues": "https://github.com/phpolar/http-message-test-utils/issues",
-                "source": "https://github.com/phpolar/http-message-test-utils/tree/0.2.1"
+                "source": "https://github.com/phpolar/http-message-test-utils/tree/0.3.0"
             },
-            "time": "2024-12-01T21:13:34+00:00"
+            "time": "2025-06-22T20:27:58+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
