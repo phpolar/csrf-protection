@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Phpolar\CsrfProtection\Http;
 
 use DateTimeImmutable;
+use PhpCommonEnums\HttpResponseCode\Enumeration\HttpResponseCodeEnum as ResponseCode;
 use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider;
-use Phpolar\HttpCodes\ResponseCode;
 use Phpolar\HttpMessageTestUtils\MemoryStreamStub;
 use Phpolar\HttpMessageTestUtils\ResponseStub;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -51,7 +51,7 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
             $tokenStorage,
             $responseFactory,
         );
-        $handlerStub = new class () implements RequestHandlerInterface {
+        $handlerStub = new class() implements RequestHandlerInterface {
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 return new ResponseStub();
@@ -59,7 +59,7 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
         };
         $sut = new CsrfRequestCheckMiddleware($handler);
         $response = $sut->process($request, $handlerStub);
-        $this->assertSame(ResponseCode::FORBIDDEN, $response->getStatusCode());
+        $this->assertSame(ResponseCode::Forbidden->value, $response->getStatusCode());
     }
 
     #[Test]
@@ -76,18 +76,16 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
             $tokenStorage,
             $responseFactory,
         );
-        $handlerStub = new class ($expectedResponseContent) implements RequestHandlerInterface {
-            public function __construct(private string $expectedResponseContent)
-            {
-            }
+        $handlerStub = new class($expectedResponseContent) implements RequestHandlerInterface {
+            public function __construct(private string $expectedResponseContent) {}
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
-                return (new ResponseStub(ResponseCode::OK))->withBody(new MemoryStreamStub($this->expectedResponseContent));
+                return (new ResponseStub(ResponseCode::Ok->value))->withBody(new MemoryStreamStub($this->expectedResponseContent));
             }
         };
         $sut = new CsrfRequestCheckMiddleware($handler);
         $response = $sut->process($request, $handlerStub);
-        $this->assertSame(ResponseCode::OK, $response->getStatusCode());
+        $this->assertSame(ResponseCode::Ok->value, $response->getStatusCode());
         $this->assertSame($expectedResponseContent, $response->getBody()->getContents());
     }
 }

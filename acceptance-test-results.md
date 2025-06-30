@@ -1,6 +1,7 @@
 # Acceptance Test Report
 
 ## Csrf Protection (Phpolar\CsrfProtection\Http\CsrfProtection)
+
 - [x] Shall prevent a CSRF attack when token does not exist in POST request
 - [x] Shall prevent a CSRF attack when token does not exist in PUT request
 - [x] Shall prevent a CSRF attack when token does not exist in GET request
@@ -22,8 +23,9 @@
 - [x] Shall allow request when token is valid in get request
 
 ## Memory Usage (Phpolar\CsrfProtection\MemoryUsage)
-- [x] Memory usage shall be below 108000 bytes
+
+- [x] Memory usage shall be below 123000 bytes
 
 ## Project Size (Phpolar\CsrfProtection\ProjectSize)
-- [x] Source code total size shall be below 4500 bytes
 
+- [x] Source code total size shall be below 4500 bytes

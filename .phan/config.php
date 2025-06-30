@@ -341,7 +341,7 @@ return [
     'directory_list' => [
         'src',
         'vendor/psr',
-        'vendor/phpolar/http-codes',
+        'vendor/php-common-enums/http-response-code',
         'vendor/php-contrib/response-filter',
     ],
 

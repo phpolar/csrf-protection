@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
-use Phpolar\HttpCodes\ResponseCode;
+use PhpCommonEnums\HttpResponseCode\Enumeration\HttpResponseCodeEnum as ResponseCode;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -15,9 +15,7 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 class CsrfRequestCheckMiddleware implements MiddlewareInterface
 {
-    public function __construct(private RequestHandlerInterface $csrfCheckHandler)
-    {
-    }
+    public function __construct(private RequestHandlerInterface $csrfCheckHandler) {}
 
     /**
      * Produces a response for an invalid request or
@@ -31,7 +29,7 @@ class CsrfRequestCheckMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $response = $this->csrfCheckHandler->handle($request);
-        if ($response->getStatusCode() === ResponseCode::FORBIDDEN) {
+        if ($response->getStatusCode() === (int) ResponseCode::Forbidden->value) {
             return $response;
         }
         return $handler->handle($request);

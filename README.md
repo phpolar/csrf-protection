@@ -51,6 +51,6 @@ $preparedResponse = $middleWare->process($request, $routingHandler);
 
 |Source Code Size|Memory Usage|
 |----------------|------------|
-|4.3 kB|108 kB
+|4.3 kB|108 kB|
 
 [Back to top](#csrf-protection)

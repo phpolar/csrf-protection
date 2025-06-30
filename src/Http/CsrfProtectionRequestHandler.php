@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Phpolar\CsrfProtection\Http;
 
+use PhpCommonEnums\HttpResponseCode\Enumeration\HttpResponseCodeEnum as ResponseCode;
 use Phpolar\CsrfProtection\CsrfToken;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
-use Phpolar\HttpCodes\ResponseCode;
 
 use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
 
@@ -19,11 +19,6 @@ use const Phpolar\CsrfProtection\REQUEST_ID_KEY;
  */
 final class CsrfProtectionRequestHandler implements RequestHandlerInterface
 {
-    public const BAD_REQUEST = "Bad Request";
-    public const CREATED = "Created";
-    public const FORBIDDEN = "Forbidden";
-    public const OK = "OK";
-    public const METHOD_NOT_ALLOWED = "Method Not Allowed";
     private const SAFE_METHODS = ["HEAD", "OPTIONS"];
     private const UNSAFE_METHODS = ["DELETE", "PUT", "GET", "POST"];
 
@@ -32,8 +27,7 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
         private AbstractTokenStorage $storage,
         private ResponseFactoryInterface $responseFactory,
         private string $requestId = REQUEST_ID_KEY,
-    ) {
-    }
+    ) {}
 
     /**
      * Determines the response based on the validity
@@ -57,8 +51,8 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
     private function badRequest(): Response
     {
         return $this->responseFactory->createResponse(
-            ResponseCode::BAD_REQUEST,
-            self::BAD_REQUEST,
+            (int) ResponseCode::BadRequest->value,
+            ResponseCode::BadRequest->getLabel(),
         );
     }
 
@@ -68,8 +62,8 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
     private function created(): Response
     {
         return $this->responseFactory->createResponse(
-            ResponseCode::CREATED,
-            self::CREATED,
+            (int) ResponseCode::Created->value,
+            ResponseCode::Created->getLabel(),
         );
     }
 
@@ -79,8 +73,8 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
     private function forbidden(): Response
     {
         return $this->responseFactory->createResponse(
-            ResponseCode::FORBIDDEN,
-            self::FORBIDDEN,
+            (int) ResponseCode::Forbidden->value,
+            ResponseCode::Forbidden->getLabel(),
         );
     }
 
@@ -123,8 +117,8 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
     private function methodNotAllowed(): Response
     {
         return $this->responseFactory->createResponse(
-            ResponseCode::METHOD_NOT_ALLLOWED,
-            self::METHOD_NOT_ALLOWED,
+            (int) ResponseCode::MethodNotAllowed->value,
+            ResponseCode::MethodNotAllowed->getLabel(),
         );
     }
 
@@ -134,8 +128,8 @@ final class CsrfProtectionRequestHandler implements RequestHandlerInterface
     private function success(): Response
     {
         return $this->responseFactory->createResponse(
-            ResponseCode::OK,
-            self::OK
+            (int) ResponseCode::Ok->value,
+            ResponseCode::Ok->getLabel(),
         );
     }
 

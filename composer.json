@@ -13,8 +13,8 @@
     "require": {
         "php": ">=8.3",
         "ext-mbstring": "*",
+        "php-common-enums/http-response-code": "^1.0.0",
         "php-contrib/response-filter": "^2.0",
-        "phpolar/http-codes": "^0.0.6",
         "psr/http-message": "^2.0",
         "psr/http-server-handler": "^1.0",
         "psr/http-server-middleware": "^1.0"
@@ -88,7 +88,15 @@
         "test": "phpunit --color=always",
         "test:unit": "@test --configuration=phpunit.dev.xml --testsuite unit",
         "test:acceptance": "@test --configuration=phpunit.dev.xml --testsuite acceptance",
-        "test:acceptance:report": "@test --configuration=phpunit.dev.xml --testsuite acceptance --testdox-text acceptance-test-results.md",
+        "test:acceptance:report": [
+            "@test:acceptance --testdox-text acceptance-test-results.md",
+            "@acceptance-report-subheadings",
+            "@acceptance-report-checkbox",
+            "@acceptance-report-title"
+        ],
+        "acceptance-report-title": "sed -i -e '1i # Acceptance Test Report\\n' acceptance-test-results.md",
+        "acceptance-report-subheadings": "sed -i -E 's/^(\\S)/## \\1/' acceptance-test-results.md",
+        "acceptance-report-checkbox": "sed -i -E 's/^ \\[/- [/' acceptance-test-results.md",
         "test:integration": "@test --configuration=phpunit.dev.xml --testsuite integration",
         "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --coverage-text --configuration=phpunit.ci.xml --path-coverage\""
     },

@@ -53,18 +53,18 @@ abstract class AbstractTokenStorage
     /**
      * Store the token between requests
      */
-    public abstract function commit(): void;
+    abstract public function commit(): void;
 
     /**
      * Returns all tokens
      * @return CsrfToken[]
      */
-    public abstract function queryAll(): array;
+    abstract public function queryAll(): array;
 
     /**
      * Returns a single token
      */
-    public abstract function queryOne(int $index = 0): ?CsrfToken;
+    abstract public function queryOne(int $index = 0): ?CsrfToken;
 
     /**
      * Removes all expired tokens
