@@ -1,3 +1,11 @@
+## 3.2.0 (2025-06-29)
+
+### Feat
+
+- use php common enums instead of http codes
+
+## 3.1.6 (2025-04-16)
+
 ## 3.1.5 (2025-03-20)
 
 ### Fix
