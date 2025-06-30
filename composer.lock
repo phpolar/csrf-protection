@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d765aa54fa9b1fe289ba46ba35ac542f",
+    "content-hash": "2630efd250e8aef9d6a6758cb2df3e5a",
     "packages": [
+        {
+            "name": "php-common-enums/http-response-code",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-common-enums/http-response-code.git",
+                "reference": "4ddece38005140789b06af6cd822fd3e9fd24c53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-common-enums/http-response-code/zipball/4ddece38005140789b06af6cd822fd3e9fd24c53",
+                "reference": "4ddece38005140789b06af6cd822fd3e9fd24c53",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5 | ^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpCommonEnums\\HttpResponseCode\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP Common Enums",
+                    "homepage": "https://github.com/php-common-enums"
+                }
+            ],
+            "description": "Provides a backed enum for HTTP response codes",
+            "keywords": [
+                "enum"
+            ],
+            "support": {
+                "issues": "https://github.com/php-common-enums/http-response-code/issues",
+                "source": "https://github.com/php-common-enums/http-response-code/tree/v1.0.0"
+            },
+            "time": "2022-06-03T12:03:59+00:00"
+        },
         {
             "name": "php-contrib/response-filter",
             "version": "2.0.0",
@@ -43,54 +89,6 @@
                 "source": "https://github.com/php-contrib/response-filter/tree/2.0.0"
             },
             "time": "2025-01-20T13:46:10+00:00"
-        },
-        {
-            "name": "phpolar/http-codes",
-            "version": "0.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpolar/http-codes.git",
-                "reference": "b889110e8d497395a2b77e254e57d835adc476f2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpolar/http-codes/zipball/b889110e8d497395a2b77e254e57d835adc476f2",
-                "reference": "b889110e8d497395a2b77e254e57d835adc476f2",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phan/phan": "v5.x-dev",
-                "phpunit/phpunit": "^9.5",
-                "squizlabs/php_codesniffer": "4.0.x-dev"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phpolar\\HttpCodes\\": "src/"
-                },
-                "exclude-from-classmap": [
-                    "/tests/**/*"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Prince Dorcis",
-                    "email": "princedorcis@gmail.com"
-                },
-                {
-                    "name": "Eric Fortmeyer",
-                    "email": "e.fortmeyer01@gmail.com"
-                }
-            ],
-            "description": "PHP class for HTTP Response Codes",
-            "support": {
-                "source": "https://github.com/phpolar/http-codes/tree/0.0.6"
-            },
-            "time": "2023-01-16T19:44:19+00:00"
         },
         {
             "name": "psr/http-message",
@@ -4971,7 +4969,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -4982,5 +4980,5 @@
         "ext-ast": "^1.1",
         "ext-openssl": "*"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

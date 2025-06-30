@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phpolar\CsrfProtection\Http;
 
 use DateTimeImmutable;
+use PhpCommonEnums\HttpResponseCode\Enumeration\HttpResponseCodeEnum as ResponseCode;
 use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Storage\AbstractTokenStorage;
 use Phpolar\CsrfProtection\Tests\DataProviders\CsrfCheckDataProvider;
@@ -35,7 +36,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::CREATED;
+        $expected = ResponseCode::Created->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -53,7 +54,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::OK;
+        $expected = ResponseCode::Ok->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -71,7 +72,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::OK;
+        $expected = ResponseCode::Ok->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -89,7 +90,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::OK;
+        $expected = ResponseCode::Ok->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -107,7 +108,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::OK;
+        $expected = ResponseCode::Ok->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -125,7 +126,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::METHOD_NOT_ALLOWED;
+        $expected = ResponseCode::MethodNotAllowed->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -143,7 +144,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::OK;
+        $expected = ResponseCode::Ok->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -161,7 +162,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::OK;
+        $expected = ResponseCode::Ok->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -179,7 +180,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::OK;
+        $expected = ResponseCode::Ok->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -197,7 +198,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::OK;
+        $expected = ResponseCode::Ok->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -216,7 +217,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::BAD_REQUEST;
+        $expected = ResponseCode::BadRequest->getLabel();
         $this->assertSame($expected, $actual);
     }
 
@@ -235,7 +236,7 @@ final class CsrfProtectionRequestHandlerTest extends TestCase
         );
         $response = $sut->handle($request);
         $actual = $response->getReasonPhrase();
-        $expected = CsrfProtectionRequestHandler::FORBIDDEN;
+        $expected = ResponseCode::Forbidden->getLabel();
         $this->assertSame($expected, $actual);
     }
 }

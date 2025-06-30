@@ -6,9 +6,9 @@ namespace Phpolar\CsrfProtection\Tests\DataProviders;
 
 use Generator;
 use DateTimeImmutable;
+use PhpCommonEnums\HttpResponseCode\Enumeration\HttpResponseCodeEnum as ResponseCode;
 use Phpolar\CsrfProtection\CsrfToken;
 use Phpolar\CsrfProtection\Tests\Stubs\MemoryTokenStorageStub;
-use Phpolar\HttpCodes\ResponseCode;
 use Phpolar\HttpMessageTestUtils\RequestStub;
 use Phpolar\HttpMessageTestUtils\ResponseFactoryStub;
 
@@ -305,42 +305,42 @@ final class CsrfCheckDataProvider
                 (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::CREATED,
+                ResponseCode::Created->value,
                 "POST"
             ],
             [
                 (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::CREATED,
+                ResponseCode::Created->value,
                 "post"
             ],
             [
                 (new RequestStub("PUT"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
                 "PUT"
             ],
             [
                 (new RequestStub("put"))->withParsedBody((object) [REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
                 "put"
             ],
             [
                 (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
                 "GET"
             ],
             [
                 (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
                 "get"
             ],
         ];
@@ -356,19 +356,19 @@ final class CsrfCheckDataProvider
                 (new RequestStub("POST"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::CREATED,
+                ResponseCode::Created->value,
             ],
             [
                 (new RequestStub("post"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::CREATED,
+                ResponseCode::Created->value,
             ],
             [
                 (new RequestStub("post"))->withParsedBody((object) [REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::CREATED,
+                ResponseCode::Created->value,
             ],
         ];
     }
@@ -383,13 +383,13 @@ final class CsrfCheckDataProvider
                 (new RequestStub("DELETE"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
             [
                 (new RequestStub("delete"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
         ];
     }
@@ -404,13 +404,13 @@ final class CsrfCheckDataProvider
                 (new RequestStub("GET"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
             [
                 (new RequestStub("get"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
         ];
     }
@@ -422,7 +422,7 @@ final class CsrfCheckDataProvider
                 new RequestStub($method),
                 new MemoryTokenStorageStub(),
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ];
         }
     }
@@ -446,7 +446,7 @@ final class CsrfCheckDataProvider
                     ->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::METHOD_NOT_ALLLOWED,
+                ResponseCode::MethodNotAllowed->value,
             ];
         }
     }
@@ -461,13 +461,13 @@ final class CsrfCheckDataProvider
                 (new RequestStub("PUT"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
             [
                 (new RequestStub("put"))->withParsedBody([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
         ];
     }
@@ -482,13 +482,13 @@ final class CsrfCheckDataProvider
                 (new RequestStub("HEAD"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
             [
                 (new RequestStub("head"))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
         ];
     }
@@ -503,25 +503,25 @@ final class CsrfCheckDataProvider
                 (new RequestStub("HEAD"))->withQueryParams([REQUEST_ID_KEY => (string) $invalidToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
             [
                 (new RequestStub("head"))->withQueryParams([REQUEST_ID_KEY => (string) $invalidToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
             [
                 (new RequestStub("HEAD")),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
             [
                 (new RequestStub("head")),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ],
         ];
     }
@@ -541,7 +541,7 @@ final class CsrfCheckDataProvider
                 (new RequestStub($method))->withQueryParams([REQUEST_ID_KEY => (string) $validToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ];
         }
     }
@@ -561,7 +561,7 @@ final class CsrfCheckDataProvider
                 (new RequestStub($method))->withQueryParams([REQUEST_ID_KEY => (string) $invalidToken]),
                 $tokenStorage,
                 new ResponseFactoryStub(),
-                ResponseCode::OK,
+                ResponseCode::Ok->value,
             ];
         }
     }
