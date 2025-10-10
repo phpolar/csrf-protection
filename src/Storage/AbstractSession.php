@@ -17,9 +17,7 @@ abstract class AbstractSession implements ArrayAccess
     /**
      * @param array<int|string,CsrfToken[]> $sessionVars
      */
-    public function __construct(private array &$sessionVars)
-    {
-    }
+    public function __construct(private array &$sessionVars) {}
 
     public function offsetExists(mixed $offset): bool
     {
@@ -27,7 +25,6 @@ abstract class AbstractSession implements ArrayAccess
     }
 
     /**
-     * @param mixed $offset
      * @return CsrfToken[]
      */
     public function offsetGet(mixed $offset): array

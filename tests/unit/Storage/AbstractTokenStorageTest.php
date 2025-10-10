@@ -31,7 +31,7 @@ final class AbstractTokenStorageTest extends TestCase
     {
         yield [
             array_map(
-                static fn () => new CsrfToken(new DateTimeImmutable()),
+                static fn() => new CsrfToken(new DateTimeImmutable()),
                 range(1, TOKEN_MAX + 1)
             ),
             TOKEN_MAX,
@@ -69,7 +69,7 @@ final class AbstractTokenStorageTest extends TestCase
     public function test2a()
     {
         $sut = new MemoryTokenStorageStub();
-        $invalidTokens = array_map(static fn () => new CsrfToken(new DateTimeImmutable("yesterday")), range(1, 3));
+        $invalidTokens = array_map(static fn() => new CsrfToken(new DateTimeImmutable("yesterday")), range(1, 3));
         $token = new CsrfToken(new DateTimeImmutable());
         array_walk($invalidTokens, $sut->add(...));
         $sut->add($token);
@@ -80,7 +80,7 @@ final class AbstractTokenStorageTest extends TestCase
     public function test2z()
     {
         $sut = new MemoryTokenStorageStub();
-        $invalidTokens = array_map(static fn () => new CsrfToken(new DateTimeImmutable("now")), range(1, 3));
+        $invalidTokens = array_map(static fn() => new CsrfToken(new DateTimeImmutable("now")), range(1, 3));
         $token = new CsrfToken(new DateTimeImmutable());
         array_walk($invalidTokens, $sut->add(...));
         $sut->add($token);
@@ -121,9 +121,9 @@ final class AbstractTokenStorageTest extends TestCase
         $this->assertCount($tokenMax, $tokens);
     }
 
-    #[TestDox("Shall allow a token to be added after max count threshold has been reached")]
+    #[TestDox("Shall allow a token to be added after \$tokenMax count threshold has been reached")]
     #[DataProvider("tooManyTokens")]
-    public function test5a(array $excessiveTokens)
+    public function test5a(array $excessiveTokens, int $tokenMax /* used in test dox output */)
     {
         $sut = new MemoryTokenStorageStub();
         foreach ($excessiveTokens as $token) {
@@ -143,7 +143,7 @@ final class AbstractTokenStorageTest extends TestCase
         $sut->add($expiredToken);
         $sut->add($freshToken);
         $token = $sut->queryOne(0);
-        $this->assertFalse($token->isExpired());
+        $this->assertFalse($token?->isExpired());
     }
 
     #[TestDox("Shall say token is invalid when it does not contain any tokens")]

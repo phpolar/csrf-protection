@@ -45,13 +45,14 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
+        string $method, // now required since phpunit 12.4
     ) {
         $handler = new CsrfProtectionRequestHandler(
             new CsrfToken(new DateTimeImmutable("now")),
             $tokenStorage,
             $responseFactory,
         );
-        $handlerStub = new class () implements RequestHandlerInterface {
+        $handlerStub = new class() implements RequestHandlerInterface {
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 return new ResponseStub();
@@ -76,7 +77,7 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
             $tokenStorage,
             $responseFactory,
         );
-        $handlerStub = new class ($expectedResponseContent) implements RequestHandlerInterface {
+        $handlerStub = new class($expectedResponseContent) implements RequestHandlerInterface {
             public function __construct(private string $expectedResponseContent) {}
             public function handle(ServerRequestInterface $request): ResponseInterface
             {

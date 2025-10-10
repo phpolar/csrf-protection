@@ -23,7 +23,7 @@ final class SessionTokenStorageTest extends TestCase
     {
         $requestId = uniqid();
         $fakeSession = [$requestId => [new CsrfToken(new DateTimeImmutable("now"))]];
-        $activeSession = new class ($fakeSession) extends AbstractSession
+        $activeSession = new class($fakeSession) extends AbstractSession
         {
             public function isNotActive(): bool
             {
@@ -38,7 +38,7 @@ final class SessionTokenStorageTest extends TestCase
         $requestId = uniqid();
         $givenToken = new CsrfToken(new DateTimeImmutable("now"));
         $fakeSession = [$requestId => [$givenToken]];
-        $activeSession = new class ($fakeSession) extends AbstractSession
+        $activeSession = new class($fakeSession) extends AbstractSession
         {
             public function isNotActive(): bool
             {
@@ -52,7 +52,7 @@ final class SessionTokenStorageTest extends TestCase
     {
         $requestId = uniqid();
         $fakeEmptySession = [];
-        $activeSession = new class ($fakeEmptySession) extends AbstractSession
+        $activeSession = new class($fakeEmptySession) extends AbstractSession
         {
             public function isNotActive(): bool
             {
@@ -66,7 +66,7 @@ final class SessionTokenStorageTest extends TestCase
     {
         $requestId = uniqid();
         $fakeSession = [$requestId => [new CsrfToken(new DateTimeImmutable("now"))]];
-        $activeSession = new class ($fakeSession) extends AbstractSession
+        $activeSession = new class($fakeSession) extends AbstractSession
         {
             public function isNotActive(): bool
             {
@@ -104,7 +104,7 @@ final class SessionTokenStorageTest extends TestCase
 
     #[TestDox("Shall return null for non-existing token when queried")]
     #[DataProvider("activeSessionsWithoutTokens")]
-    public function testd(AbstractSession $givenSession)
+    public function testd(AbstractSession $givenSession, string $requestId /* required since phpunit 12.4 */)
     {
         $sut = new SessionTokenStorage($givenSession);
         $this->assertNull($sut->queryOne());
