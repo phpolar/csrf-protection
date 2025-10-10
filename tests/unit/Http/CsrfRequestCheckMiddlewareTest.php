@@ -52,7 +52,7 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
             $tokenStorage,
             $responseFactory,
         );
-        $handlerStub = new class() implements RequestHandlerInterface {
+        $handlerStub = new class () implements RequestHandlerInterface {
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 return new ResponseStub();
@@ -77,7 +77,7 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
             $tokenStorage,
             $responseFactory,
         );
-        $handlerStub = new class($expectedResponseContent) implements RequestHandlerInterface {
+        $handlerStub = new class ($expectedResponseContent) implements RequestHandlerInterface {
             public function __construct(private string $expectedResponseContent) {}
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
