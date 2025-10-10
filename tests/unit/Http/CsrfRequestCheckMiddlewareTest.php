@@ -45,6 +45,7 @@ final class CsrfRequestCheckMiddlewareTest extends TestCase
         ServerRequestInterface $request,
         AbstractTokenStorage $tokenStorage,
         ResponseFactoryInterface $responseFactory,
+        string $method, // now required since phpunit 12.4
     ) {
         $handler = new CsrfProtectionRequestHandler(
             new CsrfToken(new DateTimeImmutable("now")),

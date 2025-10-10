@@ -104,7 +104,7 @@ final class SessionTokenStorageTest extends TestCase
 
     #[TestDox("Shall return null for non-existing token when queried")]
     #[DataProvider("activeSessionsWithoutTokens")]
-    public function testd(AbstractSession $givenSession)
+    public function testd(AbstractSession $givenSession, string $requestId /* required since phpunit 12.4 */)
     {
         $sut = new SessionTokenStorage($givenSession);
         $this->assertNull($sut->queryOne());
