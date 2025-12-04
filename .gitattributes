@@ -1,6 +1,5 @@
 /acceptance-test-results.md export-ignore
 /CHANGELOG.md               export-ignore
-/composer.json              export-ignore
 /composer.lock              export-ignore
 /.cz.yaml                   export-ignore
 /docs                       export-ignore
